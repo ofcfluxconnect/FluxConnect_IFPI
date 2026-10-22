@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FluxConnect | Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<main class="tela">
+
+  <!-- Test -->
+
+  <!-- Painel azul com apresentação da plataforma -->
+  <section class="apresentacao">
+    <div class="marca clara">
+     <img class="logo esquerda" src="LogoFluxconnect.png" alt="Logo FluxConnect">
+      <span><b>FluxConnect</b><small>Plataforma de Saúde</small></span>
+    </div>
+
+    <div class="intro">
+      <h1>Conectando<br>pacientes<br>e serviços de saúde.</h1>
+      <h2>Simplificando sua<br>jornada médica.</h2>
+      <p>A plataforma que integra pacientes, clínicas,<br class="desktop">
+        laboratórios e hospitais em uma única<br class="desktop"> experiência digital.</p>
+    </div>
+
+    <!-- Três benefícios da plataforma -->
+    <div class="beneficios">
+      <article><i>ϟ</i><div><b>Agilidade</b><p>Agende consultas, exames e acompanhe<br class="desktop"> resultados em poucos cliques.</p></div></article>
+      <article><i>♧</i><div><b>Segurança</b><p>Seus dados protegidos seguindo boas práticas de<br class="desktop"> segurança e privacidade.</p></div></article>
+      <article><i>↔</i><div><b>Integração</b><p>Conecte-se com clínicas, laboratórios e hospitais<br class="desktop"> em uma única plataforma.</p></div></article>
+    </div>
+
+    <div class="ondas" aria-hidden="true"></div>
+    <small class="copyright">© 2025 FluxConnect — Todos os direitos reservados</small>
+  </section>
+
+  <!-- Painel claro com o formulário de login -->
+  <section class="painel-login">
+    <div class="conteudo">
+      <div class="marca escura">
+        <img class="logo" src="logo-fluxconnect.png" alt="Logo FluxConnect">
+        <b>FluxConnect</b>
+      </div>
+
+      <header class="boas-vindas">
+        <h2>Bem-vindo de volta</h2>
+        <p>Entre com suas credenciais para continuar</p>
+      </header>
+
+      <form id="formLogin">
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="email@exemplo.com" autocomplete="username" required minlength="8">
+        </div>
+
+        <div class="campo">
+          <label for="senha">Senha</label>
+          <div class="senha">
+            <input id="senha" name="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" required>
+
+            <!-- JavaScript alterna a visibilidade da senha -->
+            <button id="verSenha" type="button" aria-label="Mostrar senha">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="opcoes">
+          <label><input type="checkbox" name="lembrar"> Lembrar-me</label>
+          <a href="#" id="esqueci">Esqueceu a senha?</a>
+        </div>
+
+        <button class="entrar" type="submit">Entrar <span>›</span></button>
+          <p id="mensagem" role="status" aria-live="polite"></p>
+
+        <div class="separador">ou</div>
+        <button class="criar" id="criarConta" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Criar conta
+        </button>
+        
+        <p class="mensagem" id="mensagem" role="status" aria-live="polite"></p>
+      </form>
+      <footer class="privacidade">
+        <span aria-hidden="true">♢</span><span>Seus dados estão protegidos.</span>
+        <a href="#" id="privacidade">Política de Privacidade ↗</a>
+      </footer>
+    </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
