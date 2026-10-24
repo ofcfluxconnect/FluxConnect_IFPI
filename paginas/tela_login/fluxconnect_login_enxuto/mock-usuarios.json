@@ -1,0 +1,12 @@
+{
+  "usuarios": [
+    {
+      "email": "paciente@fluxconnect.test",
+      "senha": "Teste123!",
+      "ativo": true,
+      "perfil": "paciente",
+      "nome": "Paciente de Teste",
+      "paginaInicial": "../../tela_principal_paciente/index.html"
+    }
+  ]
+}
