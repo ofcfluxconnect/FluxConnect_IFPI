@@ -55,17 +55,25 @@ formulario.addEventListener("submit", async function (evento) {
     const resposta = await fetch("mock-usuarios.json");
 
     if (!resposta.ok) {
-      throw new Error("Não foi possível carregar o arquivo JSON.");
+        throw new Error("Não foi possível carregar o arquivo JSON.");
     }
 
     const dados = await resposta.json();
 
-    // 5. Procura uma conta ativa com os dados informados.
+    // Senhas alteradas durante a simulação.
+    const senhasAtualizadas = JSON.parse(
+        localStorage.getItem("senhasAtualizadas") || "{}"
+    );
+
+    // Procura uma conta ativa com os dados informados.
     const usuario = dados.usuarios.find(function (item) {
-      return item.email.toLowerCase() === valorEmail.toLowerCase()
-        && item.senha === valorSenha
-        && item.ativo === true;
-    });
+        const senhaCorreta =
+            senhasAtualizadas[item.email.toLowerCase()] ?? item.senha;
+
+        return item.email.toLowerCase() === valorEmail.toLowerCase()
+            && senhaCorreta === valorSenha
+            && item.ativo === true;
+});
 
     // 6. Se encontrou o usuário, libera a próxima página.
     if (usuario) {
