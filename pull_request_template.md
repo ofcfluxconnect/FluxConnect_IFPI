@@ -10,7 +10,7 @@
 
 ## Figma
 
-<!-- Link para o arquivo, a página ou o frame relacionado; use "Não aplicável" quando não houver -->
+[FLUX-XXX](https://www.figma.com/design/9z6iO92cGNvb3EHdUbRoXu/FluxConnect-1.0?node-id=0-1&p=f&t=eyXmcNR9ISiBQQLv-0)
 
 ## Objetivo
 
