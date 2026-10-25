@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esqueci Minha Senha</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <img src="" alt="">
-        <h5>Sistema de Gestão em Saúde</h5>
+        <img src="../../midias/logo/fluxConnect_2.svg" alt="Logo FluxConnect">
+        <span>Sistema de Gestão em Saúde</span>
     </header>
-    <div id="modal_recSenha">
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
-        <path d="M 15 2 C 11.145666 2 8 5.1456661 8 9 L 8 11 L 6 11 C 4.895 11 4 11.895 4 13 L 4 25 C 4 26.105 4.895 27 6 27 L 24 27 C 25.105 27 26 26.105 26 25 L 26 13 C 26 11.895 25.105 11 24 11 L 10 11 L 10 9 C 10 6.2263339 12.226334 4 15 4 C 17.184344 4 19.022854 5.3946656 19.708984 7.3339844 A 1.0001 1.0001 0 1 0 21.59375 6.6660156 C 20.631881 3.9473344 18.037656 2 15 2 z"></path>
-        </svg>
-        <h2>Esqueceu sua senha?</h2>
-        <h3>Não se preocupe!Digite o e-mail associado à sua conta e enviaremos um link para você redefinir sua senha.</h3>
-        <form action="">
+    <div class="container_recSenha">
+        <div class="cadeado">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
+            <path d="M 15 2 C 11.145666 2 8 5.1456661 8 9 L 8 11 L 6 11 C 4.895 11 4 11.895 4 13 L 4 25 C 4 26.105 4.895 27 6 27 L 24 27 C 25.105 27 26 26.105 26 25 L 26 13 C 26 11.895 25.105 11 24 11 L 10 11 L 10 9 C 10 6.2263339 12.226334 4 15 4 C 17.184344 4 19.022854 5.3946656 19.708984 7.3339844 A 1.0001 1.0001 0 1 0 21.59375 6.6660156 C 20.631881 3.9473344 18.037656 2 15 2 z"></path>
+            </svg>
+        </div>
+        <h1>Esqueceu sua senha?</h1>
+        <p>Não se preocupe! Digite o e-mail associado à sua conta e enviaremos um link para você redefinir sua senha.</p>
+        <form id="recuperacao">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email">
+            <input type="text" placeholder="exemplo@gmail.com" name="email" id="email" required>
+            <button type="submit"><img src="../../midias/icones/paperplane-svgrepo-com.svg" class="paperplane"> Enviar link de recuperação</button>
+            <p id="mensagem" role="status"></p>
         </form>
+        <div class="voltar">
+            <span id="voltarParaLogin"> <img src="../../midias/icones/arrow-back-basic-svgrepo-com.svg" class="flecha"> Voltar para o login</span>
+        </div>
     </div>
+<script src="script.js"></script>
 </body>
 </html>
