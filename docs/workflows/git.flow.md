@@ -26,7 +26,8 @@ Atualize a branch principal:
 
 ```bash
 git checkout main
-git pull
+git pull ou git pull --rebase origin main
+O --rebase serve para deixar o histórico de commits limpo e em linha reta, evitando a criação daqueles commits automáticos e confusos de "junção" (chamados Merge Commits).
 ```
 
 Crie uma branch para o item:
