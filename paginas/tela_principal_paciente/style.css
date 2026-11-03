@@ -258,7 +258,7 @@
         flex-direction: row;
         gap: 16px;
         width: 100%;
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
       }
       .consultas-full {
         width: 212px;
@@ -302,9 +302,10 @@
         flex-wrap: wrap;
       }
       .card-proxima-consulta {
-        min-width: 438px;
-        min-height: 307;
+        min-width: 0;
+        min-height: auto;
         display: flex;
+        flex: 1;
         flex-direction: column;
         padding: 24px;
         gap: 16px;
@@ -544,17 +545,24 @@
         word-wrap: break-word;
       }
 
+      /* Containers de Atalhos Rapidos */
       .div-engloba-cards-athalho {
+        background: transparent;
         display: flex;
         flex-direction: row;
         padding-top: 16px;
         gap: 16px;
         flex-wrap: wrap;
       }
+
+      .div-engloba-cards-athalho > *{
+        flex: 1;
+      }
       .container-menor-atalho {
         width: 212px;
         height: auto;
       }
+
       .container-menor-atalho a {
         display: flex;
         flex-direction: column;
@@ -565,6 +573,13 @@
         border: 1.3px solid rgba(15, 25, 35, 0.08);
         box-shadow: 0px 1px 3px rgba(15, 25, 35, 0.04);
         box-sizing: border-box;
+
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .container-menor-atalho a:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(15, 25, 35, 0.12);
       }
       .container-menor-atalho img {
         width: fit-content;
