@@ -14,7 +14,6 @@ function somenteNumeros(valor) {
 }
 
 
-/* Configura a data máxima de nascimento */
 const hoje = new Date();
 
 // Ajusta a data para o horário local.
