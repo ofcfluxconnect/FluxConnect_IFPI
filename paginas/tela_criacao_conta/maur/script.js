@@ -30,6 +30,7 @@ buscarCampo("nascimento").max = dataAtual
 buscarCampo("cpf").addEventListener("input", function () {
     let cpf = somenteNumeros(this.value).slice(0, 11);
 
+    // Organiza os números no formato 000.000.000-00.
     cpf = cpf
         .replace(/(\d{3})(\d)/, "$1.$2")
         .replace(/(\d{3})(\d)/, "$1.$2")
@@ -43,12 +44,16 @@ buscarCampo("cpf").addEventListener("input", function () {
 buscarCampo("cep").addEventListener("input", function () {
     let cep = somenteNumeros(this.value).slice(0, 8);
 
+    // Organiza o CEP no formato 00000-000.
     this.value = cep.replace(/^(\d{5})(\d)/, "$1-$2");
 });
 
+
+/* Aplica a máscara do telefone */
 buscarCampo("telefone").addEventListener("input", function () {
     let telefone = somenteNumeros(this.value).slice(0, 11);
 
+    // Adiciona o DDD entre parênteses e o hífen.
     telefone = telefone
         .replace(/^(\d{2})(\d)/, "($1) $2")
         .replace(/(\d{4,5})(\d{4})$/, "$1-$2");
@@ -61,6 +66,7 @@ buscarCampo("telefone").addEventListener("input", function () {
 function validarCPF(valor) {
     const cpf = somenteNumeros(valor);
 
+    // O CPF precisa ter 11 números e não pode ter todos iguais.
     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
         return false;
     }
