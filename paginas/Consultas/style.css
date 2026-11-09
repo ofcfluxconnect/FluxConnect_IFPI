@@ -1,0 +1,1105 @@
+/* reset basico */
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cor-principal: #0f1923;
+  --cor-secundaria: #6b7585;
+  --azul-primario: #2563eb;
+  --azul-claro-bg: #ddebfd27;
+  --azul-sidebar-bg: #ddebfd;
+  --borda-suave: rgba(15, 25, 35, 0.07);
+  --hover-bg: #bed7fa69;
+  --hover-cor: #1a6fc4;
+  --ativo-bg: #dbeafe;
+
+  /* cores dos status */
+  --verde-bg: #e1f5ee;
+  --verde-texto: #0f6e56;
+  --amarelo-bg: #fef3e2;
+  --amarelo-texto: #854f0b;
+  --vermelho-bg: #fde8e8;
+  --vermelho-texto: #dc2626;
+  --cinza-bg: #f0f4f8;
+  --cinza-texto: #4b5563;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  background: #fff;
+  width: 248px;
+  height: 100vh;
+  display: flex;
+  flex: 0 0 248px;
+  flex-direction: column;
+  border-right: 1.25px solid var(--borda-suave);
+}
+
+.logo-container {
+  width: 100%;
+  height: 102px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  border-bottom: 1.25px solid var(--borda-suave);
+  cursor: pointer;
+}
+
+.logo-fluxconnect {
+  width: 66px;
+  height: 53px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-nome {
+  color: var(--cor-principal);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 19.5px;
+}
+
+.logo-subtitulo {
+  color: var(--cor-secundaria);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16.5px;
+}
+
+/* links da navegacao */
+.nav-links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 0;
+  gap: 2px;
+}
+
+.nav-links a {
+  height: 40px;
+  color: var(--cor-secundaria);
+  text-decoration: none;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  font-size: 13.5px;
+  font-weight: 400;
+  gap: 12px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.nav-links a:hover {
+  background: var(--hover-bg);
+  color: var(--hover-cor);
+  font-weight: 500;
+}
+
+.nav-links a img {
+  width: 20px;
+  height: 20px;
+}
+
+/* link ativo (Consultas selecionado) */
+.link-ativo {
+  background: var(--ativo-bg) !important;
+  color: var(--azul-primario) !important;
+  font-weight: 600 !important;
+}
+
+/* bolinha azul ao lado do texto Consultas */
+.bolinha-notificacao {
+  width: 7px;
+  height: 7px;
+  background: var(--azul-primario);
+  border-radius: 50%;
+  margin-left: 4px;
+}
+
+/* usuario na parte inferior */
+.container-user {
+  width: 90%;
+  border-radius: 10px;
+  margin: 12px;
+  background: var(--azul-sidebar-bg);
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  padding: 16px 20px;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.avatar-user {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #1a6fc4, #378add);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.info-user {
+  display: flex;
+  flex-direction: column;
+}
+
+.nome-user {
+  color: var(--cor-principal);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tipo-user {
+  color: var(--cor-secundaria);
+  font-size: 11px;
+}
+
+/* ========== CONTEUDO PRINCIPAL ========== */
+.conteudo-principal {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 28px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--azul-claro-bg);
+}
+
+/* topo com breadcrumb e icones */
+.topo-pagina {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--cor-secundaria);
+}
+
+.breadcrumb strong {
+  color: var(--cor-principal);
+}
+
+.icones-topo {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-icone {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  border: 1.25px solid rgba(15, 25, 35, 0.13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.btn-icone:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.btn-icone-avatar {
+  background: #eef4fd;
+}
+
+/* cabecalho: titulo + botao */
+.cabecalho-consultas {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.titulo-pagina {
+  color: var(--cor-principal);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.subtitulo-pagina {
+  color: var(--cor-secundaria);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.btn-novo-agendamento {
+  background: var(--azul-primario);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.btn-novo-agendamento:hover {
+  background: #1d4ed8;
+}
+
+/* ========== ABAS ========== */
+.abas-container {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.aba {
+  background: none;
+  border: 1.5px solid transparent;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cor-secundaria);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s;
+}
+
+.aba:hover {
+  background: #f1f5f9;
+}
+
+.aba-ativa {
+  border-color: var(--cor-principal);
+  color: var(--cor-principal);
+  font-weight: 600;
+  background: #fff;
+}
+
+.badge-aba {
+  background: #e8edf2;
+  color: var(--cor-secundaria);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.aba-ativa .badge-aba {
+  background: var(--azul-primario);
+  color: #fff;
+}
+
+/* ========== FILTROS ========== */
+.barra-filtros {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.campo-busca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.25px solid var(--borda-suave);
+  border-radius: 10px;
+  padding: 10px 16px;
+  flex: 1;
+  max-width: 380px;
+}
+
+.campo-busca input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 13px;
+  color: var(--cor-principal);
+  background: transparent;
+}
+
+.campo-busca input::placeholder {
+  color: #b0b7c3;
+}
+
+.campo-filtro {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1.25px solid var(--borda-suave);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.campo-filtro select {
+  border: none;
+  outline: none;
+  font-size: 13px;
+  color: #b0b7c3;
+  background: transparent;
+  cursor: pointer;
+  appearance: auto;
+}
+
+/* ========== LISTA DE CONSULTAS ========== */
+.lista-consultas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* cada card de consulta */
+.card-consulta {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border: 1.25px solid var(--borda-suave);
+  border-radius: 14px;
+  padding: 24px;
+  gap: 24px;
+  transition: box-shadow 0.2s;
+}
+
+.card-consulta:hover {
+  box-shadow: 0 4px 16px rgba(15, 25, 35, 0.06);
+}
+
+/* borda esquerda colorida do card */
+.card-consulta.status-confirmada {
+  border-left: 3px solid var(--verde-texto);
+}
+
+.card-consulta.status-pendente {
+  border-left: 3px solid #f59e0b;
+}
+
+.card-consulta.status-realizada {
+  border-left: 3px solid #94a3b8;
+}
+
+.card-consulta.status-cancelada {
+  border-left: 3px solid var(--vermelho-texto);
+}
+
+/* bloco da data (dia, mes, hora) */
+.bloco-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 56px;
+  padding-top: 2px;
+}
+
+.bloco-data .dia {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.bloco-data .mes {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.bloco-data .hora {
+  font-size: 12px;
+  color: var(--cor-secundaria);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* cores da data por tipo */
+.card-consulta.status-confirmada .bloco-data .dia,
+.card-consulta.status-confirmada .bloco-data .mes {
+  color: var(--azul-primario);
+}
+
+.card-consulta.status-pendente .bloco-data .dia,
+.card-consulta.status-pendente .bloco-data .mes {
+  color: var(--azul-primario);
+}
+
+.card-consulta.status-realizada .bloco-data .dia,
+.card-consulta.status-realizada .bloco-data .mes {
+  color: var(--azul-primario);
+}
+
+.card-consulta.status-cancelada .bloco-data .dia,
+.card-consulta.status-cancelada .bloco-data .mes {
+  color: var(--vermelho-texto);
+}
+
+/* conteudo do card (infos do medico) */
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* linha superior: icone medico + nome + badge status */
+.card-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.medico-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* icone redondo do medico */
+.icone-medico {
+  width: 32px;
+  height: 32px;
+  background: #eef4fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icone-medico svg {
+  width: 16px;
+  height: 16px;
+}
+
+.medico-textos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nome-medico {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cor-principal);
+}
+
+/* nome riscado nas canceladas */
+.card-consulta.status-cancelada .nome-medico {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.detalhe-medico {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--cor-secundaria);
+}
+
+.detalhe-medico svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* badge de status (Confirmada, Pendente etc.) */
+.badge-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 12px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge-status .ponto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* variacoes de cor do badge */
+.badge-confirmada {
+  background: var(--verde-bg);
+  color: var(--verde-texto);
+}
+
+.badge-confirmada .ponto {
+  background: var(--verde-texto);
+}
+
+.badge-pendente {
+  background: var(--amarelo-bg);
+  color: var(--amarelo-texto);
+}
+
+.badge-pendente .ponto {
+  background: var(--amarelo-texto);
+}
+
+.badge-realizada {
+  background: var(--cinza-bg);
+  color: var(--cinza-texto);
+}
+
+.badge-realizada .ponto {
+  background: var(--cinza-texto);
+}
+
+.badge-cancelada {
+  background: var(--vermelho-bg);
+  color: var(--vermelho-texto);
+}
+
+.badge-cancelada .ponto {
+  background: var(--vermelho-texto);
+}
+
+/* motivo do cancelamento */
+.motivo-cancelamento {
+  font-size: 13px;
+  color: var(--cor-secundaria);
+  margin-top: 2px;
+}
+
+.motivo-cancelamento strong {
+  font-weight: 500;
+  color: var(--cor-principal);
+}
+
+/* botoes de acao dentro do card */
+.card-acoes {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.btn-acao {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  border: 1.25px solid var(--borda-suave);
+  background: #fff;
+  color: var(--cor-principal);
+  box-shadow: 0 1px 3px rgba(15, 25, 35, 0.04);
+}
+
+.btn-acao:hover {
+  background: #f8fafc;
+  box-shadow: 0 2px 6px rgba(15, 25, 35, 0.08);
+}
+
+.btn-acao svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* botao cancelar consulta (texto vermelho sem borda) */
+.btn-cancelar {
+  border: none;
+  background: none;
+  color: #ef4444;
+  box-shadow: none;
+  font-weight: 500;
+}
+
+.btn-cancelar:hover {
+  background: #fef2f2;
+  box-shadow: none;
+}
+
+/* texto riscado no card cancelado */
+.card-consulta.status-cancelada .detalhe-medico {
+  color: #b0b7c3;
+}
+
+
+
+/* ========== MODAIS DE CANCELAMENTO ========== */
+
+/* fundo escurecido */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 25, 35, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-overlay.visivel {
+  display: flex;
+}
+
+/* caixa do modal */
+.modal-caixa {
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 32px;
+  max-width: 490px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: modalEntrar 0.25s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes modalEntrar {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* icone amarelo do calendario no topo */
+.modal-icone-topo {
+  width: 64px;
+  height: 64px;
+  background: #fffdf0;
+  border: 1.5px solid #fef3c7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.modal-titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cor-principal);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.modal-subtitulo {
+  font-size: 13.5px;
+  color: var(--cor-secundaria);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* resumo da consulta dentro do modal */
+.modal-resumo-consulta {
+  background: #fbfcfe;
+  border: 1.25px solid #edf2f7;
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.resumo-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.resumo-icone-box {
+  width: 32px;
+  height: 32px;
+  background: #eff6ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.resumo-divisor {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 12px 0;
+}
+
+.resumo-nome {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--cor-principal);
+}
+
+.resumo-detalhe {
+  font-size: 12px;
+  color: var(--cor-secundaria);
+  margin-top: 1px;
+}
+
+.resumo-linha p {
+  font-size: 13.5px;
+  color: var(--cor-principal);
+  font-weight: 500;
+}
+
+/* aviso amarelo */
+.modal-aviso {
+  background: #fffdf5;
+  border: 1.25px solid #fef3c7;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.modal-aviso svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.modal-aviso p {
+  font-size: 12.5px;
+  color: #854f0b;
+  line-height: 1.55;
+}
+
+.modal-aviso strong {
+  font-weight: 600;
+  color: #78350f;
+}
+
+/* formulario dentro do modal */
+.modal-formulario {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.modal-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--cor-principal);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.obrigatorio {
+  color: #ef4444;
+}
+
+.modal-select-wrapper {
+  margin-bottom: 16px;
+}
+
+.modal-select-wrapper select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.25px solid var(--borda-suave);
+  border-radius: 10px;
+  font-size: 13.5px;
+  color: var(--cor-secundaria);
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.modal-select-wrapper select:focus {
+  border-color: var(--azul-primario);
+}
+
+.modal-textarea-wrapper {
+  position: relative;
+}
+
+.modal-textarea-wrapper textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px 14px;
+  border: 1.25px solid var(--borda-suave);
+  border-radius: 10px;
+  font-size: 13.5px;
+  color: var(--cor-principal);
+  font-family: "Inter", sans-serif;
+  resize: vertical;
+  outline: none;
+}
+
+.modal-textarea-wrapper textarea::placeholder {
+  color: #b0b7c3;
+}
+
+.modal-textarea-wrapper textarea:focus {
+  border-color: var(--azul-primario);
+}
+
+.contador-caracteres {
+  display: block;
+  text-align: right;
+  font-size: 11.5px;
+  color: var(--cor-secundaria);
+  margin-top: 4px;
+}
+
+/* botoes do modal de cancelamento */
+.modal-botoes {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.btn-confirmar-cancelamento {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1.5px solid #fca5a5;
+  background: #fff;
+  color: #ef4444;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-confirmar-cancelamento:hover:not(:disabled) {
+  background: #fef2f2;
+}
+
+.btn-confirmar-cancelamento:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-manter-consulta {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: var(--azul-primario);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+
+.btn-manter-consulta:hover {
+  background: #1d4ed8;
+}
+
+.modal-rodape {
+  font-size: 11.5px;
+  color: var(--cor-secundaria);
+  line-height: 1.5;
+}
+
+/* ========== MODAL DE SUCESSO ========== */
+.modal-sucesso {
+  max-width: 420px;
+  padding: 48px 36px 36px;
+}
+
+/* circulo verde com check */
+.modal-check-sucesso {
+  width: 70px;
+  height: 70px;
+  border: 2.5px solid #b2e5d5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  background: #f0fdf8;
+}
+
+.modal-sucesso .modal-titulo {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.modal-sucesso .modal-subtitulo {
+  margin-bottom: 28px;
+}
+
+.btn-fechar-sucesso {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  background: var(--azul-primario);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-fechar-sucesso:hover {
+  background: #1d4ed8;
+}
+
+/* ========== CELULAR E TABLET ========== */
+/* (a barra de navegacao de baixo vem de compartilhado/paciente_app.css) */
+@media (max-width: 1024px) {
+  .conteudo-principal {
+    padding: 24px 24px 40px;
+    gap: 20px;
+  }
+
+  .cabecalho-consultas {
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .barra-filtros {
+    flex-wrap: wrap;
+  }
+
+  .campo-busca {
+    max-width: none;
+    flex: 1 1 260px;
+  }
+
+  /* letras maiores para leitura facil */
+  .subtitulo-pagina { font-size: 15px; }
+  .aba { font-size: 15px; }
+  .nome-medico { font-size: 17px; }
+  .detalhe-medico { font-size: 14.5px; }
+  .detalhe-medico svg { width: 15px; height: 15px; }
+  .badge-status { font-size: 13.5px; }
+  .bloco-data .mes { font-size: 13.5px; }
+  .bloco-data .hora { font-size: 14px; }
+  .motivo-cancelamento { font-size: 14.5px; }
+  .btn-acao { font-size: 15px; min-height: 44px; }
+}
+
+@media (max-width: 600px) {
+  .conteudo-principal {
+    padding: 16px 16px 40px;
+  }
+
+  .breadcrumb { font-size: 14px; }
+
+  .btn-icone {
+    width: 46px;
+    height: 46px;
+  }
+
+  .titulo-pagina {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  /* botao de agendar ocupa a largura toda */
+  .cabecalho-consultas > div { flex: 1 1 100%; }
+
+  .btn-novo-agendamento {
+    width: 100%;
+    text-align: center;
+    padding: 15px 20px !important;
+    font-size: 16px;
+  }
+
+  /* abas rolam para o lado se nao couberem */
+  .abas-container {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0 -16px;
+    padding: 0 16px 4px;
+  }
+
+  .abas-container::-webkit-scrollbar { display: none; }
+
+  .aba {
+    flex-shrink: 0;
+    min-height: 44px;
+  }
+
+  .campo-filtro { flex: 1 1 100%; }
+  .campo-filtro select { width: 100%; }
+
+  /* card: data em cima, em linha; acoes embaixo, largura toda */
+  .card-consulta {
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 16px;
+  }
+
+  .bloco-data {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+    padding-top: 0;
+  }
+
+  .bloco-data .dia { font-size: 26px; }
+  .bloco-data .mes { margin-top: 0; }
+  .bloco-data .hora { margin-top: 0; margin-left: 6px; }
+
+  .card-info { width: 100%; }
+
+  .card-topo {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card-acoes {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .btn-acao {
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .btn-cancelar {
+    border: 1.25px solid #fecaca;
+  }
+}

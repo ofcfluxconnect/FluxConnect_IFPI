@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minhas Consultas</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../compartilhado/paciente_app.css" />
+    <!-- App do paciente (PWA) -->
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <meta name="theme-color" content="#1a6fc4" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="../../midias/logo/app-icone-192.png" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img
+          src="../../midias/logo/fluxConnect_2.svg"
+          alt="Logo FluxConnect"
+          class="logo-fluxconnect"
+        />
+        <div class="logo-text">
+          <p class="logo-nome">FluxConnect</p>
+          <p class="logo-subtitulo">Portal do Paciente</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="../tela_principal_paciente/index.html">
+          <img src="../../midias/icones/home.svg" alt="icone-home" />
+          <span>Início</span>
+        </a>
+        <a href="#" class="link-ativo">
+          <img src="../../midias/icones/calendar.svg" alt="icone-calendar" />
+          <span>Consultas</span>
+          <span class="bolinha-notificacao"></span>
+        </a>
+        <a href="../Exames/index.html">
+          <img src="../../midias/icones/exeme.svg" alt="icone-exame" />
+          <span>Exames</span>
+        </a>
+        <a href="../Historico/index.html">
+          <img src="../../midias/icones/historico.svg" alt="icone-historico" />
+          <span>Histórico</span>
+        </a>
+        <a href="../MinhaConta/index.html">
+          <img src="../../midias/icones/perfil.svg" alt="icone-perfil" />
+          <span>Minha Conta</span>
+        </a>
+      </nav>
+
+      <!-- Informações do usuario logado -->
+      <div class="container-user">
+        <div class="avatar-user" data-paciente="iniciais">--</div>
+        <div class="info-user">
+          <p class="nome-user" data-paciente="nome-curto">Paciente</p>
+          <p class="tipo-user">Paciente</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Conteudo principal -->
+    <main class="conteudo-principal">
+      <!-- Breadcrumb e icones do topo -->
+      <div class="topo-pagina">
+        <p class="breadcrumb">
+          <span class="breadcrumb-cinza">Portal</span>
+          <span class="breadcrumb-cinza">&rsaquo;</span>
+          <strong>Minhas Consultas</strong>
+        </p>
+        <div class="icones-topo">
+          <button class="btn-icone" title="Notificações">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </button>
+          <button class="btn-icone btn-icone-avatar" title="Perfil">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Titulo e botao de agendamento -->
+      <div class="cabecalho-consultas">
+        <div>
+          <h1 class="titulo-pagina">Minhas Consultas</h1>
+          <p class="subtitulo-pagina">Gerencie seus agendamentos e acompanhe seu histórico de atendimentos.</p>
+        </div>
+        <a href="../agendar_consulta/index.html?novo=1" class="btn-novo-agendamento" style="text-decoration: none; display: inline-block;">+ Novo Agendamento</a>
+      </div>
+
+      <!-- Abas de navegacao -->
+      <div class="abas-container">
+        <button class="aba aba-ativa" data-aba="proximas">
+          Próximas <span class="badge-aba">4</span>
+        </button>
+        <button class="aba" data-aba="realizadas">
+          Realizadas <span class="badge-aba">12</span>
+        </button>
+        <button class="aba" data-aba="canceladas">
+          Canceladas <span class="badge-aba">4</span>
+        </button>
+      </div>
+
+      <!-- Barra de busca e filtro -->
+      <div class="barra-filtros">
+        <div class="campo-busca">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="search" autocomplete="off" placeholder="Buscar médico ou especialidade" />
+        </div>
+        <div class="campo-filtro">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+          </svg>
+          <select>
+            <option value="">Selecione a opção</option>
+            <option value="confirmada">Confirmada</option>
+            <option value="pendente">Pendente</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Lista de consultas -->
+      <div class="lista-consultas" id="listaConsultas">
+        <!-- Os cards sao injetados pelo JS -->
+      </div>
+    </main>
+
+    <!-- Modal 1: Confirmação de cancelamento -->
+    <div class="modal-overlay" id="modalCancelamento">
+      <div class="modal-caixa modal-cancelamento">
+        <!-- Icone do calendario no topo -->
+        <div class="modal-icone-topo">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <line x1="10" y1="14" x2="14" y2="18"/>
+            <line x1="14" y1="14" x2="10" y2="18"/>
+          </svg>
+        </div>
+
+        <h2 class="modal-titulo">Deseja realmente cancelar este agendamento?</h2>
+        <p class="modal-subtitulo">Esta ação não poderá ser desfeita posteriormente.</p>
+
+        <!-- Resumo da consulta que sera cancelada -->
+        <div class="modal-resumo-consulta">
+          <div class="resumo-linha">
+            <div class="resumo-icone-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <p class="resumo-nome" id="resumoNome">Consulta com Dr. Carlos Lima</p>
+              <p class="resumo-detalhe" id="resumoEspecialidade">Clínica Geral</p>
+            </div>
+          </div>
+          <div class="resumo-divisor"></div>
+          <div class="resumo-linha">
+            <div class="resumo-icone-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <p id="resumoData">14/06/2026 às 10:30</p>
+          </div>
+          <div class="resumo-divisor"></div>
+          <div class="resumo-linha">
+            <div class="resumo-icone-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <p id="resumoLocal">Clínica Central</p>
+          </div>
+        </div>
+
+        <!-- Aviso sobre antecedência -->
+        <div class="modal-aviso">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8913a" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p>Ao cancelar, você libera este horário para outro paciente. Pedimos que cancelamentos sejam realizados com pelo menos <strong>24 horas de antecedência</strong> sempre que possível.</p>
+        </div>
+
+        <!-- Formulário de motivo -->
+        <div class="modal-formulario">
+          <label class="modal-label">Por que você está cancelando? <span class="obrigatorio">*</span></label>
+          <div class="modal-select-wrapper">
+            <select id="selectMotivo">
+              <option value="">Selecione um motivo</option>
+              <option value="Imprevisto pessoal">Imprevisto pessoal</option>
+              <option value="Problema de transporte">Problema de transporte</option>
+              <option value="Conflito de horário">Conflito de horário</option>
+              <option value="Emergência familiar">Emergência familiar</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <label class="modal-label">Justificativa</label>
+          <div class="modal-textarea-wrapper">
+            <textarea id="textareaJustificativa" maxlength="300" placeholder="Descreva brevemente o motivo do cancelamento..."></textarea>
+            <span class="contador-caracteres"><span id="contadorAtual">0</span>/300 caracteres</span>
+          </div>
+        </div>
+
+        <!-- Botoes de ação -->
+        <div class="modal-botoes">
+          <button class="btn-confirmar-cancelamento" id="btnSimCancelar" disabled>Sim, cancelar consulta</button>
+          <button class="btn-manter-consulta" id="btnNaoManter">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Não, manter consulta
+          </button>
+        </div>
+
+        <p class="modal-rodape">O motivo informado será enviado para a clínica junto com a solicitação de cancelamento.</p>
+      </div>
+    </div>
+
+    <!-- Modal 2: Sucesso do cancelamento -->
+    <div class="modal-overlay" id="modalSucesso">
+      <div class="modal-caixa modal-sucesso">
+        <!-- Circulo verde com check -->
+        <div class="modal-check-sucesso">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+
+        <h2 class="modal-titulo">Consulta cancelada com sucesso</h2>
+        <p class="modal-subtitulo">O horário foi liberado e a clínica foi notificada. Você pode reagendar quando precisar.</p>
+
+        <button class="btn-fechar-sucesso" id="btnFecharSucesso">Fechar</button>
+      </div>
+    </div>
+
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/paciente_sessao.js"></script>
+    <script src="../compartilhado/paciente_app.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+
