@@ -1,12 +1,35 @@
 {
-  "usuarios": [
+  "usuario paciente": [
     {
       "email": "paciente@fluxconnect.test",
+      "cpf": "529.982.247-25",
+      "cns": "898 0012 3456 7891",
       "senha": "Teste123!",
       "ativo": true,
       "perfil": "paciente",
       "nome": "Paciente de Teste",
       "paginaInicial": "../../tela_principal_paciente/index.html"
     }
+  ],
+  "usuario profissional": [
+    {
+      "email": "profissional@fluxconnect.test",
+      "senha": "Teste123!",
+      "ativo": true,
+      "perfil": "profissional",
+      "nome": "profissional de Teste",
+      "paginaInicial": "../../tela_principal_profissional/index.html"
+    }
+  ],
+  "usuario Recepcionista": [
+    {
+      "email": "recepcionista@fluxconnect.test",
+      "senha": "Teste123!",
+      "ativo": true,
+      "perfil": "recepcionista",
+      "nome": "Recepcionista de Teste",
+      "paginaInicial": "../../tela_principal_recepcionista/index.html"
+    }
   ]
-}
+} 
+

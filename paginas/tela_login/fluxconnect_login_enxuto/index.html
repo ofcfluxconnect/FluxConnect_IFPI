@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FluxConnect | Login</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../compartilhado/paciente_app.css" />
+  <!-- App do paciente (PWA) -->
+  <link rel="manifest" href="../../manifest.webmanifest" />
+  <meta name="theme-color" content="#1a6fc4" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="../../../midias/logo/app-icone-192.png" />
 </head>
 
 <body>
@@ -22,15 +29,15 @@
     <div class="intro">
       <h1>Conectando<br>pacientes<br>e serviços de saúde.</h1>
       <h2>Simplificando sua<br>jornada médica.</h2>
-      <p>A plataforma que integra pacientes, clínicas,<br class="desktop">
-        laboratórios e hospitais em uma única<br class="desktop"> experiência digital.</p>
+      <p>A plataforma que conecta você à sua UBS,<br class="desktop">
+        aos exames e à equipe de saúde em uma única<br class="desktop"> experiência digital.</p>
     </div>
 
     <!-- Três benefícios da plataforma -->
     <div class="beneficios">
       <article><i>ϟ</i><div><b>Agilidade</b><p>Agende consultas, exames e acompanhe<br class="desktop"> resultados em poucos cliques.</p></div></article>
       <article><i>♧</i><div><b>Segurança</b><p>Seus dados protegidos seguindo boas práticas de<br class="desktop"> segurança e privacidade.</p></div></article>
-      <article><i>↔</i><div><b>Integração</b><p>Conecte-se com clínicas, laboratórios e hospitais<br class="desktop"> em uma única plataforma.</p></div></article>
+      <article><i>↔</i><div><b>Sem sair de casa</b><p>Marque consultas na sua UBS e receba seus<br class="desktop"> exames direto no celular.</p></div></article>
     </div>
 
     <div class="ondas" aria-hidden="true"></div>
@@ -47,13 +54,14 @@
 
       <header class="boas-vindas">
         <h2>Bem-vindo de volta</h2>
-        <p>Entre com suas credenciais para continuar</p>
+        <p>Entre com seu CPF ou Cartão SUS para continuar</p>
       </header>
 
       <form id="formLogin">
         <div class="campo">
-          <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" placeholder="email@exemplo.com" autocomplete="username" required minlength="8">
+          <label for="email">CPF ou Cartão SUS</label>
+          <input id="email" name="email" type="text" placeholder="Digite seu CPF ou Cartão SUS" autocomplete="username" autocapitalize="off" spellcheck="false" required aria-describedby="dicaLogin">
+          <small class="dica-login" id="dicaLogin">Profissionais e recepção entram com o e-mail.</small>
         </div>
 
         <div class="campo">
@@ -70,7 +78,7 @@
 
         <div class="opcoes">
           <label><input type="checkbox" name="lembrar"> Lembrar-me</label>
-          <a href="#" id="esqueci">Esqueceu a senha?</a>
+          <a href="../../tela_esqueci_minha_senha/esqueci_senha.html" id="esqueci">Esqueceu a senha?</a>
         </div>
 
         <button class="entrar" type="submit">Entrar <span>›</span></button>
@@ -91,6 +99,7 @@
     </div>
   </section>
 </main>
+<script src="../../compartilhado/paciente_app.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

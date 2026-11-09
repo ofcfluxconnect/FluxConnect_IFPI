@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade de Horários - FluxConnect Recepção</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-notificacoes="recepcao">
+    <!-- Barra lateral da recepcao -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img src="../../midias/logo/fluxConnect_2.svg" alt="Logo FluxConnect" class="logo-fluxconnect" />
+        <div>
+          <p class="logo-nome">FluxConnect</p>
+          <p class="logo-subtitulo">Recepção</p>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Menu da recepção">
+        <a href="../tela_principal_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Painel</span>
+        </a>
+        <a href="#" class="link-ativo" aria-current="page">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="15" y2="16"/></svg>
+          <span>Agenda</span>
+        </a>
+        <a href="../pacientes_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Pacientes</span>
+        </a>
+        <a href="../consultas_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.6A2 2 0 1 0 3 6h3a2 2 0 1 0-1.8-3.4"/><path d="M4.5 6v5a5.5 5.5 0 0 0 11 0V6"/><path d="M19.5 13a2.5 2.5 0 1 0 0 5"/><path d="M22 15.5v2A4.5 4.5 0 0 1 17.5 22h-1A4.5 4.5 0 0 1 12 17.5"/></svg>
+          <span>Consultas</span>
+        </a>
+        <a href="../exames_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>
+          <span>Exames</span>
+        </a>
+        <a href="../relatorios_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Relatórios</span>
+        </a>
+      </nav>
+
+      <!-- Conta da recepcao (nome generico: varias recepcionistas usam o mesmo acesso).
+           Clicar abre o menu com "Sair da conta". -->
+      <button type="button" class="container-user" data-menu-usuario aria-label="Recepcionista — opções da conta" title="Opções da conta">
+        <span class="avatar-user" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
+        <span class="info-user">
+          <span class="nome-user">Recepcionista</span>
+          <span class="tipo-user">Equipe da recepção</span>
+        </span>
+      </button>
+    </aside>
+
+    <main class="conteudo-principal">
+      <header class="topo-pagina">
+        <div>
+          <h1 class="titulo-pagina" id="tituloPagina">Grade de Horários</h1>
+          <p class="subtitulo-pagina" id="subtituloPagina"></p>
+        </div>
+        <div class="icones-topo">
+          <button class="btn-topo" title="Notificações">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="ponto-notificacao"></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="area-grade">
+        <!-- Navegacao por dia, filtro e contadores -->
+        <div class="barra-grade">
+          <div class="nav-dia">
+            <button type="button" class="btn-dia" id="btnDiaAnterior" title="Dia anterior">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button type="button" class="btn-hoje" id="btnHoje">Hoje</button>
+            <button type="button" class="btn-dia" id="btnDiaProximo" title="Próximo dia">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <div class="filtro-especialidade">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            <span>Especialidade:</span>
+            <div class="chips-especialidade" id="chipsEspecialidade"></div>
+          </div>
+          <div class="contadores-grade">
+            <span class="contador contador-aguardando" id="contAguardando"></span>
+            <span class="contador contador-atendimento" id="contAtendimento"></span>
+          </div>
+        </div>
+
+        <div class="legenda-grade">
+          <span><i class="cor-agendado"></i> Agendado</span>
+          <span><i class="cor-aguardando"></i> Aguardando</span>
+          <span><i class="cor-atendimento"></i> Em Atendimento</span>
+          <span><i class="cor-realizada"></i> Realizada</span>
+          <span><i class="cor-falta"></i> Faltou</span>
+          <span class="dica-grade">Clique em um espaço livre para agendar · Arraste para reagendar</span>
+        </div>
+
+        <div class="grade-rolagem">
+          <div class="grade" id="grade" role="grid" aria-label="Grade de horários"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../compartilhado/recepcao_dados.js"></script>
+    <script src="../compartilhado/recepcao_layout.js"></script>
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/feriados.js"></script>
+    <script src="../compartilhado/agendamento_acoes.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prontuários - FluxConnect Profissional</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Barra lateral do profissional -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img src="../../midias/logo/fluxConnect_2.svg" alt="Logo FluxConnect" class="logo-fluxconnect" />
+        <p class="logo-subtitulo">Profissional</p>
+      </div>
+
+      <nav class="nav-links">
+        <a href="../tela_principal_profissional/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Minha agenda</span>
+        </a>
+        <a href="#" class="link-ativo">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Prontuários</span>
+        </a>
+        <a href="../resultados_profissional/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Resultados</span>
+        </a>
+      </nav>
+
+      <button type="button" class="container-user" data-abrir-perfil title="Meu perfil">
+        <span class="avatar-user" data-perfil="iniciais">CL</span>
+        <span class="info-user">
+          <span class="nome-user" data-perfil="nome">Dr. Carlos Lima</span>
+          <span class="tipo-user" data-perfil="especialidade">Clínica Geral</span>
+        </span>
+      </button>
+    </aside>
+
+    <main class="conteudo-principal">
+      <header class="topo-pagina">
+        <div>
+          <h1 class="titulo-pagina">Prontuários</h1>
+          <p class="resumo-topo">Repositório clínico de pacientes — <span id="txtTotalTopo">0</span> registros disponíveis</p>
+        </div>
+        <div class="icones-topo">
+          <button class="btn-topo" title="Notificações">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f1923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="area-prontuarios">
+        <!-- Cards de resumo -->
+        <div class="cards-resumo">
+          <div class="card-resumo">
+            <p class="resumo-rotulo">Total de pacientes</p>
+            <p class="resumo-numero" id="numTotal">0</p>
+          </div>
+          <div class="card-resumo card-alerta">
+            <p class="resumo-rotulo">Com alertas</p>
+            <p class="resumo-numero" id="numAlertas">0</p>
+          </div>
+          <div class="card-resumo card-hoje">
+            <p class="resumo-rotulo">Atendidos hoje</p>
+            <p class="resumo-numero" id="numHoje">0</p>
+          </div>
+        </div>
+
+        <!-- Busca, filtros e ordenacao -->
+        <div class="barra-ferramentas">
+          <div class="campo-busca">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" autocomplete="off" id="inputBusca" placeholder="Buscar por paciente, CPF ou código..." />
+          </div>
+          <div class="filtros" id="filtros">
+            <button type="button" class="filtro ativo" data-filtro="todos">Todos <span id="contTodos">0</span></button>
+            <button type="button" class="filtro" data-filtro="recentes">Recentes <span id="contRecentes">0</span></button>
+            <button type="button" class="filtro" data-filtro="alertas">Com Alertas <span id="contAlertas">0</span></button>
+          </div>
+          <div class="menu-ordenar">
+            <button type="button" class="btn-ordenar" id="btnOrdenar" aria-expanded="false">
+              <span id="txtOrdem">Ordenar</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="opcoes-ordenar" id="opcoesOrdenar">
+              <button type="button" data-ordem="visita">Última visita</button>
+              <button type="button" data-ordem="nome">Nome (A-Z)</button>
+              <button type="button" data-ordem="alertas">Mais alertas</button>
+            </div>
+          </div>
+          <span class="contagem" id="txtContagem">0 resultados</span>
+        </div>
+
+        <!-- Tabela -->
+        <section class="card-tabela">
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr>
+                  <th>Paciente</th>
+                  <th>Última visita</th>
+                  <th>CID / Especialidade</th>
+                  <th>Condições / Alergias</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="corpoTabela"></tbody>
+            </table>
+          </div>
+        </section>
+        <p class="rodape-lista" id="txtExibindo"></p>
+      </div>
+    </main>
+
+    <!-- Menu de mais acoes (posicionado pelo JS) -->
+    <div class="menu-acoes" id="menuAcoes">
+      <button type="button" data-acao="atender">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        Iniciar atendimento
+      </button>
+      <button type="button" data-acao="resultados">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Ver resultados de exames
+      </button>
+    </div>
+
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/perfil_profissional.js"></script>
+    <script src="../compartilhado/pacientes_profissional.js"></script>
+    <script src="../compartilhado/receita_visualizar.js"></script>
+    <script src="../compartilhado/prontuario_modal.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

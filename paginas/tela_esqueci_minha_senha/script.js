@@ -18,7 +18,7 @@ if (formularioEmail) {
 
         const valorEmail = campoEmail.value.trim().toLowerCase();
 
-        mensagem.textContent = "Verificando e-mail...";
+        mensagem.textContent = "Procurando sua conta...";
         mensagem.style.color = "#1557d9";
         try {
             const resposta = await fetch("../tela_login/fluxconnect_login_enxuto/mock-usuarios.json");
@@ -28,9 +28,16 @@ if (formularioEmail) {
             }
 
             const dados = await resposta.json();
-            const usuario = dados.usuarios.find(function (item) {
-                return item.email.toLowerCase() === valorEmail
-                    && item.ativo === true;
+            // Junta as contas de todos os grupos do JSON (paciente, profissional...).
+            const usuario = Object.values(dados).flat().find(function (item) {
+                // aceita e-mail, CPF ou Cartao SUS (so os numeros)
+                const digitos = valorEmail.replace(/\D/g, "");
+                const mesmaConta = valorEmail.includes("@")
+                    ? item.email.toLowerCase() === valorEmail
+                    : digitos.length >= 11 && [item.cpf, item.cns].some(function (doc) {
+                        return doc && doc.replace(/\D/g, "") === digitos;
+                    });
+                return mesmaConta && item.ativo === true;
             });
 
             if (usuario) {
@@ -39,12 +46,12 @@ if (formularioEmail) {
                     usuario.email
                 );
 
-                mensagem.textContent = "E-mail encontrado! Redirecionando...";
+                mensagem.textContent = "Conta encontrada! Redirecionando...";
                 mensagem.style.color = "#16803c";
                 window.location.href = "nova_senha.html";
             } else {
                 mensagem.textContent =
-                    "E-mail não encontrado ou conta inativa.";
+                    "Não encontramos uma conta ativa com esses dados.";
                 mensagem.style.color = "#d93025";
             }
         } catch (erro) {

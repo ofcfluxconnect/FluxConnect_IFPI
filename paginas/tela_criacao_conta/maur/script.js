@@ -19,6 +19,16 @@ campo('cpf').oninput = e => {
         .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
 };
 
+// Cartão SUS: 15 números no formato 000 0000 0000 0000
+campo('cns').oninput = e => {
+    let v = numeros(e.target.value).slice(0, 15);
+
+    e.target.value = v
+        .replace(/^(\d{3})(\d)/, '$1 $2')
+        .replace(/^(\d{3}) (\d{4})(\d)/, '$1 $2 $3')
+        .replace(/^(\d{3}) (\d{4}) (\d{4})(\d)/, '$1 $2 $3 $4');
+};
+
 campo('cep').oninput = e => {
     let v = numeros(e.target.value).slice(0, 8);
 
@@ -71,6 +81,9 @@ form.onsubmit = e => {
     else if (!cpfValido(valor('cpf')))
         msg = 'CPF inválido.';
 
+    else if (valor('cns') && numeros(valor('cns')).length !== 15)
+        msg = 'O Cartão SUS tem 15 números. Confira ou deixe em branco.';
+
     else if (![10, 11].includes(numeros(valor('telefone')).length))
         msg = 'Telefone inválido.';
 
@@ -86,7 +99,27 @@ form.onsubmit = e => {
     else if (valor('senha') !== valor('confirmarSenha'))
         msg = 'As senhas não coincidem.';
 
+    if (!msg)
+        salvarCadastro();
+
     campo('mensagem').className = msg ? '' : 'sucesso';
     campo('mensagem').textContent =
-        msg || 'Cadastro validado! Os dados não foram enviados.';
+        msg || 'Cadastro realizado! Seus dados ficaram salvos neste navegador e aparecem em "Minha Conta".';
 };
+
+// Guarda os dados do cadastro (sem a senha) para a tela "Minha Conta".
+// Ainda não existe backend, então os dados ficam só neste navegador.
+function salvarCadastro() {
+    const campos = ['nome', 'cpf', 'cns', 'nascimento', 'sexo', 'telefone', 'email',
+        'cep', 'numero', 'rua', 'bairro', 'cidade', 'estado', 'ubs'];
+
+    const dados = {};
+    campos.forEach(id => dados[id] = campo(id).value.trim());
+    dados.criadoEm = new Date().toISOString();
+
+    try {
+        localStorage.setItem('fluxconnect_cadastro', JSON.stringify(dados));
+    } catch (erro) {
+        console.error('Não foi possível salvar o cadastro:', erro);
+    }
+}
