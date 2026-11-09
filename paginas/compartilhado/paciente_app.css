@@ -1,0 +1,147 @@
+/* Portal do paciente no celular e no tablet.
+   Carregar DEPOIS do style.css da tela. Junto com paciente_app.js.
+   - ate 1024px: menu lateral some e entra a barra de navegacao embaixo (.pa-nav)
+   - ate 600px: espacos menores, botoes ocupando a largura e toque de no minimo 48px */
+
+:root {
+  --pa-azul: #1a6fc4;
+  --pa-texto: #0f1923;
+  --pa-cinza: #5b6575;
+  --pa-nav-altura: 68px;
+}
+
+.pa-nav { display: none; }
+
+/* ---------- aviso de conexao ---------- */
+.pa-conexao {
+  position: fixed;
+  left: 50%;
+  top: 12px;
+  transform: translate(-50%, -150%);
+  z-index: 2000;
+  width: min(560px, calc(100% - 24px));
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #3b2a06;
+  color: #fff7e6;
+  font-size: 14.5px;
+  line-height: 1.45;
+  box-shadow: 0 8px 24px rgba(15, 25, 35, 0.25);
+  transition: transform 0.25s ease;
+}
+.pa-conexao strong { display: block; font-size: 15.5px; }
+.pa-conexao.visivel { transform: translate(-50%, 0); }
+.pa-conexao-ok { background: #0f5132; color: #eafff3; }
+
+/* ---------- celular e tablet ---------- */
+@media (max-width: 1024px) {
+  body.pa-com-nav .sidebar { display: none !important; }
+
+  body.pa-com-nav {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  /* area que rola deixa espaco para a barra de baixo */
+  body.pa-com-nav main {
+    width: 100%;
+    padding-bottom: calc(var(--pa-nav-altura) + 28px + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* blocos dentro da area que rola nao encolhem (senao abas e caixas ficam cortadas) */
+  body.pa-com-nav main > * { flex-shrink: 0; }
+
+  .pa-nav {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    height: calc(var(--pa-nav-altura) + env(safe-area-inset-bottom));
+    padding: 0 6px env(safe-area-inset-bottom);
+    background: #ffffff;
+    border-top: 1px solid rgba(15, 25, 35, 0.1);
+    box-shadow: 0 -4px 16px rgba(15, 25, 35, 0.06);
+  }
+
+  .pa-nav a {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: relative;
+    color: var(--pa-cinza);
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .pa-nav a span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .pa-nav svg { width: 24px; height: 24px; flex-shrink: 0; }
+
+  .pa-nav a[aria-current="page"] { color: var(--pa-azul); font-weight: 700; }
+
+  /* marcador em cima do item ativo */
+  .pa-nav a[aria-current="page"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 22%;
+    right: 22%;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: var(--pa-azul);
+  }
+
+  .pa-nav a:active { background: rgba(26, 111, 196, 0.08); }
+  .pa-nav a:focus-visible { outline: 3px solid var(--pa-azul); outline-offset: -3px; border-radius: 10px; }
+
+  /* janelas (modais) ficam acima da barra de baixo */
+  .modal-overlay, [class*="overlay"] { z-index: 1500; }
+}
+
+/* tablet em pe: um pouco mais de respiro na barra */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .pa-nav { padding-left: 10%; padding-right: 10%; }
+  .pa-nav a { font-size: 13.5px; flex-direction: row; gap: 8px; }
+  .pa-nav a[aria-current="page"]::before { left: 18%; right: 18%; }
+}
+
+/* ---------- celular ---------- */
+@media (max-width: 600px) {
+  .pa-nav { --pa-nav-altura: 64px; }
+
+  /* tudo que da para tocar com pelo menos 44-48px */
+  body.pa-com-nav button,
+  body.pa-com-nav .btn-acao,
+  body.pa-com-nav select,
+  body.pa-com-nav input[type="search"],
+  body.pa-com-nav input[type="text"] {
+    min-height: 44px;
+  }
+
+  /* janelas ocupam quase a tela toda */
+  .modal-caixa {
+    width: calc(100% - 24px) !important;
+    max-width: none !important;
+    max-height: calc(100dvh - 32px) !important;
+    padding: 24px 18px !important;
+  }
+
+  .modal-botoes { flex-direction: column-reverse; }
+  .modal-botoes > * { width: 100%; }
+}

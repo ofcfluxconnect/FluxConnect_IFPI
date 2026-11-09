@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meus Exames</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../compartilhado/paciente_app.css" />
+    <!-- App do paciente (PWA) -->
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <meta name="theme-color" content="#1a6fc4" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="../../midias/logo/app-icone-192.png" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img
+          src="../../midias/logo/fluxConnect_2.svg"
+          alt="Logo FluxConnect"
+          class="logo-fluxconnect"
+        />
+        <div class="logo-text">
+          <p class="logo-nome">FluxConnect</p>
+          <p class="logo-subtitulo">Portal do Paciente</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="../tela_principal_paciente/index.html">
+          <img src="../../midias/icones/home.svg" alt="icone-home" />
+          <span>Início</span>
+        </a>
+        <a href="../Consultas/index.html">
+          <img src="../../midias/icones/calendar.svg" alt="icone-calendar" />
+          <span>Consultas</span>
+        </a>
+        <a href="#" class="link-ativo">
+          <img src="../../midias/icones/exeme.svg" alt="icone-exame" class="icone-ativo" />
+          <span>Exames</span>
+          <span class="bolinha-notificacao"></span>
+        </a>
+        <a href="../Historico/index.html">
+          <img src="../../midias/icones/historico.svg" alt="icone-historico" />
+          <span>Histórico</span>
+        </a>
+        <a href="../MinhaConta/index.html">
+          <img src="../../midias/icones/perfil.svg" alt="icone-perfil" />
+          <span>Minha Conta</span>
+        </a>
+      </nav>
+
+      <!-- Informações do usuario logado -->
+      <div class="container-user">
+        <div class="avatar-user" data-paciente="iniciais">--</div>
+        <div class="info-user">
+          <p class="nome-user" data-paciente="nome-curto">Paciente</p>
+          <p class="tipo-user">Paciente</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Conteudo principal -->
+    <main class="conteudo-principal">
+      <!-- Breadcrumb e icones do topo -->
+      <div class="topo-pagina">
+        <p class="breadcrumb">
+          <span class="breadcrumb-cinza">Portal</span>
+          <span class="breadcrumb-cinza">&rsaquo;</span>
+          <strong>Meus Exames</strong>
+        </p>
+        <div class="icones-topo">
+          <button class="btn-topo btn-notificacao" title="Notificações">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="ponto-notificacao"></span>
+          </button>
+          <button class="btn-topo" title="Ajuda">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </button>
+          <div class="divisor-topo"></div>
+          <div class="usuario-topo">
+            <div class="avatar-topo" data-paciente="iniciais">--</div>
+            <div>
+              <p class="nome-topo" data-paciente="nome-curto">Paciente</p>
+              <p class="tipo-topo">Paciente</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-exames">
+        <!-- Titulo e ultima atualizacao -->
+        <div class="cabecalho-exames">
+          <div>
+            <h1 class="titulo-pagina">Meus Exames</h1>
+            <p class="subtitulo-pagina">Veja os resultados dos seus exames sem sair de casa</p>
+          </div>
+          <div class="atualizacao">
+            <span>Última atualização: <span id="horaAtualizacao">hoje, 10:42</span></span>
+            <button class="btn-atualizar" id="btnAtualizar">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+              </svg>
+              Atualizar
+            </button>
+          </div>
+        </div>
+
+        <!-- Cards de resumo -->
+        <div class="cards-resumo">
+          <div class="card-resumo">
+            <div class="resumo-icone resumo-verde">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="8 12.5 11 15.5 16.5 9.5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="resumo-numero" id="totalDisponiveis">0</p>
+              <p class="resumo-texto">Resultados prontos</p>
+            </div>
+          </div>
+          <div class="card-resumo">
+            <div class="resumo-icone resumo-amarelo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8770f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 4h2a2 2 0 0 1 2 2v5"/>
+                <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5"/>
+                <rect x="8" y="2" width="8" height="4" rx="1"/>
+                <circle cx="17" cy="17" r="4.5" fill="#e8770f" stroke="none"/>
+                <polyline points="17 15 17 17 18.5 18" stroke="#fff"/>
+              </svg>
+            </div>
+            <div>
+              <p class="resumo-numero" id="totalPendentes">0</p>
+              <p class="resumo-texto">Exames pendentes</p>
+            </div>
+          </div>
+          <div class="card-resumo">
+            <div class="resumo-icone resumo-azul">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 18h8"/>
+                <path d="M3 22h18"/>
+                <path d="M14 22a7 7 0 1 0 0-14h-1"/>
+                <path d="M9 14h2"/>
+                <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/>
+                <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
+              </svg>
+            </div>
+            <div>
+              <p class="resumo-numero" id="totalExames">0</p>
+              <p class="resumo-texto">Total de exames</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Busca, filtro e ordenacao -->
+        <div class="barra-filtros">
+          <div class="campo-busca">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="search" autocomplete="off" id="inputBusca" placeholder="Buscar exame por nome..." />
+          </div>
+
+          <div class="menu-wrapper">
+            <button class="btn-filtro" id="btnFiltrar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="6" y1="12" x2="18" y2="12"/>
+                <line x1="10" y1="18" x2="14" y2="18"/>
+              </svg>
+              Filtrar
+              <span class="badge-filtro" id="badgeFiltro"></span>
+            </button>
+            <div class="menu-opcoes" id="menuFiltrar">
+              <p class="menu-titulo">Local</p>
+              <!-- opcoes preenchidas pelo JS -->
+            </div>
+          </div>
+
+          <div class="menu-wrapper">
+            <button class="btn-filtro" id="btnOrdenar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="15" y2="12"/>
+                <line x1="3" y1="18" x2="9" y2="18"/>
+              </svg>
+              Ordenar
+            </button>
+            <div class="menu-opcoes" id="menuOrdenar">
+              <p class="menu-titulo">Ordenar por</p>
+              <button class="menu-item menu-item-ativo" data-ordem="data-asc">Data mais próxima</button>
+              <button class="menu-item" data-ordem="data-desc">Data mais distante</button>
+              <button class="menu-item" data-ordem="nome">Nome (A-Z)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Abas -->
+        <div class="abas-wrapper">
+          <div class="abas-container">
+            <button class="aba" data-aba="disponiveis">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="8 12.5 11 15.5 16.5 9.5"/>
+              </svg>
+              Disponíveis <span class="badge-aba">0</span>
+            </button>
+            <button class="aba aba-ativa" data-aba="pendentes">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 15 14"/>
+              </svg>
+              Pendentes <span class="badge-aba">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Lista de exames -->
+        <div class="lista-exames" id="listaExames">
+          <!-- Os cards sao injetados pelo JS -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal: Preparo do exame -->
+    <div class="modal-overlay" id="modalPreparo">
+      <div class="modal-caixa modal-preparo">
+        <div class="preparo-topo">
+          <div class="preparo-icone">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/>
+              <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
+            </svg>
+          </div>
+          <div>
+            <p class="preparo-rotulo">Instruções de preparo</p>
+            <h2 class="preparo-titulo" id="preparoTitulo">Preparo para exame</h2>
+          </div>
+          <button class="preparo-fechar" data-fechar="modalPreparo" title="Fechar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="preparo-corpo">
+          <div class="preparo-info">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p>Siga todas as orientações para garantir a precisão do resultado.</p>
+          </div>
+
+          <ul class="preparo-lista" id="preparoLista"></ul>
+
+          <button class="btn-modal-principal" data-fechar="modalPreparo">Entendi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Laudo do exame -->
+    <div class="modal-overlay" id="modalLaudo">
+      <div class="modal-caixa">
+        <button class="modal-fechar" data-fechar="modalLaudo" title="Fechar">&times;</button>
+        <div class="modal-icone-topo icone-topo-verde">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h2 class="modal-titulo" id="laudoTitulo">Resultado</h2>
+        <p class="modal-subtitulo" id="laudoLiberado"></p>
+
+        <div class="modal-bloco">
+          <div class="laudo-linha"><span>Data da coleta</span><strong id="laudoColeta"></strong></div>
+          <div class="laudo-linha"><span>Local</span><strong id="laudoLocal"></strong></div>
+          <div class="laudo-linha"><span>Médico solicitante</span><strong id="laudoMedico"></strong></div>
+        </div>
+
+        <div class="modal-bloco">
+          <p class="modal-bloco-titulo">Resumo do resultado</p>
+          <p class="laudo-resumo" id="laudoResumo"></p>
+        </div>
+
+        <button class="btn-modal-principal" id="btnBaixarLaudo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Baixar PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- Aviso rapido (toast) -->
+    <div class="toast" id="toast"></div>
+
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/paciente_sessao.js"></script>
+    <script src="../compartilhado/paciente_app.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
