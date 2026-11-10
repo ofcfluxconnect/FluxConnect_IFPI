@@ -1,9 +1,9 @@
-var PAGINA_LOGIN = "../tela_login/fluxconnect_login_enxuto/index.html";
+const PAGINA_LOGIN = "../tela_login/fluxconnect_login_enxuto/index.html";
 
 // Configura o comportamento do botão de mostrar/ocultar CPF
 function configurarCpf() {
-  var botao = document.getElementById("btnMostrarCpf");
-  var elementoCpf = document.getElementById("dadoCpf");
+  const botao = document.getElementById("btnMostrarCpf");
+  const elementoCpf = document.getElementById("dadoCpf");
 
     if (!elementoCpf || !botao) return; 
     let cpfVisivel = false;
@@ -31,10 +31,10 @@ function configurarCpf() {
 
 // Configura o modal de confirmação para sair da conta
 function configurarSair() {
-  var modal = document.getElementById("modalSair");
-  var btnSair = document.getElementById("btnSair");
-  var btnCancelar = document.getElementById("btnCancelarSair");
-  var btnConfirmar = document.getElementById("btnConfirmarSair");
+  const modal = document.getElementById("modalSair");
+  const btnSair = document.getElementById("btnSair");
+  const btnCancelar = document.getElementById("btnCancelarSair");
+  const btnConfirmar = document.getElementById("btnConfirmarSair");
 
   if (!modal) return;
 
