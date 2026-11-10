@@ -35,7 +35,7 @@ body {
   background: #f8fafc;
 }
 
-/* ========== SIDEBAR ========== */
+/* Sidebar */
 .sidebar {
   background: #fff;
   width: 248px;
@@ -492,7 +492,7 @@ body {
   background: #fef2f2;
 }
 
-/* ========== MODAL ========== */
+/* Modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -577,7 +577,7 @@ body {
   background: #b91c1c;
 }
 
-/* ========== RESPONSIVO ========== */
+/*responsividade */
 @media (max-width: 900px) {
   .sidebar {
     display: none;
@@ -610,6 +610,6 @@ body {
   .btn-sair,
   .btn-aviso {
     margin-left: 0;
-    align-items: flex-start;
+    align-items: center;
   }
 }
