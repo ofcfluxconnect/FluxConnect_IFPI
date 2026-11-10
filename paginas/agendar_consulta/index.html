@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agendar Consulta - FluxConnect</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../compartilhado/paciente_app.css" />
+    <!-- App do paciente (PWA) -->
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <meta name="theme-color" content="#1a6fc4" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="../../midias/logo/app-icone-192.png" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Topo da aplicacao -->
+    <header class="header-topo">
+      <div class="header-conteudo">
+        <a href="../tela_principal_paciente/index.html" class="logo-link">
+          <img
+            src="../../midias/logo/fluxConnect_2.svg"
+            alt="Logo FluxConnect"
+            class="logo-img"
+          />
+          <span class="logo-texto">FluxConnect</span>
+        </a>
+
+        <div class="header-acoes">
+          <button class="btn-notificacao" title="Notificações">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="ponto-notificacao"></span>
+          </button>
+          <div class="avatar-header" data-paciente="iniciais" title="Minha conta">--</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container-principal">
+      <!-- ========================================== -->
+      <!-- TELA INICIAL: Painel de Agendamentos       -->
+      <!-- ========================================== -->
+      <section class="tela-secao tela-ativa" id="telaPainelInicial">
+        <div class="barra-navegacao-topo">
+          <a href="../Consultas/index.html" class="link-voltar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Voltar
+          </a>
+        </div>
+
+        <div class="conteudo-painel">
+          <!-- Card superior: Estado vazio ou Consulta confirmada -->
+          <div class="card-painel card-vazio" id="cardStatusConsulta">
+            <div class="icone-calendario-vazio">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+                <line x1="10" y1="14" x2="14" y2="18"/>
+                <line x1="14" y1="14" x2="10" y2="18"/>
+              </svg>
+            </div>
+            <h3 class="titulo-vazio">Nenhuma consulta agendada</h3>
+            <p class="subtitulo-vazio">Agende uma consulta para vê-la aqui</p>
+          </div>
+
+          <!-- Cards de acoes rapidas -->
+          <div class="grade-acoes-rapidas">
+            <div class="card-acao-rapida" id="btnIniciarAgendamento">
+              <div class="icone-acao acao-azul">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="16"/>
+                  <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+              </div>
+              <div class="textos-acao">
+                <h4>Agendar</h4>
+                <p>Nova consulta</p>
+              </div>
+            </div>
+
+            <div class="card-acao-rapida">
+              <div class="icone-acao acao-verde">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                  <polyline points="10 9 9 9 8 9"/>
+                </svg>
+              </div>
+              <div class="textos-acao">
+                <h4>Resultados</h4>
+                <p>Ver exames</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Historico de consultas -->
+          <div class="card-painel card-historico">
+            <h3 class="titulo-historico">Histórico de Consultas</h3>
+            <div class="lista-historico">
+              <div class="item-historico">
+                <div class="avatar-historico">SR</div>
+                <div class="dados-historico">
+                  <p class="nome-medico-hist">Dra. Silvia Ramos</p>
+                  <p class="detalhe-hist">Dermatologia · 12 de Maio de 2026</p>
+                </div>
+                <span class="badge-realizada-hist">Realizada</span>
+              </div>
+
+              <div class="divisor-historico"></div>
+
+              <div class="item-historico">
+                <div class="avatar-historico">PC</div>
+                <div class="dados-historico">
+                  <p class="nome-medico-hist">Dr. Paulo Corrêa</p>
+                  <p class="detalhe-hist">Clínica Geral · 28 de Abril de 2026</p>
+                </div>
+                <span class="badge-realizada-hist">Realizada</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- FLUXO DE AGENDAMENTO (WIZARD DE 4 PASSOS)   -->
+      <!-- ========================================== -->
+      <section class="tela-secao" id="telaFluxoAgendamento">
+        <!-- Navegacao do fluxo: Voltar e Fechar -->
+        <div class="topo-fluxo">
+          <button class="btn-navegacao-passo" id="btnPassoVoltar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Voltar
+          </button>
+          <button class="btn-fechar-fluxo" id="btnPassoFechar" title="Cancelar agendamento">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Indicador de progresso (Stepper 1 - 2 - 3 - 4) -->
+        <div class="stepper-container">
+          <div class="stepper-item ativo" id="step1">
+            <div class="stepper-circulo">1</div>
+          </div>
+          <div class="stepper-linha" id="line1"></div>
+
+          <div class="stepper-item" id="step2">
+            <div class="stepper-circulo">2</div>
+          </div>
+          <div class="stepper-linha" id="line2"></div>
+
+          <div class="stepper-item" id="step3">
+            <div class="stepper-circulo">3</div>
+          </div>
+          <div class="stepper-linha" id="line3"></div>
+
+          <div class="stepper-item" id="step4">
+            <div class="stepper-circulo">4</div>
+          </div>
+        </div>
+
+        <!-- CONTEUDO DOS PASSOS -->
+        <div class="passos-conteudo">
+          <!-- PASSO 1: Selecionar Especialidade -->
+          <div class="passo-tela passo-ativo" id="passo1">
+            <div class="cabecalho-passo">
+              <h2>Qual especialidade você procura?</h2>
+              <p>Selecione uma especialidade para encontrar os profissionais disponíveis.</p>
+            </div>
+
+            <div class="busca-especialidade">
+              <input
+                type="text"
+                id="inputBuscaEspecialidade"
+                autocomplete="off"
+                placeholder="Buscar especialidade ou sintoma..."
+              />
+            </div>
+
+            <div class="grade-especialidades" id="gradeEspecialidades">
+              <!-- As 8 especialidades da imagem -->
+              <div class="card-especialidade" data-nome="Clínica Geral">
+                <div class="icone-especialidade">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                    <line x1="12" y1="11" x2="12" y2="17"/>
+                    <line x1="9" y1="14" x2="15" y2="14"/>
+                  </svg>
+                </div>
+                <span>Clínica Geral</span>
+              </div>
+
+              <div class="card-especialidade" data-nome="Cardiologia">
+                <div class="icone-especialidade">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </div>
+                <span>Cardiologia</span>
+              </div>
+
+              <div class="card-especialidade" data-nome="Pediatria">
+                <div class="icone-especialidade">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                  </svg>
+                </div>
+                <span>Pediatria</span>
+              </div>
+
+              <div class="card-especialidade" data-nome="Ginecologia">
+                <div class="icone-especialidade">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="9" r="6"/>
+                    <line x1="12" y1="15" x2="12" y2="22"/>
+                    <line x1="9" y1="18" x2="15" y2="18"/>
+                  </svg>
+                </div>
+                <span>Ginecologia</span>
+              </div>
+
+              <div class="card-especialidade" data-nome="Dermatologia">
+                <div class="icone-especialidade">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="6" width="20" height="12" rx="6"/>
+                    <circle cx="12" cy="12" r="2"/>
+                  </svg>
+                </div>
+                <span>Dermatologia</span>
+              </div>
+
+              <div class="card-especialidade" data-nome="Ortopedia">
+                <div class="icone-especialidade">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="2" width="8" height="4" rx="1"/>
+                    <rect x="7" y="8" width="10" height="4" rx="1"/>
+                    <rect x="6" y="14" width="12" height="4" rx="1"/>
+                    <rect x="8" y="20" width="8" height="3" rx="1"/>
+                  </svg>
+                </div>
+                <span>Ortopedia</span>
+              </div>
+
+              <div class="card-especialidade" data-nome="Neurologia">
+                <div class="icone-especialidade">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7Z"/>
+                    <path d="M9 21h6"/>
+                  </svg>
+                </div>
+                <span>Neurologia</span>
+              </div>
+
+              <div class="card-especialidade" data-nome="Oftalmologia">
+                <div class="icone-especialidade">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </div>
+                <span>Oftalmologia</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASSO 2: Escolha o profissional -->
+          <div class="passo-tela" id="passo2">
+            <div class="cabecalho-passo">
+              <h2>Escolha o profissional</h2>
+              <p>Mostrando especialistas em <span class="destaque-azul" id="txtEspecialidadeAtual">Clínica Geral</span></p>
+            </div>
+
+            <div class="lista-profissionais" id="listaProfissionais">
+              <!-- Cards gerados dinamicamente via JS -->
+            </div>
+          </div>
+
+          <!-- PASSO 3: Quando será sua consulta? -->
+          <div class="passo-tela" id="passo3">
+            <div class="cabecalho-passo">
+              <h2>Quando será sua consulta?</h2>
+              <p>Escolha a melhor data e horário disponível.</p>
+            </div>
+
+            <!-- Card Calendario -->
+            <div class="card-calendario">
+              <div class="calendario-topo">
+                <button type="button" class="btn-mes-calendario" id="btnMesAnterior" onclick="mudarMesCalendario(-1)" title="Mês anterior">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <span class="calendario-mes-ano" id="txtMesAnoCalendario"></span>
+                <button type="button" class="btn-mes-calendario" onclick="mudarMesCalendario(1)" title="Próximo mês">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+
+              <!-- Dias da semana -->
+              <div class="calendario-dias-semana">
+                <span>Dom</span>
+                <span>Seg</span>
+                <span>Ter</span>
+                <span>Qua</span>
+                <span>Qui</span>
+                <span>Sex</span>
+                <span>Sáb</span>
+              </div>
+
+              <!-- Grade de dias -->
+              <div class="calendario-grid-dias" id="gradeDiasMes">
+                <!-- Preenchido via script -->
+              </div>
+
+              <div class="calendario-legenda">
+                <span><i class="legenda-hoje"></i> Hoje</span>
+                <span><i class="legenda-feriado"></i> Feriado</span>
+              </div>
+            </div>
+
+            <!-- Card Horarios -->
+            <div class="card-horarios">
+              <h3 class="titulo-horarios" id="txtTituloHorarios">Horários</h3>
+              <p class="aviso-feriado" id="avisoFeriadoConsulta"></p>
+              <div class="grid-horarios" id="gridHorarios">
+                <!-- Preenchido via script -->
+              </div>
+            </div>
+          </div>
+
+          <!-- PASSO 4: Revisão dos Dados -->
+          <div class="passo-tela" id="passo4">
+            <div class="cabecalho-passo">
+              <h2>Revise os dados do agendamento</h2>
+              <p>Confira as informações antes de confirmar.</p>
+            </div>
+
+            <div class="card-revisao">
+              <!-- Topo azul -->
+              <div class="revisao-topo-azul">
+                <div class="avatar-revisao" id="revAvatar">CS</div>
+                <div class="textos-revisao-topo">
+                  <h3 id="revNomeTopo">Dr. Carlos Souza</h3>
+                  <p id="revEspecTopo">Clínica Geral</p>
+                </div>
+              </div>
+
+              <!-- Detalhes em linhas -->
+              <div class="revisao-corpo">
+                <div class="linha-revisao">
+                  <div class="icone-box-revisao box-azul">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+                      <rect x="3" y="4" width="18" height="16" rx="2"/>
+                      <circle cx="9" cy="10" r="2"/>
+                      <line x1="15" y1="8" x2="17" y2="8"/>
+                      <line x1="15" y1="12" x2="17" y2="12"/>
+                      <line x1="7" y1="16" x2="17" y2="16"/>
+                    </svg>
+                  </div>
+                  <div class="info-revisao">
+                    <span class="label-revisao">Profissional</span>
+                    <strong class="valor-revisao" id="revNomeDetalhe">Dr. Carlos Souza — Clínica Geral</strong>
+                    <span class="sub-revisao" id="revCrmDetalhe">CRM-PI 112233</span>
+                  </div>
+                </div>
+
+                <div class="divisor-revisao"></div>
+
+                <div class="linha-revisao">
+                  <div class="icone-box-revisao box-verde">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                      <rect x="3" y="4" width="18" height="18" rx="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                  </div>
+                  <div class="info-revisao">
+                    <span class="label-revisao">Data e Hora</span>
+                    <strong class="valor-revisao" id="revDataHoraDetalhe">Terça-feira, 10 de Junho de 2026 às 10:00</strong>
+                  </div>
+                </div>
+
+                <div class="divisor-revisao"></div>
+
+                <div class="linha-revisao">
+                  <div class="icone-box-revisao box-laranja">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </div>
+                  <div class="info-revisao">
+                    <span class="label-revisao">Local</span>
+                    <strong class="valor-revisao" id="revLocalNome">UBS Centro</strong>
+                    <span class="sub-revisao" id="revLocalEndereco">Rua Defala Attem, 812 — Floriano-PI</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra inferior com acao principal -->
+        <div class="barra-inferior-acao">
+          <button class="btn-acao-principal" id="btnAcaoPasso">Avançar</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal de confirmacao do agendamento com sucesso -->
+    <div class="modal-overlay" id="modalAgendadoSucesso">
+      <div class="modal-caixa modal-sucesso-agendamento">
+        <div class="modal-check-sucesso">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+
+        <h2 class="modal-titulo">Agendamento confirmado!</h2>
+        <p class="modal-subtitulo">Sua consulta foi agendada com sucesso. Você receberá uma notificação com os detalhes antes do atendimento.</p>
+
+        <div class="botoes-sucesso-agendamento">
+          <a href="../Consultas/index.html" class="btn-ir-consultas">Ver Minhas Consultas</a>
+          <button class="btn-concluir-painel" id="btnFecharSucessoAgendamento">Concluir</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../compartilhado/feriados.js"></script>
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/paciente_sessao.js"></script>
+    <script src="../compartilhado/paciente_app.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+
