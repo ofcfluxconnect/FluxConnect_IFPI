@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluxConnect - Histórico Médico</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+        <section class="marca">
+            <img src="image.png" alt="Logo FluxConnect" class="logo">
+
+            <div>
+                <h1>FluxConnect</h1>
+                <p>Portal do Paciente</p>
+            </div>
+        </section>
+
+        <p class="caminho">Portal <span>›</span> Histórico Médico</p>
+
+        <section class="usuario">
+            <img src="../../midias/icones/perfil.svg" alt="Perfil" class="icone-topo">
+        </section>
+    </header>
+
+    <!-- Menu lateral -->
+    <aside class="menu">
+        <nav>
+            <a href="/FluxConnect_IFPI/paginas/tela_principal_paciente/index.html" class="item-menu">
+                <img src="../../midias/icones/home.svg" alt="">
+                Início
+            </a>
+
+            <a href="#" class="item-menu">
+                <img src="../../midias/icones/calendar.svg" alt="">
+                Consultas
+            </a>
+
+            <a href="#" class="item-menu">
+                <img src="../../midias/icones/exeme.svg" alt="">
+                Exames
+            </a>
+
+            <a href="#" class="item-menu ativo" aria-current="page">
+                <img src="../../midias/icones/historico.svg" alt="">
+                Histórico
+            </a>
+
+            <a href="#" class="item-menu">
+                <img src="../../midias/icones/perfil.svg" alt="">
+                Minha Conta
+            </a>
+        </nav>
+
+        <section class="perfil">
+            <span class="foto">MO</span>
+
+            <div>
+                <strong>Maria Oliveira</strong>
+                <small>Paciente</small>
+            </div>
+        </section>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="conteudo">
+        <h2>Histórico Médico</h2>
+        <p class="subtitulo">Acompanhe sua jornada de saúde</p>
+
+        <!-- Pesquisa e filtro -->
+        <section class="filtros">
+            <input
+                type="search"
+                id="pesquisa"
+                placeholder="Pesquisar por médico ou especialidade"
+                aria-label="Pesquisar por médico ou especialidade"
+            >
+
+            <select id="ano" aria-label="Filtrar por ano">
+                <option value="todos">Todos os anos</option>
+                <option value="2026" selected>2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+            </select>
+        </section>
+
+        <!-- Histórico de consultas -->
+        <section class="historico" id="historico">
+            <!-- Consulta 1 -->
+            <article class="consulta" data-ano="2026">
+                <span class="ponto"></span>
+
+                <div class="cartao">
+                    <h3>12 de Maio de 2026</h3>
+
+                    <p>
+                        <img src="../../midias/icones/perfil.svg" alt="" class="icone">
+                        Dr. Carlos Lima
+                    </p>
+
+                    <p>
+                        <img src="../../midias/icones/exeme.svg" alt="" class="icone">
+                        Clínica Geral
+                    </p>
+
+                    <span class="situacao">● Realizada</span>
+                </div>
+            </article>
+
+            <!-- Consulta 2 -->
+            <article class="consulta" data-ano="2026">
+                <span class="ponto"></span>
+
+                <div class="cartao">
+                    <h3>03 de Abril de 2026</h3>
+
+                    <p>
+                        <img src="../../midias/icones/perfil.svg" alt="" class="icone">
+                        Dra. Ana Paula
+                    </p>
+
+                    <p>
+                        <img src="../../midias/icones/exeme.svg" alt="" class="icone">
+                        Cardiologia
+                    </p>
+
+                    <span class="situacao">● Realizada</span>
+                </div>
+            </article>
+
+            <!-- Consulta 3 -->
+            <article class="consulta" data-ano="2026">
+                <span class="ponto"></span>
+
+                <div class="cartao">
+                    <h3>18 de Fevereiro de 2026</h3>
+
+                    <p>
+                        <img src="../../midias/icones/perfil.svg" alt="" class="icone">
+                        Dr. Ricardo Alves
+                    </p>
+
+                    <p>
+                        <img src="../../midias/icones/exeme.svg" alt="" class="icone">
+                        Ortopedia
+                    </p>
+
+                    <span class="situacao">● Realizada</span>
+                </div>
+            </article>
+
+            <!-- Consulta 4 -->
+            <article class="consulta" data-ano="2026">
+                <span class="ponto"></span>
+
+                <div class="cartao">
+                    <h3>07 de Janeiro de 2026</h3>
+
+                    <p>
+                        <img src="../../midias/icones/perfil.svg" alt="" class="icone">
+                        Dra. Fernanda Rocha
+                    </p>
+
+                    <p>
+                        <img src="../../midias/icones/exeme.svg" alt="" class="icone">
+                        Dermatologia
+                    </p>
+
+                    <span class="situacao">● Realizada</span>
+                </div>
+            </article>
+
+        </section>
+
+        <p id="semResultados" hidden>Nenhuma consulta encontrada.</p>
+    </main>
+
+</body>
+</html>

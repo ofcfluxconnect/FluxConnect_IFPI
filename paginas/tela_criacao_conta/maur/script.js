@@ -1,125 +1,205 @@
 
-const form = document.querySelector('#formCadastro');
-const campo = id => document.getElementById(id);
-const numeros = valor => valor.replace(/\D/g, '');
+/* Seleciona os elementos do formulário */
+const formulario = document.querySelector("#formCadastro");
+const mensagem = document.querySelector("#mensagem");
 
-// Data máxima de nascimento
+// Busca um campo pelo seu ID.
+function buscarCampo(id) {
+    return document.getElementById(id);
+}
+
+// Remove letras, espaços e símbolos, deixando apenas números.
+function somenteNumeros(valor) {
+    return valor.replace(/\D/g, "");
+}
+
+
 const hoje = new Date();
-campo('nascimento').max = new Date(
+
+// Ajusta a data para o horário local.
+const dataAtual = new Date(
     hoje.getTime() - hoje.getTimezoneOffset() * 60000
-).toISOString().slice(0, 10);
+);
 
-// Máscaras dos campos
-campo('cpf').oninput = e => {
-    let v = numeros(e.target.value).slice(0, 11);
+buscarCampo("nascimento").max = dataAtual
+    .toISOString()
+    .slice(0, 10);
 
-    e.target.value = v
-        .replace(/(\d{3})(\d)/, '$1.$2')
-        .replace(/(\d{3})(\d)/, '$1.$2')
-        .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-};
 
-// Cartão SUS: 15 números no formato 000 0000 0000 0000
-campo('cns').oninput = e => {
-    let v = numeros(e.target.value).slice(0, 15);
+/* Aplica a máscara do Cartão SUS: 15 números no formato 000 0000 0000 0000 */
+buscarCampo("cns").addEventListener("input", function () {
+    const cns = somenteNumeros(this.value).slice(0, 15);
 
-    e.target.value = v
-        .replace(/^(\d{3})(\d)/, '$1 $2')
-        .replace(/^(\d{3}) (\d{4})(\d)/, '$1 $2 $3')
-        .replace(/^(\d{3}) (\d{4}) (\d{4})(\d)/, '$1 $2 $3 $4');
-};
+    this.value = cns
+        .replace(/^(\d{3})(\d)/, "$1 $2")
+        .replace(/^(\d{3}) (\d{4})(\d)/, "$1 $2 $3")
+        .replace(/^(\d{3}) (\d{4}) (\d{4})(\d)/, "$1 $2 $3 $4");
+});
 
-campo('cep').oninput = e => {
-    let v = numeros(e.target.value).slice(0, 8);
 
-    e.target.value = v.replace(/^(\d{5})(\d)/, '$1-$2');
-};
+/* Aplica a máscara do CPF */
+buscarCampo("cpf").addEventListener("input", function () {
+    let cpf = somenteNumeros(this.value).slice(0, 11);
 
-campo('telefone').oninput = e => {
-    let v = numeros(e.target.value).slice(0, 11);
+    // Organiza os números no formato 000.000.000-00.
+    cpf = cpf
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
 
-    e.target.value = v
-        .replace(/^(\d{2})(\d)/, '($1) $2')
-        .replace(/(\d{4,5})(\d{4})$/, '$1-$2');
-};
+    this.value = cpf;
+});
 
-// Validação do CPF
-function cpfValido(valor) {
-    let cpf = numeros(valor);
 
-    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf))
+/* Aplica a máscara do CEP */
+buscarCampo("cep").addEventListener("input", function () {
+    let cep = somenteNumeros(this.value).slice(0, 8);
+
+    // Organiza o CEP no formato 00000-000.
+    this.value = cep.replace(/^(\d{5})(\d)/, "$1-$2");
+});
+
+
+/* Aplica a máscara do telefone */
+buscarCampo("telefone").addEventListener("input", function () {
+    let telefone = somenteNumeros(this.value).slice(0, 11);
+
+    // Adiciona o DDD entre parênteses e o hífen.
+    telefone = telefone
+        .replace(/^(\d{2})(\d)/, "($1) $2")
+        .replace(/(\d{4,5})(\d{4})$/, "$1-$2");
+
+    this.value = telefone;
+});
+
+
+/* Verifica se o CPF informado é válido */
+function validarCPF(valor) {
+    const cpf = somenteNumeros(valor);
+
+    // O CPF precisa ter 11 números e não pode ter todos iguais.
+    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
         return false;
+    }
 
-    for (let t = 9; t <= 10; t++) {
+    // Confere os dois dígitos verificadores do CPF.
+    for (let posicao = 9; posicao <= 10; posicao++) {
         let soma = 0;
 
-        for (let i = 0; i < t; i++)
-            soma += cpf[i] * (t + 1 - i);
+        for (let i = 0; i < posicao; i++) {
+            soma += Number(cpf[i]) * (posicao + 1 - i);
+        }
 
         let digito = (soma * 10) % 11;
 
-        if ((digito === 10 ? 0 : digito) != cpf[t])
+        if (digito === 10) {
+            digito = 0;
+        }
+
+        if (digito !== Number(cpf[posicao])) {
             return false;
+        }
     }
 
     return true;
 }
 
-// Validação do formulário
-form.onsubmit = e => {
-    e.preventDefault();
 
-    let msg = '';
-    const valor = id => campo(id).value;
+/* Mostra uma mensagem para o usuário */
+function mostrarMensagem(texto, sucesso = false) {
+    mensagem.textContent = texto;
+    mensagem.className = sucesso ? "sucesso" : "";
+}
 
-    if (!form.checkValidity())
-        msg = 'Preencha todos os campos corretamente.';
+formulario.addEventListener("submit", function (evento) {
+    evento.preventDefault();
 
-    else if (valor('nome').trim().split(/\s+/).length < 2)
-        msg = 'Informe nome e sobrenome.';
+    // Pega os valores digitados no formulário.
+    const nome = buscarCampo("nome").value.trim();
+    const cpf = buscarCampo("cpf").value;
+    const telefone = buscarCampo("telefone").value;
+    const cep = buscarCampo("cep").value;
+    const nascimento = buscarCampo("nascimento").value;
+    const senha = buscarCampo("senha").value;
+    const confirmarSenha = buscarCampo("confirmarSenha").value;
 
-    else if (!cpfValido(valor('cpf')))
-        msg = 'CPF inválido.';
+    if (!formulario.checkValidity()) {
+        mostrarMensagem("Preencha todos os campos corretamente.");
+        return;
+    }
 
-    else if (valor('cns') && numeros(valor('cns')).length !== 15)
-        msg = 'O Cartão SUS tem 15 números. Confira ou deixe em branco.';
+    if (nome.split(/\s+/).length < 2) {
+        mostrarMensagem("Informe seu nome e sobrenome.");
+        return;
+    }
 
-    else if (![10, 11].includes(numeros(valor('telefone')).length))
-        msg = 'Telefone inválido.';
+    if (!validarCPF(cpf)) {
+        mostrarMensagem("CPF inválido.");
+        return;
+    }
 
-    else if (numeros(valor('cep')).length !== 8)
-        msg = 'CEP inválido.';
+    const cns = buscarCampo("cns").value;
 
-    else if (valor('nascimento') >= campo('nascimento').max)
-        msg = 'Data de nascimento inválida.';
+    if (cns && somenteNumeros(cns).length !== 15) {
+        mostrarMensagem("O Cartão SUS tem 15 números. Confira ou deixe em branco.");
+        return;
+    }
 
-    else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}/.test(valor('senha')))
-        msg = 'A senha precisa de 8 caracteres, letras, número e símbolo.';
+    const quantidadeTelefone = somenteNumeros(telefone).length;
 
-    else if (valor('senha') !== valor('confirmarSenha'))
-        msg = 'As senhas não coincidem.';
+    if (quantidadeTelefone !== 10 && quantidadeTelefone !== 11) {
+        mostrarMensagem("Telefone inválido.");
+        return;
+    }
 
-    if (!msg)
-        salvarCadastro();
+    if (somenteNumeros(cep).length !== 8) {
+        mostrarMensagem("CEP inválido.");
+        return;
+    }
 
-    campo('mensagem').className = msg ? '' : 'sucesso';
-    campo('mensagem').textContent =
-        msg || 'Cadastro realizado! Seus dados ficaram salvos neste navegador e aparecem em "Minha Conta".';
-};
+    // 6. Verifica se a data de nascimento é anterior a hoje.
+    if (nascimento >= buscarCampo("nascimento").max) {
+        mostrarMensagem("Data de nascimento inválida.");
+        return;
+    }
+
+    const senhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+
+    if (!senhaForte.test(senha)) {
+        mostrarMensagem(
+            "A senha precisa ter pelo menos 8 caracteres, " +
+            "incluindo letra maiúscula, minúscula, número e símbolo."
+        );
+        return;
+    }
+
+    if (senha !== confirmarSenha) {
+        mostrarMensagem("As senhas não coincidem.");
+        return;
+    }
+
+    salvarCadastro();
+
+    mostrarMensagem(
+        'Cadastro realizado! Seus dados ficaram salvos neste navegador e aparecem em "Minha Conta".',
+        true
+    );
+});
+
 
 // Guarda os dados do cadastro (sem a senha) para a tela "Minha Conta".
 // Ainda não existe backend, então os dados ficam só neste navegador.
 function salvarCadastro() {
-    const campos = ['nome', 'cpf', 'cns', 'nascimento', 'sexo', 'telefone', 'email',
-        'cep', 'numero', 'rua', 'bairro', 'cidade', 'estado', 'ubs'];
+    const campos = ["nome", "cpf", "cns", "nascimento", "sexo", "telefone", "email",
+        "cep", "numero", "rua", "bairro", "cidade", "estado", "ubs"];
 
     const dados = {};
-    campos.forEach(id => dados[id] = campo(id).value.trim());
+    campos.forEach(id => dados[id] = buscarCampo(id).value.trim());
     dados.criadoEm = new Date().toISOString();
 
     try {
-        localStorage.setItem('fluxconnect_cadastro', JSON.stringify(dados));
+        localStorage.setItem("fluxconnect_cadastro", JSON.stringify(dados));
     } catch (erro) {
-        console.error('Não foi possível salvar o cadastro:', erro);
+        console.error("Não foi possível salvar o cadastro:", erro);
     }
 }
