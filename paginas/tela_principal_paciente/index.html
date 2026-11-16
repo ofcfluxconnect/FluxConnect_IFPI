@@ -112,19 +112,25 @@
 
               <div class="config-status">
                 <div class="status-point"></div>
-                <p class="status">Confirmado</p>
+                <p class="status">Confirmada</p>
               </div>
             </div>
-            <img src="../../midias/icones/doctor.svg" alt="icone-doctor" />
+            <div class="icone-estetoscopio-topo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a6fc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.8 2.5A.3.3 0 0 1 5 2.8v4.7a4.5 4.5 0 0 0 9 0V2.8a.3.3 0 0 1 .2-.3.3.3 0 0 1 .3.3v4.7a5.5 5.5 0 0 1-11 0V2.8a.3.3 0 0 1 .3-.3Z"/>
+                <path d="M9.5 12.5v3a4 4 0 0 0 4 4h1a4 4 0 0 0 4-4v-1.5"/>
+                <circle cx="18.5" cy="12.5" r="1.5"/>
+              </svg>
+            </div>
           </div>
 
           <div class="div-config-text">
-            <h1>Dr.José Inacio</h1>
-            <p>Clínico Geral</p>
+            <h1 id="proximaConsultaMedico">Dr. Carlos Lima</h1>
+            <p id="proximaConsultaEspec">Clínico Geral</p>
           </div>
 
           <div class="icone-text">
-            <p>
+            <p id="proximaConsultaData">
               <img
                 src="../../midias/icones/calendar-card.svg"
                 alt="icone-calendar"
@@ -133,21 +139,21 @@
               Sábado, 14 de Junho de 2026
             </p>
 
-            <p>
+            <p id="proximaConsultaHora">
               <img src="../../midias/icones/time.svg" alt="" /> 10:30 · Duração estimada 30
               min
             </p>
 
-            <p>
-              <img src="../../midias/icones/localition.svg" alt="" /> Clínica FluxMes - Rua
-              Defala Attem, 812
+            <p id="proximaConsultaLocal">
+              <img src="../../midias/icones/localition.svg" alt="" /> Clínica FluxMed — Rua
+              Defala Attem, 1200
             </p>
           </div>
           <!-- Butoes no fim do card -->
           <div class="buttons-card">
             <div class="a-reagendar-consulta">
-              <a href="#"
-                >Reagenda <img src="../../midias/icones/refresh.svg" alt="icone-refresh"
+              <a href="reagendar_consulta/index.html"
+                >Reagendar <img src="../../midias/icones/refresh.svg" alt="icone-refresh"
               /></a>
             </div>
             <div class="a-cancelar-consulta">
