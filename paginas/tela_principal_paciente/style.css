@@ -838,3 +838,232 @@
         background: #1d4ed8;
       }
 
+      /* ===== MODAIS DE CANCELAMENTO ===== */
+      .modal-caixa.modal-cancelamento {
+        max-width: 490px;
+        text-align: center;
+      }
+
+      .modal-caixa.modal-sucesso {
+        max-width: 440px;
+        text-align: center;
+      }
+
+      /* Ícone superior */
+      .modal-icone-topo,
+      .modal-check-sucesso {
+        width: 55px;
+        height: 55px;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+
+      .modal-icone-topo {
+        background: #fff3df;
+        color: #d97706;
+      }
+
+      .modal-check-sucesso {
+        background: #dcfce7;
+        color: #16a34a;
+      }
+
+      /* Título e subtítulo */
+      .modal-titulo {
+        font-size: 20px;
+        font-weight: 600;
+        color: #0f1923;
+        margin-bottom: 10px;
+      }
+
+      .modal-subtitulo {
+        font-size: 13px;
+        color: #6b7585;
+        margin-bottom: 20px;
+      }
+
+      /* Resumo da consulta */
+      .modal-resumo-consulta {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      .resumo-linha {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+      }
+
+      .resumo-linha + .resumo-linha {
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .resumo-icone-box {
+        color: #2563eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .resumo-nome {
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      .resumo-detalhe {
+        color: #6b7585;
+        font-size: 12px;
+      }
+
+      /* Aviso */
+      .modal-aviso {
+        display: flex;
+        gap: 10px;
+        padding: 12px;
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        border-radius: 10px;
+        color: #92400e;
+        text-align: left;
+        margin-bottom: 18px;
+        align-items: flex-start;
+      }
+
+      .modal-aviso p {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #92400e;
+      }
+
+      .modal-aviso i,
+      .modal-aviso svg {
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      /* Formulário */
+      .modal-formulario {
+        text-align: left;
+      }
+
+      .modal-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin: 12px 0 6px;
+        color: #0f1923;
+      }
+
+      .obrigatorio {
+        color: #ef4444;
+      }
+
+      .modal-select-wrapper select,
+      .modal-textarea-wrapper textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 13px;
+        background: white;
+        box-sizing: border-box;
+      }
+
+      .modal-textarea-wrapper textarea {
+        min-height: 85px;
+        resize: vertical;
+      }
+
+      .contador-caracteres {
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        color: #94a3b8;
+        margin-top: 4px;
+      }
+
+      /* Botões */
+      .modal-botoes {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .btn-confirmar-cancelamento,
+      .btn-manter-consulta,
+      .btn-fechar-sucesso {
+        flex: 1;
+        padding: 12px;
+        border-radius: 9px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .btn-confirmar-cancelamento {
+        background: #dc2626;
+        color: white;
+        border: none;
+      }
+
+      .btn-confirmar-cancelamento:hover:not(:disabled) {
+        background: #b91c1c;
+      }
+
+      .btn-confirmar-cancelamento:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .btn-manter-consulta {
+        background: white;
+        color: #2563eb;
+        border: 1px solid #cbd5e1;
+      }
+
+      .btn-manter-consulta:hover {
+        background: #f8fafc;
+      }
+
+      .btn-fechar-sucesso {
+        background: #2563eb;
+        color: white;
+        border: none;
+        width: 100%;
+      }
+
+      .btn-fechar-sucesso:hover {
+        background: #1d4ed8;
+      }
+
+      .modal-rodape {
+        font-size: 11px;
+        color: #94a3b8;
+        margin-top: 18px;
+        text-align: center;
+      }
+
+      /* Estilo da consulta quando cancelada */
+      .status.cancelada {
+        background: #fee2e2 !important;
+        color: #dc2626 !important;
+      }
+
+      .status-point.cancelada {
+        background: #dc2626 !important;
+      }
+
