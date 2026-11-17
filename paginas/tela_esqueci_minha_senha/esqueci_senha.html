@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esqueci Minha Senha</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../compartilhado/paciente_app.css" />
+    <!-- App do paciente (PWA) -->
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <meta name="theme-color" content="#1a6fc4" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="../../midias/logo/app-icone-192.png" />
 </head>
 <body>
     <header>
@@ -18,17 +25,18 @@
             </svg>
         </div>
         <h1>Esqueceu sua senha?</h1>
-        <p>Não se preocupe! Digite o e-mail associado à sua conta e enviaremos um link para você redefinir sua senha.</p>
+        <p>Não se preocupe! Digite seu CPF, Cartão SUS ou e-mail e vamos ajudar você a criar uma nova senha.</p>
         <form id="recuperacao">
-            <label for="email">Email</label>
-            <input type="text" placeholder="exemplo@gmail.com" name="email" id="email" required>
-            <button type="submit"><img src="../../midias/icones/paperplane-svgrepo-com.svg" class="paperplane"> Enviar link de recuperação</button>
+            <label for="email">CPF, Cartão SUS ou e-mail</label>
+            <input type="text" placeholder="Digite seu CPF ou Cartão SUS" name="email" id="email" autocomplete="username" required>
+            <button type="submit"><img src="../../midias/icones/paperplane-svgrepo-com.svg" class="paperplane"> Continuar</button>
             <p id="mensagem" role="status"></p>
         </form>
         <div class="voltar">
             <span id="voltarParaLogin"> <img src="../../midias/icones/arrow-back-basic-svgrepo-com.svg" class="flecha"> Voltar para o login</span>
         </div>
     </div>
+<script src="../compartilhado/paciente_app.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

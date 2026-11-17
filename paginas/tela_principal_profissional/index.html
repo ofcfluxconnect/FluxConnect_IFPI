@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minha Agenda - FluxConnect Profissional</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Barra lateral do profissional -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img src="../../midias/logo/fluxConnect_2.svg" alt="Logo FluxConnect" class="logo-fluxconnect" />
+        <p class="logo-subtitulo">Profissional</p>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#" class="link-ativo">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Minha agenda</span>
+        </a>
+        <a href="../prontuarios_profissional/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Prontuários</span>
+        </a>
+        <a href="../resultados_profissional/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Resultados</span>
+        </a>
+      </nav>
+
+      <!-- Profissional logado (abre o "Meu perfil") -->
+      <button type="button" class="container-user" data-abrir-perfil title="Meu perfil">
+        <span class="avatar-user" data-perfil="iniciais">CL</span>
+        <span class="info-user">
+          <span class="nome-user" data-perfil="nome">Dr. Carlos Lima</span>
+          <span class="tipo-user" data-perfil="especialidade">Clínica Geral</span>
+        </span>
+      </button>
+    </aside>
+
+    <main class="conteudo-principal">
+      <!-- Saudacao e acoes do topo -->
+      <header class="topo-pagina">
+        <div>
+          <h1 class="saudacao">Olá, <span data-perfil="nome">Dr. Carlos Lima</span></h1>
+          <p class="resumo-topo">Você tem <strong id="txtTotalHoje">0 atendimentos</strong> programados para hoje — <span id="txtDataHoje"></span></p>
+        </div>
+        <div class="icones-topo">
+          <button class="btn-topo" title="Notificações">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f1923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </button>
+          <button class="btn-topo" data-abrir-perfil title="Configurações do perfil">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f1923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="area-agenda">
+        <!-- Lista de horarios -->
+        <section class="coluna-agenda">
+          <div class="barra-busca">
+            <div class="campo-busca">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <input type="search" autocomplete="off" id="inputBusca" placeholder="Buscar paciente por nome ou CPF..." />
+            </div>
+          </div>
+          <div class="lista-agenda" id="listaAgenda">
+            <!-- itens gerados pelo JS -->
+          </div>
+        </section>
+
+        <!-- Painel lateral -->
+        <aside class="painel-lateral">
+          <div class="bloco-painel">
+            <p class="painel-rotulo" id="txtRotuloPaciente">Próximo paciente</p>
+            <div id="painelPaciente">
+              <!-- preenchido pelo JS -->
+            </div>
+          </div>
+
+          <div class="bloco-painel">
+            <p class="painel-rotulo">Resumo do dia</p>
+            <div class="grade-resumo">
+              <div class="item-resumo"><span class="numero-resumo cor-azul" id="resTotal">0</span><span>Total</span></div>
+              <div class="item-resumo"><span class="numero-resumo cor-verde" id="resFinalizados">0</span><span>Finalizados</span></div>
+              <div class="item-resumo"><span class="numero-resumo cor-laranja" id="resAguardando">0</span><span>Aguardando</span></div>
+              <div class="item-resumo"><span class="numero-resumo cor-vermelho" id="resCancelados">0</span><span>Cancelados</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Aviso rapido -->
+    <div class="toast" id="toast"><span id="toastTexto"></span></div>
+
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/perfil_profissional.js"></script>
+    <script src="../compartilhado/pacientes_profissional.js"></script>
+    <script src="../compartilhado/receita_visualizar.js"></script>
+    <script src="../compartilhado/prontuario_modal.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

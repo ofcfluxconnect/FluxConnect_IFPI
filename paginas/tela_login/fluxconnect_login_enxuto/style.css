@@ -439,3 +439,11 @@ a:hover { text-decoration: underline; }
   .privacidade a { font-size: 10px; }
   .desktop { display: none; }
 }
+
+/* dica embaixo do campo de CPF / Cartao SUS */
+.dica-login {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #6b7585;
+}

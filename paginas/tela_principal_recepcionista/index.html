@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel - FluxConnect Recepção</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-notificacoes="recepcao">
+    <!-- Barra lateral da recepcao -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img src="../../midias/logo/fluxConnect_2.svg" alt="Logo FluxConnect" class="logo-fluxconnect" />
+        <div>
+          <p class="logo-nome">FluxConnect</p>
+          <p class="logo-subtitulo">Recepção</p>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Menu da recepção">
+        <a href="#" class="link-ativo" aria-current="page">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Painel</span>
+        </a>
+        <a href="../agenda_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="15" y2="16"/></svg>
+          <span>Agenda</span>
+        </a>
+        <a href="../pacientes_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Pacientes</span>
+        </a>
+        <a href="../consultas_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.6A2 2 0 1 0 3 6h3a2 2 0 1 0-1.8-3.4"/><path d="M4.5 6v5a5.5 5.5 0 0 0 11 0V6"/><path d="M19.5 13a2.5 2.5 0 1 0 0 5"/><path d="M22 15.5v2A4.5 4.5 0 0 1 17.5 22h-1A4.5 4.5 0 0 1 12 17.5"/></svg>
+          <span>Consultas</span>
+        </a>
+        <a href="../exames_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>
+          <span>Exames</span>
+        </a>
+        <a href="../relatorios_recepcionista/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Relatórios</span>
+        </a>
+      </nav>
+
+      <!-- Conta da recepcao (nome generico: varias recepcionistas usam o mesmo acesso).
+           Clicar abre o menu com "Sair da conta". -->
+      <button type="button" class="container-user" data-menu-usuario aria-label="Recepcionista — opções da conta" title="Opções da conta">
+        <span class="avatar-user" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
+        <span class="info-user">
+          <span class="nome-user">Recepcionista</span>
+          <span class="tipo-user">Equipe da recepção</span>
+        </span>
+      </button>
+    </aside>
+
+    <main class="conteudo-principal">
+      <header class="topo-pagina">
+        <div>
+          <h1 class="titulo-pagina" id="tituloPagina">Bom dia</h1>
+          <p class="subtitulo-pagina" id="subtituloPagina"></p>
+        </div>
+        <div class="icones-topo">
+          <button class="btn-topo" title="Notificações">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="ponto-notificacao"></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="area-pagina">
+        <!-- Resumo do dia -->
+        <div class="cards-resumo">
+          <div class="card-resumo resumo-azul">
+            <p class="resumo-rotulo">Total do dia</p>
+            <p class="resumo-numero" id="numTotal">0</p>
+            <p class="resumo-sub">consultas agendadas</p>
+          </div>
+          <div class="card-resumo resumo-verde">
+            <p class="resumo-rotulo">Confirmadas</p>
+            <p class="resumo-numero" id="numConfirmadas">0</p>
+            <p class="resumo-sub">prontas para atender</p>
+          </div>
+          <div class="card-resumo resumo-laranja">
+            <p class="resumo-rotulo">Pendentes</p>
+            <p class="resumo-numero" id="numPendentes">0</p>
+            <p class="resumo-sub">aguardando confirmação</p>
+          </div>
+          <div class="card-resumo resumo-roxo">
+            <p class="resumo-rotulo">Aguardando</p>
+            <p class="resumo-numero" id="numAguardando">0</p>
+            <p class="resumo-sub">na sala de espera</p>
+          </div>
+        </div>
+
+        <!-- Atalhos -->
+        <div class="atalhos">
+          <a class="atalho" href="../novo_agendamento_recepcionista/index.html">
+            <span class="atalho-icone icone-azul"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg></span>
+            Novo agendamento
+          </a>
+          <button type="button" class="atalho" data-novo-paciente>
+            <span class="atalho-icone icone-verde"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span>
+            Cadastrar paciente
+          </button>
+          <a class="atalho" href="../pacientes_recepcionista/index.html?foco=busca">
+            <span class="atalho-icone icone-verde"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><circle cx="11" cy="9" r="2.5"/><path d="M7.5 14.5a4 4 0 0 1 7 0"/></svg></span>
+            Buscar paciente
+          </a>
+        </div>
+
+        <!-- Agenda de hoje (largura total) -->
+        <section class="caixa" aria-labelledby="tituloAgenda">
+          <div class="caixa-cabeca">
+            <h2 class="caixa-titulo" id="tituloAgenda">Agenda de hoje</h2>
+            <a class="link-ver" href="../agenda_recepcionista/index.html">Ver grade completa</a>
+          </div>
+          <div class="tabela-rolagem tabela-agenda">
+            <table class="tabela">
+              <thead>
+                <tr><th>Horário</th><th>Paciente</th><th>Profissional</th><th>Tipo</th><th>Status</th></tr>
+              </thead>
+              <tbody id="corpoAgenda"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Proximos agendamentos (abaixo da agenda). Alertas ficam no sininho. -->
+        <section class="caixa" aria-labelledby="tituloProximos">
+          <div class="caixa-cabeca">
+            <h2 class="caixa-titulo" id="tituloProximos">Próximos agendamentos</h2>
+            <a class="link-ver" href="../consultas_recepcionista/index.html">Ver todos</a>
+          </div>
+          <ul class="lista-proximos" id="listaProximos"></ul>
+        </section>
+      </div>
+    </main>
+
+    <script src="../compartilhado/recepcao_dados.js"></script>
+    <script src="../compartilhado/recepcao_layout.js"></script>
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/paciente_cadastro_modal.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

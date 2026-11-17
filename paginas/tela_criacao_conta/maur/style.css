@@ -246,3 +246,19 @@ button:hover {
     }
 
 }
+
+/* Cartao SUS e UBS: textos de ajuda */
+.opcional {
+  font-weight: 400;
+  font-size: 0.85em;
+  color: #6b7585;
+}
+
+.dica {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #6b7585;
+}
