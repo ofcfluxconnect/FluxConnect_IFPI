@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FluxConnect - Cadastro</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../compartilhado/paciente_app.css" />
+    <!-- App do paciente (PWA) -->
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <meta name="theme-color" content="#1a6fc4" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="../../../midias/logo/app-icone-192.png" />
+    <script src="../../compartilhado/paciente_app.js"></script>
     <script src="script.js" defer></script>
 </head>
 
@@ -35,6 +43,11 @@
                     CPF
                     <input type="text"id="cpf"name="cpf"placeholder="000.000.000-00"maxlength="14"inputmode="numeric"required>
                 </label>
+                <label for="cns">
+                    Cartão SUS (CNS) <span class="opcional">opcional</span>
+                    <input type="text" id="cns" name="cns" placeholder="000 0000 0000 0000" maxlength="18" inputmode="numeric" aria-describedby="dicaCns">
+                    <small class="dica" id="dicaCns">É o número de 15 dígitos do seu Cartão SUS. Se não souber, a sua UBS informa.</small>
+                </label>
                 <section class="linha">
                     <label for="nascimento">
                         Data de Nascimento
@@ -52,12 +65,12 @@
 
                 </section>
                 <label for="telefone">
-                    Telefone
+                    Celular (WhatsApp)
                     <input type="tel"id="telefone"name="telefone"placeholder="(00) 00000-0000"maxlength="15"required>
                 </label>
                 <label for="email">
-                    E-mail
-                    <input type="email"id="email"name="email"placeholder="email@exemplo.com"required>
+                    E-mail <span class="opcional">opcional</span>
+                    <input type="email"id="email"name="email"placeholder="email@exemplo.com">
                 </label>
 
                 <h3>Endereço</h3>
@@ -101,6 +114,21 @@
                         <option value="SP">São Paulo</option>
                         <option value="RJ">Rio de Janeiro</option>
                     </select>
+                </label>
+
+                <h3>Sua UBS</h3>
+                <!-- Lista de exemplo: as UBS reais virao da API da prefeitura -->
+                <label for="ubs">
+                    UBS onde você é atendido
+                    <select id="ubs" name="ubs" required aria-describedby="dicaUbs">
+                        <option value="">Selecione</option>
+                        <option value="UBS Centro">UBS Centro</option>
+                        <option value="UBS Bairro Norte">UBS Bairro Norte</option>
+                        <option value="UBS Bairro Sul">UBS Bairro Sul</option>
+                        <option value="UBS Zona Rural">UBS Zona Rural</option>
+                        <option value="Não sei">Não sei qual é a minha UBS</option>
+                    </select>
+                    <small class="dica" id="dicaUbs">É a unidade de saúde mais perto da sua casa, onde você marca suas consultas.</small>
                 </label>
 
                 <h3>Segurança</h3>

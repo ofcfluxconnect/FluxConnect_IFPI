@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reagendar Consulta - FluxConnect</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../compartilhado/paciente_app.css" />
+    <!-- App do paciente (PWA) -->
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <meta name="theme-color" content="#1a6fc4" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="../../midias/logo/app-icone-192.png" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="card-fluxo">
+      <!-- Topo: Voltar, stepper e fechar -->
+      <div class="topo-fluxo">
+        <button class="btn-voltar" id="btnVoltar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar
+        </button>
+
+        <div class="stepper-container">
+          <div class="stepper-item concluido"><div class="stepper-circulo">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div></div>
+          <div class="stepper-linha concluida"></div>
+          <div class="stepper-item concluido"><div class="stepper-circulo">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div></div>
+          <div class="stepper-linha concluida"></div>
+          <div class="stepper-item ativo" id="step3"><div class="stepper-circulo">3</div></div>
+          <div class="stepper-linha" id="line3"></div>
+          <div class="stepper-item" id="step4"><div class="stepper-circulo">4</div></div>
+        </div>
+
+        <button class="btn-fechar" id="btnFechar" title="Cancelar reagendamento">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- PASSO 3: nova data e horario -->
+      <section class="passo passo-ativo" id="passo3">
+        <div class="banner-reagendando">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+          <div>
+            <p class="banner-titulo" id="txtBanner">Reagendando consulta</p>
+            <p class="banner-texto">Escolha uma nova data e horário disponíveis para seu atendimento.</p>
+          </div>
+        </div>
+
+        <h1 class="titulo-passo">Quando será sua consulta?</h1>
+        <p class="subtitulo-passo">Escolha a melhor data e horário disponível.</p>
+
+        <div class="card-calendario">
+          <div class="calendario-topo">
+            <span class="calendario-mes" id="txtMesAno"></span>
+            <div class="calendario-navegacao">
+              <button class="btn-mes" id="btnMesAnterior" title="Mês anterior">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button class="btn-mes" id="btnMesProximo" title="Próximo mês">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                <line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/>
+                <line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="calendario-semana">
+            <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+          </div>
+          <div class="calendario-dias" id="gradeDias">
+            <!-- Preenchido pelo JS -->
+          </div>
+
+          <div class="calendario-legenda">
+            <span><i class="legenda-atual"></i> Seu horário atual</span>
+            <span><i class="legenda-feriado"></i> Feriado</span>
+          </div>
+        </div>
+
+        <p class="aviso-feriado" id="avisoFeriado"></p>
+
+        <h2 class="titulo-horarios">Horários disponíveis</h2>
+        <div class="grade-horarios" id="gradeHorarios">
+          <!-- Preenchido pelo JS -->
+        </div>
+
+        <div class="rodape-passo">
+          <button class="btn-principal btn-largo" id="btnAvancar" disabled>Avançar</button>
+        </div>
+      </section>
+
+      <!-- PASSO 4: confirmar -->
+      <section class="passo" id="passo4">
+        <h1 class="titulo-passo">Confirmar Reagendamento</h1>
+        <p class="subtitulo-passo">Revise a alteração antes de concluir.</p>
+
+        <div class="card-comparacao">
+          <div class="bloco-consulta bloco-atual">
+            <p class="bloco-rotulo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Consulta atual
+            </p>
+            <p class="bloco-data" id="txtDataAtual"></p>
+            <p class="bloco-info" id="txtMedicoAtual"></p>
+            <p class="bloco-info" id="txtEspAtual"></p>
+          </div>
+          <div class="seta-comparacao">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+          </div>
+          <div class="bloco-consulta">
+            <p class="bloco-rotulo rotulo-nova">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
+              Nova consulta
+            </p>
+            <p class="bloco-data" id="txtDataNova"></p>
+            <p class="bloco-info" id="txtMedicoNova"></p>
+            <p class="bloco-info" id="txtEspNova"></p>
+          </div>
+        </div>
+
+        <p class="nota-vaga">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Ao confirmar, sua vaga anterior será liberada automaticamente para novos agendamentos.
+        </p>
+
+        <div class="rodape-passo rodape-duplo">
+          <button class="btn-secundario" id="btnVoltarPasso">Voltar</button>
+          <button class="btn-principal" id="btnConfirmar">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Confirmar Reagendamento
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Aviso rapido (toast) -->
+    <div class="toast" id="toast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12.5 11 15.5 16.5 9.5"/></svg>
+      <span>Consulta reagendada com sucesso!</span>
+    </div>
+
+    <script src="../compartilhado/feriados.js"></script>
+    <script src="../compartilhado/paciente_app.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

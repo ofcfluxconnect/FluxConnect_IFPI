@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Histórico Médico</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../compartilhado/paciente_app.css" />
+    <!-- App do paciente (PWA) -->
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <meta name="theme-color" content="#1a6fc4" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="../../midias/logo/app-icone-192.png" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img
+          src="../../midias/logo/fluxConnect_2.svg"
+          alt="Logo FluxConnect"
+          class="logo-fluxconnect"
+        />
+        <div class="logo-text">
+          <p class="logo-nome">FluxConnect</p>
+          <p class="logo-subtitulo">Portal do Paciente</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="../tela_principal_paciente/index.html">
+          <img src="../../midias/icones/home.svg" alt="icone-home" />
+          <span>Início</span>
+        </a>
+        <a href="../Consultas/index.html">
+          <img src="../../midias/icones/calendar.svg" alt="icone-calendar" />
+          <span>Consultas</span>
+        </a>
+        <a href="../Exames/index.html">
+          <img src="../../midias/icones/exeme.svg" alt="icone-exame" />
+          <span>Exames</span>
+        </a>
+        <a href="#" class="link-ativo">
+          <img src="../../midias/icones/historico.svg" alt="icone-historico" class="icone-ativo" />
+          <span>Histórico</span>
+          <span class="bolinha-notificacao"></span>
+        </a>
+        <a href="../MinhaConta/index.html">
+          <img src="../../midias/icones/perfil.svg" alt="icone-perfil" />
+          <span>Minha Conta</span>
+        </a>
+      </nav>
+
+      <!-- Informações do usuario logado -->
+      <div class="container-user">
+        <div class="avatar-user" data-paciente="iniciais">--</div>
+        <div class="info-user">
+          <p class="nome-user" data-paciente="nome-curto">Paciente</p>
+          <p class="tipo-user">Paciente</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Conteudo principal -->
+    <main class="conteudo-principal">
+      <!-- Breadcrumb e icones do topo -->
+      <div class="topo-pagina">
+        <p class="breadcrumb">
+          <span class="breadcrumb-cinza">Portal</span>
+          <span class="breadcrumb-cinza">&rsaquo;</span>
+          <strong>Histórico Médico</strong>
+        </p>
+        <div class="icones-topo">
+          <button class="btn-topo" title="Notificações">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f1923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </button>
+          <button class="btn-topo btn-topo-avatar" title="Perfil">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="container-historico">
+        <div>
+          <h1 class="titulo-pagina">Histórico Médico</h1>
+          <p class="subtitulo-pagina">Acompanhe sua jornada de saúde</p>
+        </div>
+
+        <!-- Busca e filtro de ano -->
+        <div class="barra-filtros">
+          <div class="campo-busca">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="search" autocomplete="off" id="inputBusca" placeholder="Pesquisar por médico ou especialidade" />
+          </div>
+
+          <div class="campo-ano">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <select id="selectAno" aria-label="Filtrar por ano">
+              <!-- anos preenchidos pelo JS -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Linha do tempo -->
+        <div class="linha-tempo" id="linhaTempo">
+          <!-- itens gerados pelo JS -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Aviso rapido (toast) -->
+    <div class="toast" id="toast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12.5 11 15.5 16.5 9.5"/></svg>
+      <span id="toastTexto"></span>
+    </div>
+
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/paciente_sessao.js"></script>
+    <script src="../compartilhado/paciente_app.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

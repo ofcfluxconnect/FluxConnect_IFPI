@@ -1,10 +1,17 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tela Principal Paciente</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../compartilhado/paciente_app.css" />
+    <!-- App do paciente (PWA) -->
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <meta name="theme-color" content="#1a6fc4" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="../../midias/logo/app-icone-192.png" />
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,7 +46,7 @@
             >Início</span
           ></a
         >
-        <a href="#"
+        <a href="../Consultas/index.html"
           ><img src="../../midias/icones/calendar.svg" alt="icone-calendar" /><span
             >Consultas</span
           >
@@ -49,21 +56,21 @@
             >Exames</span
           ></a
         >
-        <a href="#"
+        <a href="../Historico/index.html"
           ><img src="../../midias/icones/historico.svg" alt="icones-histrico" />
          <span>Histórico</span> </a
         >
-        <a href="#"
+        <a href="../MinhaConta/index.html"
           ><img src="../../midias/icones/perfil.svg" alt="icone-perfil" /><span>Minha Conta</span></a
         >
       </nav>
 
       <div class="container-user">
         <!-- Circulo com as iniciais -->
-        <div class="avatar-user">NJ</div>
+        <div class="avatar-user" data-paciente="iniciais">--</div>
 
         <div class="info-user">
-          <p class="nome-user">Neymar JR</p>
+          <p class="nome-user" data-paciente="nome-curto">Paciente</p>
           <p class="paciente">Paciente</p>
         </div>
       </div>
@@ -73,15 +80,14 @@
       <div class="container-comprimentos">
         <div class="config-texts">
           <p class="bom-dia">Bom dia,</p>
-          <h1 class="nome-paciente">Neymar Jr</h1>
+          <h1 class="nome-paciente" data-paciente="nome">Paciente</h1>
           <p class="text-acompanhe">
             Acompanhe suas consultas e exames em um só lugar.
           </p>
         </div>
-        <!-- <div class="icone-notification">
-          <img src="./icones/notification.svg" alt="icone-notificação" />
-          <p class="text-inc"></p>
-        </div> -->
+        <button type="button" class="icone-notification" title="Notificações">
+          <img src="../../midias/icones/notification.svg" alt="icone-notificação" />
+        </button>
       </div>
       <!-- Primeiros Cards com  as informações -->
       <div></div>
@@ -94,15 +100,15 @@
         <div class="consultas-full">
           <h2>Exames realizados</h2>
           <p class="p1">12</p>
-          <p class="p2">3 aguadando resultado</p>
+          <p class="p2">3 aguardando resultado</p>
         </div>
         <div class="consultas-full">
           <h2>Próximo evento</h2>
           <p class="p1">2 dias</p>
-          <p class="p2">Hemogtafia - 12 Jun</p>
+          <p class="p2">Hemograma - 12 Jun</p>
         </div>
         <div class="consultas-full">
-          <h2>Ultimo acesso</h2>
+          <h2>Último acesso</h2>
           <p class="p1">Hoje</p>
           <p class="p2">08:14 . Web</p>
         </div>
@@ -111,7 +117,7 @@
       <!-- Cards: Proximas Consultas/Exames -->
       <div class="div-main-proximo-consultasExames">
         <!-- Card 1: Proxima Consulta -->
-        <div class="card-proxima-consulta">
+        <div class="card-proxima-consulta" id="cardProximaConsulta">
           <div class="div-proxima-consulta">
             <div class="text-config">
               <p class="text-inicio-card">Próxima consulta</p>
@@ -142,7 +148,7 @@
                 alt="icone-calendar"
                 class="incone-calendar-card"
               />
-              Sábado, 14 de Junho de 2026
+              <span id="dataProximaConsulta">Sábado, 14 de Junho de 2026</span>
             </p>
 
             <p id="proximaConsultaHora">
@@ -156,7 +162,7 @@
             </p>
           </div>
           <!-- Butoes no fim do card -->
-          <div class="buttons-card">
+          <div class="buttons-card" id="botoesProximaConsulta">
             <div class="a-reagendar-consulta">
               <a href="reagendar_consulta/index.html"
                 >Reagendar <img src="../../midias/icones/refresh.svg" alt="icone-refresh"
@@ -173,7 +179,7 @@
         <div class="card-proxima-consulta">
           <div class="div-proxima-consulta-exame">
             <div class="text-config">
-              <p class="text-inicio-card">Próxima exame</p>
+              <p class="text-inicio-card">Próximo exame</p>
 
               <div class="config-status-exame">
                 <div class="status-point-exame"></div>
@@ -205,7 +211,7 @@
             </p>
 
             <p>
-              <img src="../../midias/icones/localition.svg" alt="" /> Lab FluxLab - Rua
+              <img src="../../midias/icones/localition.svg" alt="" /> Laboratório Municipal - Rua
               Defala Attem, 822
             </p>
           </div>
@@ -222,19 +228,19 @@
 
       <!-- Cads Atalho Rapidos -->
       <div class="containers-atalho-rapido">
-        <p class="p-principal">Atalhos Rapidos</p>
+        <p class="p-principal">Atalhos rápidos</p>
         <div class="div-engloba-cards-athalho">
           <div class="container-menor-atalho">
-            <a href="#">
+            <a href="../agendar_consulta/index.html?novo=1">
               <div class="test-background" style="background: #a9c7f04f">
                 <img src="../../midias/icones/doctor.svg" alt="" />
               </div>
 
-              <p>Agendar Consultas</p>
+              <p>Agendar Consulta</p>
             </a>
           </div>
           <div class="container-menor-atalho">
-            <a href="#">
+            <a href="../agendar_exame/index.html">
               <div class="test-background" style="background: #e1f5ee">
                 <img src="../../midias/icones/exame-gren.svg" alt="" />
               </div>
@@ -243,7 +249,7 @@
             </a>
           </div>
           <div class="container-menor-atalho">
-            <a href="#">
+            <a href="../Consultas/index.html">
               <div class="test-background" style="background: #fef3e2">
                 <img src="../../midias/icones/calendar-color.svg" alt="" />
               </div>

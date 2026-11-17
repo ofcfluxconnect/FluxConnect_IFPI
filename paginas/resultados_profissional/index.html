@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados e Laudos - FluxConnect Profissional</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Barra lateral do profissional -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img src="../../midias/logo/fluxConnect_2.svg" alt="Logo FluxConnect" class="logo-fluxconnect" />
+        <p class="logo-subtitulo">Profissional</p>
+      </div>
+
+      <nav class="nav-links">
+        <a href="../tela_principal_profissional/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Minha agenda</span>
+        </a>
+        <a href="../prontuarios_profissional/index.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Prontuários</span>
+        </a>
+        <a href="#" class="link-ativo">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Resultados</span>
+        </a>
+      </nav>
+
+      <button type="button" class="container-user" data-abrir-perfil title="Meu perfil">
+        <span class="avatar-user" data-perfil="iniciais">CL</span>
+        <span class="info-user">
+          <span class="nome-user" data-perfil="nome">Dr. Carlos Lima</span>
+          <span class="tipo-user" data-perfil="especialidade">Clínica Geral</span>
+        </span>
+      </button>
+    </aside>
+
+    <main class="conteudo-principal">
+      <header class="topo-pagina">
+        <div>
+          <h1 class="titulo-pagina">Resultados e Laudos <span class="badge-novos" id="badgeNovos">0 novos</span></h1>
+          <p class="resumo-topo">Exames solicitados por <span data-perfil="nome">Dr. Carlos Lima</span> · <span id="txtTotalTopo">0</span> resultados disponíveis</p>
+        </div>
+        <div class="icones-topo">
+          <button class="btn-topo" title="Notificações">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f1923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </button>
+          <button class="btn-topo" data-abrir-perfil title="Meu perfil">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f1923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="area-resultados">
+        <!-- Cards de resumo -->
+        <div class="cards-resumo">
+          <div class="card-resumo card-destaque">
+            <p class="resumo-rotulo"><i class="ponto-novo"></i> Novos resultados</p>
+            <p class="resumo-numero" id="numNovos">0</p>
+          </div>
+          <div class="card-resumo">
+            <p class="resumo-rotulo"><i class="ponto-lido"></i> Resultados lidos</p>
+            <p class="resumo-numero" id="numLidos">0</p>
+          </div>
+          <div class="card-resumo">
+            <p class="resumo-rotulo">Total recebidos</p>
+            <p class="resumo-numero" id="numTotal">0</p>
+          </div>
+        </div>
+
+        <!-- Tabela -->
+        <section class="card-tabela">
+          <div class="barra-tabela">
+            <div class="campo-busca">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <input type="search" autocomplete="off" id="inputBusca" placeholder="Buscar por paciente ou tipo de exame" />
+            </div>
+            <svg class="icone-filtro" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            <div class="filtros" id="filtros">
+              <button type="button" class="filtro ativo" data-filtro="todos">Todos <span id="contTodos">0</span></button>
+              <button type="button" class="filtro" data-filtro="nao-lidos">Não Lidos <span id="contNaoLidos">0</span></button>
+              <button type="button" class="filtro" data-filtro="lidos">Lidos <span id="contLidos">0</span></button>
+            </div>
+            <span class="contagem" id="txtContagem">0 resultados</span>
+          </div>
+
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr>
+                  <th class="col-ponto"></th>
+                  <th>Data de liberação</th>
+                  <th>Paciente</th>
+                  <th>Exame</th>
+                  <th>Categoria</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="corpoTabela">
+                <!-- linhas geradas pelo JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rodape-tabela">
+            <span id="txtExibindo">Exibindo 0 de 0 resultados</span>
+            <span>Filtro: <span data-perfil="nome">Dr. Carlos Lima</span> · Pacientes ativos na clínica</span>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Modal: laudo -->
+    <div class="modal-overlay" id="modalLaudo">
+      <div class="modal-caixa modal-laudo">
+        <div class="modal-topo">
+          <div>
+            <h2 class="modal-titulo" id="laudoExame">Laudo</h2>
+            <p class="modal-sub" id="laudoPaciente"></p>
+          </div>
+          <button type="button" class="modal-x" data-fechar-laudo title="Fechar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="laudo-corpo">
+          <div class="laudo-meta">
+            <div><span>Liberado em</span><strong id="laudoData"></strong></div>
+            <div><span>Categoria</span><strong id="laudoCategoria"></strong></div>
+            <div><span>Laboratório</span><strong id="laudoLab"></strong></div>
+          </div>
+          <table class="tabela-laudo">
+            <thead>
+              <tr><th>Parâmetro</th><th>Resultado</th><th>Referência</th></tr>
+            </thead>
+            <tbody id="laudoParametros"></tbody>
+          </table>
+          <div class="laudo-conclusao">
+            <p class="conclusao-titulo">Conclusão</p>
+            <p id="laudoConclusao"></p>
+          </div>
+        </div>
+        <div class="laudo-rodape">
+          <button type="button" class="btn-sec" data-fechar-laudo>Fechar</button>
+          <button type="button" class="btn-pri" id="btnImprimir">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Imprimir laudo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../compartilhado/notificacoes.js"></script>
+    <script src="../compartilhado/perfil_profissional.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

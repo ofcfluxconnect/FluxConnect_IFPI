@@ -30,15 +30,23 @@ formulario.addEventListener("submit", async function (evento) {
 
   // 1. Confere se os campos foram preenchidos.
   if (!valorEmail || !valorSenha.trim()) {
-    avisar("Preencha o e-mail e a senha para continuar.", "#d93025");
+    avisar("Preencha o CPF (ou Cartão SUS) e a senha para continuar.", "#d93025");
     return;
   }
 
-  // 2. Confere o formato do e-mail.
+  // 2. Descobre o que foi digitado: e-mail (profissional/recepção), CPF (11 números) ou Cartão SUS (15 números).
   const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const digitos = valorEmail.replace(/\D/g, "");
+  const ehEmail = valorEmail.includes("@");
 
-  if (!formatoEmail.test(valorEmail)) {
+  if (ehEmail && !formatoEmail.test(valorEmail)) {
     avisar("Digite um endereço de e-mail válido.", "#d93025");
+    email.focus();
+    return;
+  }
+
+  if (!ehEmail && digitos.length !== 11 && digitos.length !== 15) {
+    avisar("Digite o CPF (11 números) ou o Cartão SUS (15 números).", "#d93025");
     email.focus();
     return;
   }
@@ -65,12 +73,21 @@ formulario.addEventListener("submit", async function (evento) {
         localStorage.getItem("senhasAtualizadas") || "{}"
     );
 
+    // Junta as contas de todos os grupos do JSON (paciente, profissional...).
+    const usuarios = Object.values(dados).flat();
+
     // Procura uma conta ativa com os dados informados.
-    const usuario = dados.usuarios.find(function (item) {
+    const usuario = usuarios.find(function (item) {
         const senhaCorreta =
             senhasAtualizadas[item.email.toLowerCase()] ?? item.senha;
 
-        return item.email.toLowerCase() === valorEmail.toLowerCase()
+        const mesmaConta = ehEmail
+            ? item.email.toLowerCase() === valorEmail.toLowerCase()
+            : [item.cpf, item.cns].some(function (doc) {
+                return doc && doc.replace(/\D/g, "") === digitos;
+              });
+
+        return mesmaConta
             && senhaCorreta === valorSenha
             && item.ativo === true;
 });
@@ -81,10 +98,12 @@ formulario.addEventListener("submit", async function (evento) {
 
       sessionStorage.setItem("perfil", usuario.perfil);
       sessionStorage.setItem("nomeUsuario", usuario.nome);
+      sessionStorage.setItem("emailUsuario", usuario.email);
+      sessionStorage.setItem("cpfUsuario", usuario.cpf || "");
 
       window.location.href = usuario.paginaInicial;
     } else {
-      avisar("E-mail ou senha incorretos.", "#d93025");
+      avisar(ehEmail ? "E-mail ou senha incorretos." : "CPF/Cartão SUS ou senha incorretos.", "#d93025");
     }
   } catch (erro) {
     console.error("Erro ao validar login:", erro);
@@ -95,11 +114,7 @@ formulario.addEventListener("submit", async function (evento) {
   }
 });
 
-// Link de recuperação de senha.
-document.querySelector("#esqueci").addEventListener("click", function (evento) {
-  evento.preventDefault();
-  avisar("A recuperação de senha será implementada futuramente.");
-});
+// "Esqueceu a senha?" é um link normal para tela_esqueci_minha_senha/esqueci_senha.html
 
 // Botão para criar conta.
 document.querySelector("#criarConta").addEventListener("click", function (evento) {

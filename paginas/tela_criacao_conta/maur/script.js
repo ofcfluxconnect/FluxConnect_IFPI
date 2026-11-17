@@ -26,6 +26,17 @@ buscarCampo("nascimento").max = dataAtual
     .slice(0, 10);
 
 
+/* Aplica a máscara do Cartão SUS: 15 números no formato 000 0000 0000 0000 */
+buscarCampo("cns").addEventListener("input", function () {
+    const cns = somenteNumeros(this.value).slice(0, 15);
+
+    this.value = cns
+        .replace(/^(\d{3})(\d)/, "$1 $2")
+        .replace(/^(\d{3}) (\d{4})(\d)/, "$1 $2 $3")
+        .replace(/^(\d{3}) (\d{4}) (\d{4})(\d)/, "$1 $2 $3 $4");
+});
+
+
 /* Aplica a máscara do CPF */
 buscarCampo("cpf").addEventListener("input", function () {
     let cpf = somenteNumeros(this.value).slice(0, 11);
@@ -127,6 +138,13 @@ formulario.addEventListener("submit", function (evento) {
         return;
     }
 
+    const cns = buscarCampo("cns").value;
+
+    if (cns && somenteNumeros(cns).length !== 15) {
+        mostrarMensagem("O Cartão SUS tem 15 números. Confira ou deixe em branco.");
+        return;
+    }
+
     const quantidadeTelefone = somenteNumeros(telefone).length;
 
     if (quantidadeTelefone !== 10 && quantidadeTelefone !== 11) {
@@ -160,8 +178,28 @@ formulario.addEventListener("submit", function (evento) {
         return;
     }
 
+    salvarCadastro();
+
     mostrarMensagem(
-        "Cadastro validado! Os dados não foram enviados.",
+        'Cadastro realizado! Seus dados ficaram salvos neste navegador e aparecem em "Minha Conta".',
         true
     );
 });
+
+
+// Guarda os dados do cadastro (sem a senha) para a tela "Minha Conta".
+// Ainda não existe backend, então os dados ficam só neste navegador.
+function salvarCadastro() {
+    const campos = ["nome", "cpf", "cns", "nascimento", "sexo", "telefone", "email",
+        "cep", "numero", "rua", "bairro", "cidade", "estado", "ubs"];
+
+    const dados = {};
+    campos.forEach(id => dados[id] = buscarCampo(id).value.trim());
+    dados.criadoEm = new Date().toISOString();
+
+    try {
+        localStorage.setItem("fluxconnect_cadastro", JSON.stringify(dados));
+    } catch (erro) {
+        console.error("Não foi possível salvar o cadastro:", erro);
+    }
+}
