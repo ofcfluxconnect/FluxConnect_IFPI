@@ -18,7 +18,7 @@
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
     
     <!-- JavaScript da tela principal -->
-    <script src="scriptt.js" defer></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <aside class="sidebar">
@@ -116,9 +116,9 @@
             <div class="text-config">
               <p class="text-inicio-card">Próxima consulta</p>
 
-              <div class="config-status">
-                <div class="status-point"></div>
-                <p class="status">Confirmada</p>
+              <div class="config-status" id="containerStatusProximaConsulta">
+                <div class="status-point" id="pointStatusProximaConsulta"></div>
+                <p class="status" id="statusProximaConsulta">Confirmada</p>
               </div>
             </div>
             <div class="icone-estetoscopio-topo">
@@ -286,6 +286,157 @@
       </div> -->
     </main>
 
+    <!-- MODAL DE CANCELAMENTO -->
+    <div class="modal-overlay" id="modalCancelamento">
+      <div class="modal-caixa modal-cancelamento">
+        <!-- Ícone -->
+        <div class="modal-icone-topo">
+          <i data-lucide="calendar-x"></i>
+        </div>
+
+        <!-- Título -->
+        <h2 class="modal-titulo">
+          Deseja realmente cancelar este agendamento?
+        </h2>
+
+        <p class="modal-subtitulo">
+          Esta ação não poderá ser desfeita posteriormente.
+        </p>
+
+        <!-- Informações da consulta -->
+        <div class="modal-resumo-consulta">
+          <div class="resumo-linha">
+            <span class="resumo-icone-box">
+              <i data-lucide="user-round"></i>
+            </span>
+            <div>
+              <p class="resumo-nome" id="resumoMedicoCancelamento">
+                Consulta com Dr. Carlos Lima
+              </p>
+              <p class="resumo-detalhe" id="resumoEspecCancelamento">Clínico Geral</p>
+            </div>
+          </div>
+
+          <div class="resumo-linha">
+            <span class="resumo-icone-box">
+              <i data-lucide="calendar-days"></i>
+            </span>
+            <p id="resumoDataCancelamento">
+              14/06/2026 às 10:30
+            </p>
+          </div>
+
+          <div class="resumo-linha">
+            <span class="resumo-icone-box">
+              <i data-lucide="map-pin"></i>
+            </span>
+            <p id="resumoLocalCancelamento">
+              Clínica FluxMed — Rua Defala Attem, 1200
+            </p>
+          </div>
+        </div>
+
+        <!-- Aviso -->
+        <div class="modal-aviso">
+          <i data-lucide="info"></i>
+          <p>
+            Ao cancelar, você libera este horário para outro
+            paciente. Pedimos que cancelamentos sejam realizados
+            com pelo menos
+            <strong>24 horas de antecedência</strong>
+            sempre que possível.
+          </p>
+        </div>
+
+        <!-- Formulário -->
+        <div class="modal-formulario">
+          <label class="modal-label" for="selectMotivo">
+            Por que você está cancelando?
+            <span class="obrigatorio">*</span>
+          </label>
+
+          <div class="modal-select-wrapper">
+            <select id="selectMotivo" required>
+              <option value="">Selecione um motivo</option>
+              <option value="Imprevisto pessoal">Imprevisto pessoal</option>
+              <option value="Problema de transporte">Problema de transporte</option>
+              <option value="Conflito de horário">Conflito de horário</option>
+              <option value="Emergência familiar">Emergência familiar</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <label class="modal-label" for="textareaJustificativa">
+            Justificativa
+          </label>
+
+          <div class="modal-textarea-wrapper">
+            <textarea
+              id="textareaJustificativa"
+              maxlength="300"
+              placeholder="Descreva brevemente o motivo do cancelamento..."
+            ></textarea>
+
+            <span class="contador-caracteres">
+              <span id="contadorAtual">0</span>/300 caracteres
+            </span>
+          </div>
+        </div>
+
+        <!-- Botões -->
+        <div class="modal-botoes">
+          <button
+            type="button"
+            class="btn-confirmar-cancelamento"
+            id="btnSimCancelar"
+            disabled
+          >
+            Sim, cancelar consulta
+          </button>
+
+          <button
+            type="button"
+            class="btn-manter-consulta"
+            id="btnNaoManter"
+          >
+            <i data-lucide="calendar-check"></i>
+            Não, manter consulta
+          </button>
+        </div>
+
+        <p class="modal-rodape">
+          O motivo informado será registrado junto com a solicitação de cancelamento.
+        </p>
+      </div>
+    </div>
+
+    <!-- MODAL DE SUCESSO -->
+    <div class="modal-overlay" id="modalSucesso">
+      <div class="modal-caixa modal-sucesso">
+        <!-- Ícone de sucesso -->
+        <div class="modal-check-sucesso">
+          <i data-lucide="circle-check"></i>
+        </div>
+
+        <h2 class="modal-titulo">
+          Consulta cancelada com sucesso
+        </h2>
+
+        <p class="modal-subtitulo">
+          Seu cancelamento foi registrado nesta demonstração.
+          Você pode reagendar quando precisar.
+        </p>
+
+        <button
+          type="button"
+          class="btn-fechar-sucesso"
+          id="btnFecharSucesso"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+
     <!-- Modal: Preparo para o proximo exame -->
     <div class="modal-overlay" id="modalPreparo">
       <div class="modal-caixa modal-preparo">
@@ -339,7 +490,5 @@
         </div>
       </div>
     </div>
-    
-    <script src="script.js"></script>
   </body>
 </html>
