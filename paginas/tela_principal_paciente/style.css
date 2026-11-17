@@ -586,7 +586,7 @@
         display: block;
       }
       .container-menor-atalho a,
-      p {
+      .container-menor-atalho p {
         text-decoration: none;
         color: var(--cor-p-principal);
         font-size: 13px;
@@ -619,3 +619,222 @@
         letter-spacing: 1.3px;
         word-wrap: break-word;
       } */
+
+      /* Ícone de estetoscópio no topo do Card de Próxima Consulta */
+      .icone-estetoscopio-topo {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Estilizacao MODAL ver preparo */
+      :root {
+        --cor-principal: #0f1923;
+        --cor-secundaria: #6b7585;
+        --azul-primario: #2563eb;
+        --borda-suave: rgba(15, 25, 35, 0.07);
+      }
+
+      /* fundo escurecido */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 25, 35, 0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        backdrop-filter: blur(2px);
+      }
+
+      .modal-overlay.visivel {
+        display: flex;
+      }
+
+      /* caixa do modal */
+      .modal-caixa {
+        background: #fff;
+        border-radius: 20px;
+        padding: 36px 32px;
+        max-width: 490px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        animation: modalEntrar 0.25s ease;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      @keyframes modalEntrar {
+        from {
+          opacity: 0;
+          transform: scale(0.95) translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* ========== MODAL DE PREPARO DO PROXIMO EXAME ========== */
+      .modal-caixa.modal-preparo {
+        max-width: 600px;
+        padding: 0;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        max-height: 88vh;
+        overflow: hidden;
+      }
+
+      .preparo-topo {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 26px 28px 24px;
+        border-bottom: 1px solid var(--borda-suave);
+      }
+
+      .preparo-icone {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+        background: #eef4fd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .preparo-titulo {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--cor-principal);
+      }
+
+      .preparo-exame {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--azul-primario);
+        margin-top: 4px;
+      }
+
+      .preparo-fechar {
+        margin-left: auto;
+        align-self: flex-start;
+        width: 36px;
+        height: 36px;
+        border: none;
+        background: transparent;
+        border-radius: 50%;
+        color: var(--cor-secundaria);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .preparo-fechar:hover {
+        background: #f0f4f8;
+      }
+
+      .preparo-corpo {
+        padding: 26px 28px 8px;
+        overflow-y: auto;
+      }
+
+      .preparo-requisito {
+        display: flex;
+        gap: 14px;
+        background: #fef6e7;
+        border-left: 4px solid #f59e0b;
+        border-radius: 12px;
+        padding: 18px 20px;
+      }
+
+      .preparo-requisito svg {
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .requisito-titulo {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--cor-principal);
+      }
+
+      .requisito-texto {
+        font-size: 14px;
+        color: #374151;
+        margin-top: 6px;
+      }
+
+      .preparo-subtitulo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--cor-principal);
+        margin: 28px 0 16px;
+      }
+
+      .preparo-lista {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding-bottom: 18px;
+      }
+
+      .preparo-lista li {
+        position: relative;
+        padding-left: 36px;
+        font-size: 14.5px;
+        color: #374151;
+        line-height: 1.45;
+      }
+
+      /* bolinha verde com check antes de cada item */
+      .preparo-lista li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #e1f5ee url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f6e56' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 12px no-repeat;
+      }
+
+      .preparo-rodape {
+        border-top: 1px solid var(--borda-suave);
+        padding: 18px 28px 22px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .btn-entendi {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 230px;
+        height: 46px;
+        border: none;
+        border-radius: 14px;
+        background: var(--azul-primario);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .btn-entendi:hover {
+        background: #1d4ed8;
+      }
+
