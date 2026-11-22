@@ -4,6 +4,7 @@
 
 (function () {
   var PAGINA_LOGIN = "../tela_login/fluxconnect_login_enxuto/index.html";
+  var PAGINA_CONTA = "../Paciente/tela_conta_paciente/index.html";
 
   var estilos = `
     .rui-toast { position: fixed; top: 18px; right: 18px; z-index: 3000; display: flex; gap: 10px; max-width: 340px;

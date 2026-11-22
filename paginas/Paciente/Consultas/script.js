@@ -147,9 +147,9 @@ function linkReagendar(dados) {
     local: dados.local,
     data: (dados.ano || "2026") + "-" + (mesesNumero[dados.mes] || "06") + "-" + dados.dia,
     hora: dados.hora,
-    volta: "../Consultas/index.html"
+    volta: "../../Consultas/index.html"
   });
-  return "../reagendar_consulta/index.html?" + params.toString();
+  return "../tela_principal_paciente/reagendar_consulta/index.html?" + params.toString();
 }
 
 
