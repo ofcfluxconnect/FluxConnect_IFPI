@@ -1,4 +1,4 @@
-const PAGINA_LOGIN = "../tela_login/fluxconnect_login_enxuto/index.html";
+const PAGINA_LOGIN = "../../tela_login/fluxconnect_login_enxuto/index.html";
 
 // Configura o comportamento do botão de mostrar/ocultar CPF
 function configurarCpf() {
