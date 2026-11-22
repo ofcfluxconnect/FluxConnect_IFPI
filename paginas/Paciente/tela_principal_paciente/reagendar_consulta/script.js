@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const toastReagendamentoSucesso = document.getElementById("toastReagendamentoSucesso");
   const toastReagendamentoMsg = document.getElementById("toastReagendamentoMsg");
 
+  // Lê parâmetro de retorno, se houver
+  const paramsUrl = new URLSearchParams(window.location.search);
+  const urlVolta = paramsUrl.get("volta") || "../index.html";
+  const btnFecharTopo = document.querySelector(".btn-fechar-reagendamento");
+  if (btnFecharTopo) btnFecharTopo.setAttribute("href", urlVolta);
+
   // --------------------------------------------------------------------------
   // ESTADO
   // --------------------------------------------------------------------------
@@ -82,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (passoAtual === 4) {
         irParaPasso(3);
       } else {
-        window.location.href = "../index.html";
+        window.location.href = urlVolta;
       }
     });
   }
@@ -167,9 +173,9 @@ document.addEventListener("DOMContentLoaded", () => {
         `Nova data: ${diaSemanaSelecionado}, ${diaSelecionado} de Junho de 2026 às ${horaSelecionada}.`
       );
 
-      // Redireciona de volta para a tela principal do paciente após 1.8 segundos
+      // Redireciona de volta para a tela de origem após 1.8 segundos
       setTimeout(() => {
-        window.location.href = "../index.html";
+        window.location.href = urlVolta;
       }, 1800);
     });
   }
