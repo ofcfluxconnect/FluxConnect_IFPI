@@ -1,0 +1,1133 @@
+/* Tema escuro das telas da recepcao.
+   Vale quando o <html> tem data-tema="escuro" (quem liga e desliga e o recepcao_tema.js,
+   pelo botao de lua/sol no topo de cada tela). Entra depois de todos os outros CSS.
+
+   A primeira parte foi montada automaticamente: para cada regra de cor das telas existe aqui
+   a versao escura. A ultima parte ("AJUSTES FEITOS A MAO") corrige o que a conversao
+   automatica nao resolve. Ao criar um componente novo, acrescente a versao escura dele la. */
+
+html[data-tema="escuro"] {
+  color-scheme: dark; /* campos, calendarios e barras de rolagem do navegador tambem escuros */
+}
+
+/* ---------- tela: tela_principal ---------- */
+html[data-tema="escuro"] {
+  --cor-principal: #e8eef6;
+  --cor-secundaria: #9fb0c3;
+  --azul-primario: #6ea8ff;
+  --azul-marinho: #2f6fd0;
+  --azul-escuro: #2f6fd0;
+  --azul-claro: #1c3354;
+  --borda: #26364a;
+  --borda-suave: rgba(255, 255, 255, 0.09);
+  --cinza-bg: #1d2a3c;
+  --cinza-texto: #c3cedb;
+  --fundo: #0e1620;
+}
+
+html[data-tema="escuro"] .sidebar {
+  background: linear-gradient(180deg, #172334 0%, #11161e 100%);
+}
+
+html[data-tema="escuro"] .avatar-user {
+  background: #1b2639;
+}
+
+html[data-tema="escuro"] .topo-pagina {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .btn-topo {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .ponto-notificacao {
+  border: 1.5px solid #2a3a50;
+}
+
+html[data-tema="escuro"] .card-resumo {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .resumo-azul {
+  background: #192436;
+  border-color: #314568;
+}
+
+html[data-tema="escuro"] .resumo-azul .resumo-numero,
+html[data-tema="escuro"] .resumo-azul .resumo-rotulo {
+  color: #5279e8;
+}
+
+html[data-tema="escuro"] .resumo-verde {
+  background: #12171f;
+  border-color: #3e5b3e;
+}
+
+html[data-tema="escuro"] .resumo-verde .resumo-numero,
+html[data-tema="escuro"] .resumo-verde .resumo-rotulo {
+  color: #b7e69d;
+}
+
+html[data-tema="escuro"] .resumo-laranja {
+  background: #37291a;
+  border-color: #6b4f2e;
+}
+
+html[data-tema="escuro"] .resumo-laranja .resumo-numero,
+html[data-tema="escuro"] .resumo-laranja .resumo-rotulo {
+  color: #f7aa6f;
+}
+
+html[data-tema="escuro"] .resumo-roxo {
+  background: #11161e;
+  border-color: #3a3267;
+}
+
+html[data-tema="escuro"] .resumo-roxo .resumo-numero,
+html[data-tema="escuro"] .resumo-roxo .resumo-rotulo {
+  color: #9c6de5;
+}
+
+html[data-tema="escuro"] .resumo-amarelo {
+  background: #353019;
+  border-color: #706029;
+}
+
+html[data-tema="escuro"] .resumo-amarelo .resumo-numero {
+  color: #f58e64;
+}
+
+html[data-tema="escuro"] .resumo-menta {
+  background: #11161e;
+  border-color: #3a5f49;
+}
+
+html[data-tema="escuro"] .resumo-menta .resumo-numero {
+  color: #99eeb9;
+}
+
+html[data-tema="escuro"] .resumo-rosa {
+  background: #10161d;
+  border-color: #683131;
+}
+
+html[data-tema="escuro"] .caixa {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .campo-busca {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .filtro {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .filtro.ativo {
+  background: #1a2638;
+  border-color: #344765;
+  color: #91a7e7;
+}
+
+html[data-tema="escuro"] .filtro.ativo span {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .tabela th {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .tabela tbody tr:hover {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .badge-pendente {
+  background: #3d3a1d;
+  color: #f8c77f;
+  border-color: #6c602d;
+}
+
+html[data-tema="escuro"] .badge-confirmada {
+  background: #1b3728;
+  color: #99eeb9;
+  border-color: #39604b;
+}
+
+html[data-tema="escuro"] .badge-aguardando {
+  background: #3d3a1d;
+  color: #f8c77f;
+  border-color: #6c602d;
+}
+
+html[data-tema="escuro"] .badge-em-atendimento {
+  background: #1b3728;
+  color: #99eeb9;
+  border-color: #39604b;
+}
+
+html[data-tema="escuro"] .badge-realizada {
+  background: #313c1c;
+  color: #d0efa9;
+  border-color: #536435;
+}
+
+html[data-tema="escuro"] .badge-cancelada {
+  background: #361919;
+  color: #e75f5f;
+  border-color: #6b2e2e;
+}
+
+html[data-tema="escuro"] .badge-falta {
+  background: #361919;
+  color: #e75f5f;
+  border-color: #6b2e2e;
+}
+
+html[data-tema="escuro"] .badge-vago {
+  background: #12171f;
+  color: #9aa8bc;
+  border-color: #2a3a50;
+}
+
+html[data-tema="escuro"] .badge-disponivel {
+  background: #1b3728;
+  color: #99eeb9;
+  border-color: #39604b;
+}
+
+html[data-tema="escuro"] .badge-completo {
+  background: #1b3728;
+  color: #99eeb9;
+  border-color: #39604b;
+}
+
+html[data-tema="escuro"] .badge-incompleto {
+  background: #372d1a;
+  color: #f7aa6f;
+  border-color: #6c532d;
+}
+
+html[data-tema="escuro"] .btn-primario:disabled {
+  background: #233246;
+}
+
+html[data-tema="escuro"] .btn-secundario {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .btn-mais {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .menu-acoes {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .menu-acoes .acao-perigo:hover {
+  background: #10161d;
+}
+
+html[data-tema="escuro"] .modal-caixa {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .campo-form select,
+html[data-tema="escuro"] .campo-form textarea,
+html[data-tema="escuro"] .campo-form input {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .atalho {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .atalho:hover {
+  border-color: #344765;
+}
+
+html[data-tema="escuro"] .icone-azul {
+  background: #1a2637;
+  color: #5279e8;
+}
+
+html[data-tema="escuro"] .icone-verde {
+  background: #1c3928;
+  color: #99eeb9;
+}
+
+html[data-tema="escuro"] .hora-celula {
+  background: #10151c !important;
+}
+
+html[data-tema="escuro"] .tabela-agenda .grupo-horario > * {
+  border-top: 2px solid #2a3a50;
+}
+
+html[data-tema="escuro"] .tabela-agenda .mesmo-horario td {
+  border-top: 1px dashed #2a3a50;
+}
+
+html[data-tema="escuro"] .linha-intervalo td {
+  background: repeating-linear-gradient(135deg, #11161e 0 10px, #11171f 10px 20px);
+  border-top: 2px solid #2a3a50;
+}
+
+html[data-tema="escuro"] .lista-proximos li {
+  background: #172334;
+}
+
+/* ---------- tela: agenda ---------- */
+html[data-tema="escuro"] .area-grade {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .btn-dia,
+html[data-tema="escuro"] .btn-hoje {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .btn-hoje.ativo {
+  background: #192436;
+  color: #5279e8;
+}
+
+html[data-tema="escuro"] .chip-esp {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .contador-aguardando {
+  background: #353019;
+  border: 1px solid #6e592b;
+  color: #f7aa6f;
+}
+
+html[data-tema="escuro"] .contador-atendimento {
+  background: #11161e;
+  border: 1px solid #36634d;
+  color: #9efae0;
+}
+
+html[data-tema="escuro"] .cor-agendado {
+  background: #373d46;
+}
+
+html[data-tema="escuro"] .cor-falta {
+  background: #5a2a2a;
+}
+
+html[data-tema="escuro"] .celula-canto,
+html[data-tema="escuro"] .cabeca-medico {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .celula-hora {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .zebra {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .celula-hora.zebra {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .celula.livre:hover,
+html[data-tema="escuro"] .celula.livre:focus-visible {
+  background: #10161d;
+}
+
+html[data-tema="escuro"] .celula.alvo {
+  background: #1a2637;
+}
+
+html[data-tema="escuro"] .celula.passou {
+  background-image: repeating-linear-gradient(135deg, transparent 0 8px, rgba(255, 255, 255, 0.038) 8px 16px);
+}
+
+html[data-tema="escuro"] .linha-intervalo {
+  background: repeating-linear-gradient(135deg, #11161e 0 10px, #11171f 10px 20px);
+}
+
+html[data-tema="escuro"] .card-consulta {
+  background: #10151c;
+}
+
+html[data-tema="escuro"] .card-ponto {
+  background: #373d46;
+}
+
+html[data-tema="escuro"] .card-aguardando {
+  background: #353019;
+  border-color: #6e5b2b;
+}
+
+html[data-tema="escuro"] .card-aguardando .card-nome,
+html[data-tema="escuro"] .card-aguardando .card-tipo {
+  color: #f4b28a;
+}
+
+html[data-tema="escuro"] .card-atendimento {
+  background: #11161e;
+  border-color: #36634e;
+}
+
+html[data-tema="escuro"] .card-atendimento .card-nome {
+  color: #9ff9e0;
+}
+
+html[data-tema="escuro"] .card-realizada {
+  background: #11161e;
+  border-color: #526238;
+}
+
+html[data-tema="escuro"] .card-falta {
+  background: #10151d;
+  border-color: #6d2c2c;
+}
+
+html[data-tema="escuro"] .card-falta .card-nome {
+  color: #e96b6b;
+}
+
+html[data-tema="escuro"] .card-falta .card-ponto {
+  background: #5a2a2a;
+}
+
+html[data-tema="escuro"] .btn-checkin {
+  background: #172334;
+  color: #5279e8;
+}
+
+html[data-tema="escuro"] .btn-checkin:hover {
+  background: #11161e;
+  border-color: #344765;
+}
+
+html[data-tema="escuro"] body.rv .barra-grade {
+  background: #172334;
+}
+
+html[data-tema="escuro"] body.rv .campo-data {
+  background: #172334;
+}
+
+html[data-tema="escuro"] body.rv .btn-hoje.ativo {
+  border-color: #304769;
+}
+
+html[data-tema="escuro"] body.rv .aviso-busca.vazio {
+  color: #f7aa6f;
+}
+
+html[data-tema="escuro"] body.rv .legenda-grade {
+  background: #10151c;
+}
+
+html[data-tema="escuro"] body.rv .item-legenda,
+html[data-tema="escuro"] body.rv .limpar-legenda {
+  background: #172334;
+}
+
+html[data-tema="escuro"] body.rv .item-legenda b {
+  background: #11171f;
+}
+
+html[data-tema="escuro"] body.rv .item-legenda:hover {
+  background: #10161d;
+}
+
+html[data-tema="escuro"] body.rv .dica-grade {
+  color: #9aa8bc;
+}
+
+html[data-tema="escuro"] body.rv .celula-canto {
+  color: #abb6c6;
+  background: #10151c;
+}
+
+html[data-tema="escuro"] body.rv .cabeca-medico {
+  background: #10151c;
+}
+
+html[data-tema="escuro"] body.rv .celula-hora {
+  color: #bbc6d6;
+}
+
+html[data-tema="escuro"] body.rv .celula.agora {
+  background-color: #172334;
+}
+
+html[data-tema="escuro"] body.rv .card-consulta {
+  border-left: 5px solid #454b54;
+  background: #10151c;
+}
+
+html[data-tema="escuro"] body.rv .card-situacao {
+  color: #abb6c6;
+}
+
+html[data-tema="escuro"] body.rv .card-aguardando .card-situacao {
+  color: #f7aa6f;
+}
+
+html[data-tema="escuro"] body.rv .card-atendimento .card-situacao {
+  color: #9efae0;
+}
+
+html[data-tema="escuro"] body.rv .card-realizada .card-situacao {
+  color: #cdf39c;
+}
+
+html[data-tema="escuro"] body.rv .card-falta {
+  border-left-color: #6d2c2c;
+}
+
+html[data-tema="escuro"] body.rv .card-falta .card-situacao {
+  color: #e96b6b;
+}
+
+html[data-tema="escuro"] body.rv .btn-checkin {
+  border-color: #304769;
+}
+
+/* ---------- tela: pacientes ---------- */
+html[data-tema="escuro"] .falta-dado {
+  color: #f7aa6f;
+}
+
+html[data-tema="escuro"] .aviso-excluir {
+  border: 1px solid #6c532d;
+  background: #372d1a;
+  color: #f4b28a;
+}
+
+html[data-tema="escuro"] .barra-desfazer button:hover {
+  background: rgba(23, 35, 52, 0.12);
+}
+
+/* ---------- tela: consultas ---------- */
+html[data-tema="escuro"] .periodo input,
+html[data-tema="escuro"] .select-filtro {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .pag {
+  background: #172334;
+}
+
+/* ---------- tela: exames ---------- */
+html[data-tema="escuro"] .ordenar select {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .avatar-claro {
+  background: #1a2637;
+  color: #738ee7;
+}
+
+html[data-tema="escuro"] .btn-visualizar {
+  border: 1px solid #3a5f4d;
+  background: #11161d;
+  color: #99eeb9;
+}
+
+html[data-tema="escuro"] .btn-visualizar:hover {
+  background: #1b3728;
+}
+
+html[data-tema="escuro"] .previa-laudo {
+  background: #10161d;
+}
+
+html[data-tema="escuro"] .previa-vazia {
+  color: #99eeb9;
+}
+
+html[data-tema="escuro"] .btn-remover {
+  border-color: #6b2e2e;
+}
+
+/* ---------- tela: relatorios ---------- */
+html[data-tema="escuro"] .barra-periodo {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .aba-periodo.ativo {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .periodo-livre input {
+  background: #10151c;
+}
+
+html[data-tema="escuro"] .kpi {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .kpi-verde {
+  background: #1b3728;
+  color: #99eeb9;
+}
+
+html[data-tema="escuro"] .kpi-laranja {
+  background: #372d1a;
+  color: #f58e64;
+}
+
+html[data-tema="escuro"] .kpi-azul {
+  background: #1a2637;
+  color: #5279e8;
+}
+
+html[data-tema="escuro"] .tendencia.boa {
+  color: #99eeb9;
+}
+
+html[data-tema="escuro"] .btn-tabela {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .rosca-total {
+  fill: #d9dee6;
+}
+
+html[data-tema="escuro"] .rosca-rotulo {
+  fill: #9aa8bc;
+}
+
+html[data-tema="escuro"] .dica-grafico {
+  background: #172334;
+}
+
+/* ---------- tela: novo_agendamento ---------- */
+html[data-tema="escuro"] .card-wizard {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .circulo {
+  border: 1.5px solid #2a3a50;
+  background: #172334;
+}
+
+html[data-tema="escuro"] .aviso-reagendar {
+  background: #192436;
+  border: 1px solid #2f456a;
+  color: #738ee7;
+}
+
+html[data-tema="escuro"] .busca-larga {
+  background: #10151c;
+}
+
+html[data-tema="escuro"] .opcao {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .opcao:hover {
+  border-color: #344765;
+}
+
+html[data-tema="escuro"] .opcao.selecionada {
+  background: #10151d;
+}
+
+html[data-tema="escuro"] .opcao-card {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .opcao-card:hover {
+  border-color: #344765;
+}
+
+html[data-tema="escuro"] .opcao-card.selecionada {
+  background: #10151d;
+}
+
+html[data-tema="escuro"] .icone-opcao {
+  background: #1a2637;
+  color: #5279e8;
+}
+
+html[data-tema="escuro"] .btn-mes {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .dia:hover:not(:disabled) {
+  background: #11161e;
+}
+
+html[data-tema="escuro"] .dia.selecionado::after {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .aviso-feriado {
+  background: #10151d;
+  border: 1px solid #712828;
+  color: #e96b6b;
+}
+
+html[data-tema="escuro"] .pill {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .pill:disabled {
+  background: #10151c;
+}
+
+html[data-tema="escuro"] .rodape-wizard {
+  background: #172334;
+}
+
+/* ---------- visual novo (recepcao_visual.css) ---------- */
+html[data-tema="escuro"] body.rv {
+  --rv-azul: #2f6fd0;
+  --rv-azul-forte: #8bb8ff;
+  --rv-azul-claro: #1c3354;
+  --rv-texto: #e8eef6;
+  --rv-texto-suave: #9fb0c3;
+  --rv-borda: #26364a;
+  background: #10161d;
+}
+
+html[data-tema="escuro"] body.rv .nav-links a {
+  color: #bbc6d6;
+}
+
+html[data-tema="escuro"] body.rv .conteudo-principal {
+  background: linear-gradient(180deg, #192536 0%, #10161d 280px);
+}
+
+html[data-tema="escuro"] body.rv .ponto-notificacao {
+  background: #5a2a2a;
+  border: 2px solid #2a3a50;
+}
+
+html[data-tema="escuro"] body.rv .card-stat {
+  background: #172334;
+}
+
+html[data-tema="escuro"] body.rv .stat-rotulo {
+  color: #bbc6d6;
+}
+
+html[data-tema="escuro"] body.rv .stat-azul {
+  --stat-fundo: #192436;
+  --stat-texto-cor: #5279e8;
+}
+
+html[data-tema="escuro"] body.rv .stat-verde {
+  --stat-fundo: #1c3728;
+  --stat-texto-cor: #91f3bc;
+}
+
+html[data-tema="escuro"] body.rv .stat-laranja {
+  --stat-fundo: #392e1b;
+  --stat-texto-cor: #f7aa6f;
+}
+
+html[data-tema="escuro"] body.rv .stat-vermelho {
+  --stat-fundo: #361919;
+}
+
+html[data-tema="escuro"] body.rv .campo-busca {
+  background: #10151d;
+}
+
+html[data-tema="escuro"] body.rv .campo-busca svg {
+  stroke: #a9b5c6;
+}
+
+html[data-tema="escuro"] body.rv .select-filtro,
+html[data-tema="escuro"] body.rv .ordenar select,
+html[data-tema="escuro"] body.rv .periodo input {
+  background-color: #172334;
+}
+
+html[data-tema="escuro"] body.rv .filtro.ativo span {
+  background: #172334;
+}
+
+html[data-tema="escuro"] body.rv .tabela th {
+  color: #abb6c6;
+  background: #10151c;
+}
+
+html[data-tema="escuro"] body.rv .cpf-mascarado {
+  color: #abb6c6;
+}
+
+html[data-tema="escuro"] body.rv .pag.seta {
+  background: #172334;
+}
+
+html[data-tema="escuro"] body.rv .pend-item:hover {
+  background: #10161d;
+}
+
+html[data-tema="escuro"] body.rv .pend-item > svg:last-child {
+  color: #abb6c6;
+}
+
+html[data-tema="escuro"] body.rv .pend-rodape .btn-secundario {
+  background: #10161d;
+  border-color: #324867;
+}
+
+html[data-tema="escuro"] body.rv .card-protecao {
+  background: #10161d;
+  border: 1px solid #324867;
+}
+
+html[data-tema="escuro"] body.rv .filtro.ativo .ponto {
+  background: #172334;
+}
+
+html[data-tema="escuro"] body.rv .stat-roxo {
+  --stat-fundo: #211935;
+}
+
+html[data-tema="escuro"] body.rv .btn-primario:disabled {
+  background: #233246;
+}
+
+html[data-tema="escuro"] body.rv .btn-recolher {
+  background: #172334;
+}
+
+/* ---------- estilos de agendamento_acoes.js ---------- */
+html[data-tema="escuro"] .aa-lista div {
+  background: #11161e;
+}
+
+html[data-tema="escuro"] .aa-lista dt {
+  color: #9aa8bc;
+}
+
+html[data-tema="escuro"] .aa-cancelar {
+  border-top: 1px dashed #2a3a50;
+}
+
+html[data-tema="escuro"] .btn-perigo-claro {
+  border: 1px solid #6b2e2e;
+  background: #172334;
+}
+
+html[data-tema="escuro"] .btn-perigo-claro:hover {
+  background: #10161d;
+}
+
+/* ---------- estilos de notificacoes.js ---------- */
+html[data-tema="escuro"] .notif-caixa {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .notif-topo {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+}
+
+html[data-tema="escuro"] .notif-titulo {
+  color: #ccd3dd;
+}
+
+html[data-tema="escuro"] .notif-fechar:hover {
+  background: #11161e;
+}
+
+html[data-tema="escuro"] .notif-item {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .notif-item.nao-lida {
+  background: #10151c;
+}
+
+html[data-tema="escuro"] .notif-item:hover {
+  background: #11161e;
+}
+
+html[data-tema="escuro"] .notif-item-titulo {
+  color: #ccd3dd;
+}
+
+html[data-tema="escuro"] .notif-urgente {
+  background: #361919;
+  border: 1px solid #6e2b2b;
+}
+
+html[data-tema="escuro"] .notif-item-texto {
+  color: #b0bbca;
+}
+
+html[data-tema="escuro"] .notif-tempo {
+  color: #9aa8bc;
+}
+
+html[data-tema="escuro"] .notif-rodape {
+  border-top: 1px solid rgba(255, 255, 255, 0.11);
+}
+
+html[data-tema="escuro"] .notif-vazio-icone {
+  background: #11171f;
+}
+
+html[data-tema="escuro"] .notif-vazio-titulo {
+  color: #ccd3dd;
+}
+
+/* ---------- estilos de paciente_cadastro_modal.js ---------- */
+html[data-tema="escuro"] .cp-caixa {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .cp-topo {
+  border-bottom: 1px solid #2a3a50;
+}
+
+html[data-tema="escuro"] .cp-icone {
+  background: #192436;
+  color: #5279e8;
+}
+
+html[data-tema="escuro"] .cp-titulo {
+  color: #d9dee6;
+}
+
+html[data-tema="escuro"] .cp-sub {
+  color: #9aa8bc;
+}
+
+html[data-tema="escuro"] .cp-x {
+  background: #11161e;
+  color: #b0bbca;
+}
+
+html[data-tema="escuro"] .cp-x:hover {
+  background: #121821;
+}
+
+html[data-tema="escuro"] .cp-secao {
+  color: #79ade8;
+}
+
+html[data-tema="escuro"] .cp-rotulo {
+  color: #d9dee6;
+}
+
+html[data-tema="escuro"] .cp-input {
+  border: 1px solid #2a3a50;
+  background: #10151d;
+  color: #d9dee6;
+}
+
+html[data-tema="escuro"] .cp-input:focus {
+  background: #172334;
+}
+
+html[data-tema="escuro"] .cp-input.invalido {
+  background: #172334;
+}
+
+html[data-tema="escuro"] select.cp-input {
+  background: #10151d url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7585' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") right 12px center / 16px no-repeat;
+}
+
+html[data-tema="escuro"] .cp-dica {
+  color: #9aa8bc;
+}
+
+html[data-tema="escuro"] .cp-erro a {
+  color: #5279e8;
+}
+
+html[data-tema="escuro"] .cp-rodape {
+  border-top: 1px solid #2a3a50;
+}
+
+html[data-tema="escuro"] .cp-cancelar {
+  border: 1px solid #2a3a50;
+  background: #172334;
+  color: #d9dee6;
+}
+
+html[data-tema="escuro"] .cp-cancelar:hover {
+  background: #11161e;
+}
+
+/* ---------- estilos de recepcao_layout.js ---------- */
+html[data-tema="escuro"] .rui-toast {
+  background: #11161e;
+  border: 1px solid #2f6a44;
+  color: #abedc4;
+}
+
+html[data-tema="escuro"] .rui-toast.erro {
+  background: #10161d;
+  border-color: #6c2d2d;
+  color: #e98585;
+}
+
+html[data-tema="escuro"] .rui-menu {
+  background: #172334;
+  border: 1px solid #2a3a50;
+}
+
+html[data-tema="escuro"] .rui-menu button {
+  color: #d9dee6;
+}
+
+html[data-tema="escuro"] .rui-menu button:hover {
+  background: #11161e;
+}
+
+html[data-tema="escuro"] .rui-menu .rui-sair:hover {
+  background: #10161d;
+}
+
+/* =====================================================================
+   AJUSTES FEITOS A MAO
+   ===================================================================== */
+html[data-tema="escuro"] body.rv {
+  background: #0e1620;
+  color: #e8eef6;
+}
+
+html[data-tema="escuro"] body.rv .sidebar {
+  background: linear-gradient(180deg, #131d2b 0%, #101926 100%);
+}
+
+html[data-tema="escuro"] body.rv .conteudo-principal {
+  background: linear-gradient(180deg, #142238 0%, #0e1620 280px);
+}
+
+/* no visual novo o cabecalho e a barra de periodo nao tem fundo proprio */
+html[data-tema="escuro"] body.rv .topo-pagina,
+html[data-tema="escuro"] body.rv .barra-periodo {
+  background: transparent;
+}
+
+/* botoes azuis: fundo fixo com texto branco (as variaveis de azul ficaram claras para texto) */
+html[data-tema="escuro"] body.rv .btn-primario,
+html[data-tema="escuro"] body.rv .filtro.ativo,
+html[data-tema="escuro"] body.rv .pag.ativa,
+html[data-tema="escuro"] body.rv .chip-esp.ativo {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+html[data-tema="escuro"] body.rv .btn-primario:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+html[data-tema="escuro"] body.rv .btn-primario:disabled {
+  background: #24344c;
+  color: #7f8fa5;
+}
+
+html[data-tema="escuro"] body.rv .filtro.ativo span {
+  background: #fff;
+  color: #1d4ed8;
+}
+
+html[data-tema="escuro"] body.rv .btn-recolher,
+html[data-tema="escuro"] body.rv .btn-topo {
+  background: #172334;
+  color: #e8eef6;
+}
+
+html[data-tema="escuro"] body.rv .ponto-notificacao {
+  border-color: #172334;
+}
+
+html[data-tema="escuro"] body.rv .tabela tbody tr:hover {
+  background: #1b2a3f;
+}
+
+html[data-tema="escuro"] body.rv .stat-icone {
+  color: #fff;
+}
+
+/* campos de formulario */
+html[data-tema="escuro"] body.rv input,
+html[data-tema="escuro"] body.rv select,
+html[data-tema="escuro"] body.rv textarea {
+  color: #e8eef6;
+}
+
+html[data-tema="escuro"] body.rv input::placeholder,
+html[data-tema="escuro"] body.rv textarea::placeholder {
+  color: #7f8fa5;
+}
+
+/* aviso "foi excluido · Desfazer" */
+html[data-tema="escuro"] .barra-desfazer {
+  background: #24344c;
+  border: 1px solid #33475f;
+}
+
+/* marca d'agua da logo (transparente) tambem aparece no tema escuro */
+html[data-tema="escuro"] body.rv .conteudo-principal::before {
+  opacity: 0.13;
+}
+
+/* cores que indicam situacao continuam vivas (legenda e cartoes da agenda, bolinha do sino) */
+html[data-tema="escuro"] .cor-agendado,
+html[data-tema="escuro"] body.rv .card-ponto { background: #94a3b8; }
+html[data-tema="escuro"] .cor-aguardando,
+html[data-tema="escuro"] body.rv .card-aguardando .card-ponto { background: #f59e0b; }
+html[data-tema="escuro"] .cor-atendimento,
+html[data-tema="escuro"] body.rv .card-atendimento .card-ponto { background: #10b981; }
+html[data-tema="escuro"] .cor-realizada,
+html[data-tema="escuro"] body.rv .card-realizada .card-ponto { background: #84cc16; }
+html[data-tema="escuro"] .cor-falta,
+html[data-tema="escuro"] body.rv .card-falta .card-ponto { background: #ef4444; }
+
+html[data-tema="escuro"] body.rv .ponto-notificacao {
+  background: #ef4444;
+}
+
+html[data-tema="escuro"] body.rv .item-legenda b {
+  background: #24344c;
+}
+
+/* agenda: linha do horario atual */
+html[data-tema="escuro"] body.rv .celula.agora {
+  background-color: #2a1a20;
+  box-shadow: inset 0 2px 0 #b9383f;
+}
+
+html[data-tema="escuro"] body.rv .celula-hora.agora {
+  color: #ff8a8a;
+}
+
+/* relatorios: linhas de grade e eixo dos graficos */
+html[data-tema="escuro"] .grade-linha {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+html[data-tema="escuro"] .eixo-base {
+  stroke: rgba(255, 255, 255, 0.28);
+}
+
+html[data-tema="escuro"] .eixo,
+html[data-tema="escuro"] .rosca-rotulo {
+  fill: #9fb0c3;
+}
+
+/* balao dos graficos */
+html[data-tema="escuro"] .rc-dica {
+  background: #e8eef6;
+  color: #0e1620;
+}
+
+/* cards de resumo amarelos (aguardando e pendente) */
+html[data-tema="escuro"] body.rv .stat-amarelo {
+  --stat-fundo: #3d3a1d;
+  --stat-texto-cor: #f8c77f;
+}
+
+html[data-tema="escuro"] body.rv .icone-stat-roxo .stat-icone {
+  box-shadow: 0 0 0 7px #2a2148;
+}
