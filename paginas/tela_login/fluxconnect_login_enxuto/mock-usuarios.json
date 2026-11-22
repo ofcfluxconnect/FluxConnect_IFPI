@@ -6,7 +6,7 @@
       "ativo": true,
       "perfil": "paciente",
       "nome": "Paciente de Teste",
-      "paginaInicial": "../../tela_principal_paciente/index.html"
+      "paginaInicial": "../../Paciente/tela_principal_paciente/index.html"
     },
     {
       "email": "recepcionista@fluxconnect.test",
@@ -14,7 +14,7 @@
       "ativo": true,
       "perfil": "recepcionista",
       "nome": "Recepcionista de Teste",
-      "paginaInicial": "../../tela_principal_recepcionista/index.html"
+      "paginaInicial": "../../Recepcionista/tela_principal_recepcionista/index.html"
     }
   ]
 }
