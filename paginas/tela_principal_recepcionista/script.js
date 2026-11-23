@@ -1,8 +1,6 @@
 // Painel da recepcao: resumo do dia, agenda de hoje e proximos agendamentos.
 // Os alertas do dia aparecem no sininho de notificacoes (todas as telas da recepcao).
 
-// nome generico: a recepcao pode ter varias recepcionistas usando o mesmo acesso
-var NOME_RECEPCIONISTA = "Recepcionista";
 var PAGINA_NOVO = "../novo_agendamento_recepcionista/index.html";
 
 var diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
@@ -19,11 +17,12 @@ function badge(status) {
   return '<span class="badge badge-' + status + '">' + Recepcao.rotulosStatus[status] + "</span>";
 }
 
-function montarTopo() {
+// o nome vem do "Meu perfil" (compartilhado/perfil_recepcao.js)
+function montarTopo(perfil) {
   var h = new Date().getHours();
   var saudacao = h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite";
   var d = Recepcao.hoje();
-  document.getElementById("tituloPagina").textContent = saudacao + ", " + NOME_RECEPCIONISTA;
+  document.getElementById("tituloPagina").textContent = saudacao + ", " + perfil.nome;
   document.getElementById("subtituloPagina").textContent =
     diasSemana[d.getDay()] + ", " + String(d.getDate()).padStart(2, "0") + " de " + meses[d.getMonth()] + " de " + d.getFullYear();
 }
@@ -42,6 +41,20 @@ function renderizar() {
   document.getElementById("numConfirmadas").textContent = contar("confirmada");
   document.getElementById("numPendentes").textContent = contar("pendente");
   document.getElementById("numAguardando").textContent = contar("aguardando");
+
+  // graficos dos cards: quantas consultas de hoje em cada horario
+  function serie(filtro) {
+    return Recepcao.horarios().map(function (h) {
+      return deHoje.filter(function (x) { return x.hora === h && filtro(x); }).length;
+    });
+  }
+  // a soma dos pontos de cada grafico e o numero mostrado no card
+  var porHora = { rotulos: Recepcao.horarios(), unidade: ["consulta", "consultas"] };
+  RecepcaoComp.grafico(document.getElementById("grafTotal"), serie(function (x) { return x.status !== "cancelada"; }), porHora);
+  RecepcaoComp.grafico(document.getElementById("grafConfirmadas"), serie(function (x) { return x.status === "confirmada"; }), porHora);
+  RecepcaoComp.grafico(document.getElementById("grafPendentes"), serie(function (x) { return x.status === "pendente"; }), porHora);
+  RecepcaoComp.grafico(document.getElementById("grafAguardando"), serie(function (x) { return x.status === "aguardando"; }),
+    { rotulos: Recepcao.horarios(), unidade: ["paciente", "pacientes"] });
 
   // agenda de hoje agrupada por horario (de 30 em 30 minutos):
   // cada horario aparece uma vez so; as consultas daquele horario ficam embaixo dele
@@ -94,7 +107,7 @@ function renderizar() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  montarTopo();
+  PerfilRecepcao.aoAtualizar(montarTopo); // refaz a saudacao quando o perfil muda
   renderizar();
 
 });
