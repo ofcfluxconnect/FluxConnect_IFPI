@@ -218,10 +218,11 @@
         alteracoes: salvo.alteracoes || {},
         novos: salvo.novos || [],
         pacientes: salvo.pacientes || {},
+        excluidos: salvo.excluidos || [],
         laudos: salvo.laudos || {}
       };
     } catch (e) {
-      return { dia: iso(hoje()), alteracoes: {}, novos: [], pacientes: {}, laudos: {} };
+      return { dia: iso(hoje()), alteracoes: {}, novos: [], pacientes: {}, excluidos: [], laudos: {} };
     }
   }
 
@@ -247,8 +248,20 @@
     Object.keys(estado.pacientes).forEach(function (id) {
       if (!pacientesBase.some(function (p) { return p.id === id; })) lista.push(Object.assign({}, estado.pacientes[id]));
     });
+    // Os pacientes de exemplo nao tem data de cadastro. Para a tela de pacientes mostrar a
+    // evolucao do cadastro, cada um ganha uma data de demonstracao: do mais antigo (menor
+    // codigo) ao mais novo, espalhados pelos ultimos meses. Paciente cadastrado pela recepcao
+    // usa a data real (criadoEm).
+    var porCodigo = pacientesBase.map(function (p) { return p.id; }).sort();
+    lista = lista.filter(function (p) { return estado.excluidos.indexOf(p.id) === -1; });
     cache.pacientesPorId = {};
     cache.pacientes = lista.map(function (p) {
+      if (p.criadoEm) {
+        p.cadastradoEm = iso(new Date(p.criadoEm));
+      } else {
+        var ordem = porCodigo.indexOf(p.id);
+        p.cadastradoEm = iso(somarDias(hoje(), -(160 - ordem * 10)));
+      }
       p.completo = !!(p.telefone && p.email && p.convenio && p.nascimento);
       cache.pacientesPorId[p.id] = p;
       return p;
@@ -271,7 +284,8 @@
     var estado = ler();
     var cores = ["#1e5bb8", "#7c3aed", "#0f766e", "#b45309", "#be185d", "#047857", "#1e3a8a", "#c2410c"];
     if (!dados.id) {
-      var maior = listarPacientes().reduce(function (m, p) { return Math.max(m, parseInt(p.id, 10) || 0); }, 0);
+      var maior = listarPacientes().map(function (p) { return p.id; }).concat(estado.excluidos)
+        .reduce(function (m, id) { return Math.max(m, parseInt(id, 10) || 0); }, 0);
       dados.id = String(maior + 1).padStart(5, "0");
       dados.cor = cores[maior % cores.length];
       dados.criadoEm = new Date().toISOString();
@@ -279,6 +293,21 @@
     estado.pacientes[dados.id] = Object.assign({}, estado.pacientes[dados.id] || {}, dados);
     gravar(estado);
     return obterPaciente(dados.id);
+  }
+
+  // Excluir paciente: ele sai das listas e da busca. As consultas e os exames que ja
+  // existem continuam no historico, mostrados como "Paciente removido".
+  function excluirPaciente(id) {
+    var estado = ler();
+    if (estado.excluidos.indexOf(id) === -1) estado.excluidos.push(id);
+    return gravar(estado);
+  }
+
+  // desfaz a exclusao (usado pelo "Desfazer" logo depois de excluir)
+  function restaurarPaciente(id) {
+    var estado = ler();
+    estado.excluidos = estado.excluidos.filter(function (x) { return x !== id; });
+    return gravar(estado);
   }
 
   function buscarPorCpf(cpf) {
@@ -398,7 +427,7 @@
     return lista.map(function (l) {
       var salvo = estado.laudos[l.id];
       if (salvo !== undefined) l.arquivo = salvo; // null = removido
-      l.paciente = obterPaciente(l.pacienteId) || { nome: "Paciente " + l.pacienteId, cpf: "", cor: "#64748b" };
+      l.paciente = obterPaciente(l.pacienteId) || { nome: "Paciente removido", cpf: "", cor: "#64748b" };
       l.status = l.arquivo ? "disponivel" : "pendente";
       return l;
     });
@@ -516,6 +545,8 @@
     pacientes: listarPacientes,
     paciente: obterPaciente,
     salvarPaciente: salvarPaciente,
+    excluirPaciente: excluirPaciente,
+    restaurarPaciente: restaurarPaciente,
     buscarPorCpf: buscarPorCpf,
     agendamentos: listarAgendamentos,
     agendamento: obterAgendamento,

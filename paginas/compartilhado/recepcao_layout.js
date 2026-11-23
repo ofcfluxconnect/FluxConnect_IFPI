@@ -46,8 +46,9 @@
   function abrirMenu(botao) {
     var r = botao.getBoundingClientRect();
     menuEl.classList.add("aberto");
-    menuEl.style.left = (r.left + 8) + "px";
-    menuEl.style.top = Math.max(8, r.top - menuEl.offsetHeight - 6) + "px";
+    var acima = r.top - menuEl.offsetHeight - 6;
+    menuEl.style.left = Math.max(8, Math.min(r.left + 8, window.innerWidth - menuEl.offsetWidth - 8)) + "px";
+    menuEl.style.top = (acima >= 8 ? acima : r.bottom + 6) + "px";
   }
 
   function iniciar() {
