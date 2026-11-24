@@ -158,12 +158,19 @@ document.addEventListener("DOMContentLoaded", () => {
         especialidade: "Clínico Geral",
         dataCompleta: `${diaSemanaSelecionado}, ${diaSelecionado} de Junho de 2026`,
         horaCompleta: `${horaSelecionada} · Duração estimada 30 min`,
+        dia: diaSelecionado,
+        hora: horaSelecionada,
         local: "Clínica FluxMed — Rua Defala Attem, 1200",
         atualizado: true
       };
 
       try {
         localStorage.setItem("fluxconnect_proxima_consulta", JSON.stringify(dadosConsulta));
+
+        // Se a consulta estava cancelada, reagendar reativa ela
+        const canceladas = JSON.parse(localStorage.getItem("fluxconnect_consultas_canceladas") || "[]");
+        const restantes = canceladas.filter((c) => c.id !== "prox-1");
+        localStorage.setItem("fluxconnect_consultas_canceladas", JSON.stringify(restantes));
       } catch (e) {
         console.error("Erro ao salvar no localStorage", e);
       }

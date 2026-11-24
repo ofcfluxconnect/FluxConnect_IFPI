@@ -4,29 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel - FluxConnect Recepção</title>
+    <script src="../compartilhado/recepcao_tema.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../compartilhado/recepcao_visual.css" />
+    <link rel="stylesheet" href="../compartilhado/recepcao_tema_escuro.css" />
+    <link rel="stylesheet" href="../compartilhado/celular.css" />
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body data-notificacoes="recepcao">
+  <body class="rv" data-notificacoes="recepcao">
     <!-- Barra lateral da recepcao -->
     <aside class="sidebar">
       <div class="logo-container">
-        <img src="../../../midias/logo/fluxConnect_2.svg" alt="Logo FluxConnect" class="logo-fluxconnect" />
+        <img src="../../../midias/logo/fluxConnect_2_transparente.svg" alt="Logo FluxConnect" class="logo-fluxconnect" />
         <div>
           <p class="logo-nome">FluxConnect</p>
-          <p class="logo-subtitulo">Recepção</p>
+          <p class="logo-subtitulo">Conectando saúde</p>
         </div>
       </div>
 
       <nav class="nav-links" aria-label="Menu da recepção">
-        <a href="#" class="link-ativo" aria-current="page">
+        <a href="index.html" class="link-ativo" aria-current="page">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           <span>Painel</span>
         </a>
@@ -52,8 +56,8 @@
         </a>
       </nav>
 
-      <!-- Conta da recepcao (nome generico: varias recepcionistas usam o mesmo acesso).
-           Clicar abre o menu com "Sair da conta". -->
+      <!-- Conta da recepcao: clicar abre o menu com "Meu perfil" e "Sair da conta".
+           O nome e a foto vem do perfil (compartilhado/perfil_recepcao.js). -->
       <button type="button" class="container-user" data-menu-usuario aria-label="Recepcionista — opções da conta" title="Opções da conta">
         <span class="avatar-user" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -68,39 +72,70 @@
     <main class="conteudo-principal">
       <header class="topo-pagina">
         <div>
+          <nav class="migalha" aria-label="Você está em">
+            <a href="../tela_principal_recepcionista/index.html" title="Painel" aria-label="Voltar ao painel"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+            <span aria-hidden="true">/</span>
+            <span>Painel</span>
+          </nav>
           <h1 class="titulo-pagina" id="tituloPagina">Bom dia</h1>
           <p class="subtitulo-pagina" id="subtituloPagina"></p>
         </div>
-        <div class="icones-topo">
-          <button class="btn-topo" title="Notificações">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span class="ponto-notificacao"></span>
-          </button>
+        <div class="topo-direita">
+          <div class="icones-topo">
+            <button type="button" class="btn-topo" title="Notificações">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="ponto-notificacao"></span>
+            </button>
+            <button type="button" class="btn-topo btn-tema" data-alternar-tema title="Usar tema escuro" aria-label="Usar tema escuro" aria-pressed="false">
+              <svg class="icone-lua" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+              <svg class="icone-sol" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.9" y1="4.9" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.1" y2="19.1"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.9" y1="19.1" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.1" y2="4.9"/></svg>
+            </button>
+          </div>
+          <a class="btn-primario btn-grande" href="../novo_agendamento_recepcionista/index.html">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Novo Agendamento
+          </a>
         </div>
       </header>
 
       <div class="area-pagina">
         <!-- Resumo do dia -->
-        <div class="cards-resumo">
-          <div class="card-resumo resumo-azul">
-            <p class="resumo-rotulo">Total do dia</p>
-            <p class="resumo-numero" id="numTotal">0</p>
-            <p class="resumo-sub">consultas agendadas</p>
+        <div class="cards-stat cards-quatro">
+          <div class="card-stat stat-azul">
+            <span class="stat-icone" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+            <div class="stat-texto">
+              <p class="stat-rotulo">Total do dia</p>
+              <p class="stat-numero" id="numTotal">0</p>
+              <p class="stat-sub">agendadas hoje</p>
+            </div>
+            <svg class="stat-grafico" id="grafTotal" role="img" aria-label="Consultas de hoje por horário"><title>Consultas de hoje por horário</title></svg>
           </div>
-          <div class="card-resumo resumo-verde">
-            <p class="resumo-rotulo">Confirmadas</p>
-            <p class="resumo-numero" id="numConfirmadas">0</p>
-            <p class="resumo-sub">prontas para atender</p>
+          <div class="card-stat stat-verde">
+            <span class="stat-icone" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12.5 10 17.5 19 7.5"/></svg></span>
+            <div class="stat-texto">
+              <p class="stat-rotulo">Confirmadas</p>
+              <p class="stat-numero" id="numConfirmadas">0</p>
+              <p class="stat-sub">para atender</p>
+            </div>
+            <svg class="stat-grafico" id="grafConfirmadas" role="img" aria-label="Consultas confirmadas de hoje por horário"><title>Consultas confirmadas de hoje por horário</title></svg>
           </div>
-          <div class="card-resumo resumo-laranja">
-            <p class="resumo-rotulo">Pendentes</p>
-            <p class="resumo-numero" id="numPendentes">0</p>
-            <p class="resumo-sub">aguardando confirmação</p>
+          <div class="card-stat stat-amarelo">
+            <span class="stat-icone" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
+            <div class="stat-texto">
+              <p class="stat-rotulo">Pendentes</p>
+              <p class="stat-numero" id="numPendentes">0</p>
+              <p class="stat-sub">a confirmar</p>
+            </div>
+            <svg class="stat-grafico" id="grafPendentes" role="img" aria-label="Consultas pendentes de hoje por horário"><title>Consultas pendentes de hoje por horário</title></svg>
           </div>
-          <div class="card-resumo resumo-roxo">
-            <p class="resumo-rotulo">Aguardando</p>
-            <p class="resumo-numero" id="numAguardando">0</p>
-            <p class="resumo-sub">na sala de espera</p>
+          <div class="card-stat stat-amarelo icone-stat-roxo">
+            <span class="stat-icone" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <div class="stat-texto">
+              <p class="stat-rotulo">Aguardando</p>
+              <p class="stat-numero" id="numAguardando">0</p>
+              <p class="stat-sub">na recepção</p>
+            </div>
+            <svg class="stat-grafico" id="grafAguardando" role="img" aria-label="Pacientes aguardando hoje por horário"><title>Pacientes aguardando hoje por horário</title></svg>
           </div>
         </div>
 
@@ -149,6 +184,9 @@
 
     <script src="../compartilhado/recepcao_dados.js"></script>
     <script src="../compartilhado/recepcao_layout.js"></script>
+    <script src="../compartilhado/confirmacao.js"></script>
+    <script src="../compartilhado/perfil_recepcao.js"></script>
+    <script src="../compartilhado/recepcao_componentes.js"></script>
     <script src="../compartilhado/notificacoes.js"></script>
     <script src="../compartilhado/paciente_cadastro_modal.js"></script>
     <script src="script.js"></script>

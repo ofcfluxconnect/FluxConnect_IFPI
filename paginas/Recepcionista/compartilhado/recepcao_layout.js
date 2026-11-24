@@ -1,9 +1,9 @@
 // Partes comuns das telas da recepcao (e do paciente):
 // - menu do usuario na barra lateral (com "Sair da conta")
 // - aviso rapido (toast) com titulo e texto: RecepcaoUI.toast("Titulo", "Texto")
-// Nas telas do paciente (<body data-perfil="paciente">) o menu ganha o item "Minha conta";
-// nas do profissional e da recepcao, o item "Meu perfil" (no profissional leva para a tela
-// meu_perfil_profissional; na recepcao abre a janela de perfil_recepcao.js).
+// Nas telas do paciente e da recepcao o menu ganha o item "Minha conta" (na recepcao leva
+// para minha_conta_recepcionista, via perfil_recepcao.js); nas do profissional, o item
+// "Meu perfil" (tela meu_perfil_profissional).
 
 (function () {
   // enderecos montados a partir deste arquivo: funcionam em telas de qualquer pasta
@@ -81,7 +81,7 @@
       (ehPaciente || temPerfil
         ? '<button type="button" data-conta>' +
           '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' +
-          (temPerfil ? "Meu perfil" : "Minha conta") + "</button>"
+          (temPerfil && !window.PerfilRecepcao ? "Meu perfil" : "Minha conta") + "</button>"
         : "") +
       '<button type="button" class="rui-sair" data-sair>' +
       '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>' +
@@ -112,7 +112,7 @@
     var itemConta = menuEl.querySelector("[data-conta]");
     if (itemConta) itemConta.addEventListener("click", function () {
       menuEl.classList.remove("aberto");
-      // paciente e profissional tem uma tela propria; a recepcao edita o perfil numa janela
+      // cada perfil tem a sua tela de conta
       if (window.PerfilProfissional) window.location.href = PAGINA_PERFIL_PROFISSIONAL;
       else if (window.PerfilEnfermeiro) window.location.href = PAGINA_PERFIL_ENFERMEIRO;
       else if (window.PerfilRecepcao) PerfilRecepcao.abrir();
