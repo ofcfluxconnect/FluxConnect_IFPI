@@ -1,0 +1,1285 @@
+/* Visual novo das telas da recepcao (Pacientes, Exames e Consultas).
+   Entra DEPOIS do style.css de cada tela e so vale quando o <body> tem a classe "rv".
+   Letras maiores para facilitar a leitura das informacoes. */
+
+body.rv {
+  --rv-azul: #1259c3;
+  --rv-azul-forte: #0d4aa6;
+  --rv-azul-claro: #e3eefc;
+  --rv-texto: #0f1923;
+  --rv-texto-suave: #55606f;
+  --rv-borda: #e1e7ef;
+  background: #f4f7fb;
+}
+
+/* ========== BARRA LATERAL ========== */
+body.rv .sidebar {
+  width: 250px;
+  flex: 0 0 250px;
+}
+
+body.rv .logo-container {
+  gap: 12px;
+  padding: 22px 20px 20px;
+}
+
+body.rv .logo-fluxconnect {
+  width: 54px;
+  height: 48px;
+  border-radius: 0;
+}
+
+body.rv .logo-nome {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+body.rv .logo-subtitulo {
+  font-size: 13.5px;
+  margin-top: 2px;
+}
+
+body.rv .nav-links {
+  gap: 6px;
+  padding: 18px 12px;
+}
+
+body.rv .nav-links a {
+  height: 50px;
+  gap: 14px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #334155;
+}
+
+body.rv .nav-links a svg {
+  width: 21px;
+  height: 21px;
+}
+
+body.rv .nav-links .link-ativo,
+body.rv .nav-links .link-ativo:hover {
+  background: var(--rv-azul-claro);
+  color: var(--rv-azul-forte);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--rv-azul);
+}
+
+body.rv .nav-links .link-ativo svg {
+  color: var(--rv-azul-forte);
+}
+
+body.rv .container-user {
+  padding: 16px 18px 18px;
+  gap: 12px;
+}
+
+body.rv .avatar-user {
+  width: 40px;
+  height: 40px;
+}
+
+body.rv .nome-user {
+  font-size: 15.5px;
+}
+
+body.rv .tipo-user {
+  font-size: 13.5px;
+}
+
+/* ========== CABECALHO DA PAGINA ========== */
+body.rv .conteudo-principal {
+  position: relative;
+  background: linear-gradient(180deg, #e9f1fc 0%, #f4f7fb 280px);
+}
+
+/* marca d'agua com a logo do FluxConnect no canto do cabecalho */
+body.rv .conteudo-principal::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: 240px;
+  width: 230px;
+  height: 230px;
+  background: url("../../../midias/logo/fluxConnect_2.svg") center / contain no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+body.rv .topo-pagina {
+  position: relative;
+  align-items: flex-start;
+  padding: 22px 32px 10px;
+  background: transparent;
+  border-bottom: none;
+}
+
+body.rv .migalha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: var(--rv-texto-suave);
+}
+
+body.rv .migalha a {
+  display: flex;
+  color: var(--rv-azul-forte);
+}
+
+body.rv .migalha a:hover {
+  color: var(--rv-azul);
+}
+
+body.rv .titulo-pagina {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+body.rv .subtitulo-pagina {
+  font-size: 16.5px;
+  color: var(--rv-texto-suave);
+  margin-top: 8px;
+}
+
+body.rv .topo-direita {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+body.rv .icones-topo {
+  gap: 10px;
+}
+
+body.rv .btn-topo {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--rv-borda);
+  color: var(--rv-texto);
+  box-shadow: 0 2px 6px rgba(15, 25, 35, 0.05);
+}
+
+body.rv .btn-topo svg {
+  width: 21px;
+  height: 21px;
+}
+
+body.rv .ponto-notificacao {
+  top: 9px;
+  right: 10px;
+  width: 11px;
+  height: 11px;
+  background: #ef4444;
+  border: 2px solid #fff;
+}
+
+/* ========== BOTOES ========== */
+body.rv .btn-primario,
+body.rv .btn-secundario {
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 11px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+body.rv .btn-primario {
+  background: var(--rv-azul);
+}
+
+body.rv .btn-primario:hover:not(:disabled) {
+  background: var(--rv-azul-forte);
+}
+
+body.rv .btn-grande {
+  height: 50px;
+  padding: 0 24px;
+  font-size: 16.5px;
+  gap: 10px;
+  box-shadow: 0 6px 16px rgba(18, 89, 195, 0.25);
+}
+
+/* ========== AREA DA PAGINA ========== */
+body.rv .area-pagina {
+  position: relative;
+  padding: 14px 32px 32px;
+  gap: 20px;
+}
+
+/* ========== CARDS COM ICONE E GRAFICO ========== */
+body.rv .cards-stat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+body.rv .card-stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 112px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid var(--rv-borda);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(15, 25, 35, 0.04);
+  overflow: hidden;
+}
+
+body.rv .stat-icone {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+  background: var(--stat-cor);
+  box-shadow: 0 0 0 7px var(--stat-fundo);
+  margin-left: 6px;
+}
+
+body.rv .stat-texto {
+  min-width: 0;
+  margin-left: 6px;
+}
+
+body.rv .stat-rotulo {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #334155;
+}
+
+body.rv .stat-numero {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--rv-texto);
+}
+
+body.rv .stat-sub {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--stat-texto-cor, var(--rv-texto-suave));
+}
+
+body.rv .stat-grafico {
+  flex: 1 1 90px;
+  min-width: 60px;
+  max-width: 150px;
+  height: 56px;
+  margin-left: auto;
+  color: var(--stat-cor);
+}
+
+body.rv .stat-azul { --stat-cor: #1d64f2; --stat-fundo: #e6effe; --stat-texto-cor: #1d4ed8; }
+body.rv .stat-verde { --stat-cor: #12a150; --stat-fundo: #e0f6ea; --stat-texto-cor: #0f8a45; }
+body.rv .stat-laranja { --stat-cor: #f59e0b; --stat-fundo: #fef1d8; --stat-texto-cor: #b45309; }
+body.rv .stat-amarelo { --stat-cor: #eab308; --stat-fundo: #fef9c3; --stat-texto-cor: #a16207; } /* aguardando e pendente */
+/* so o icone em roxo (estetica); texto e grafico do card continuam na cor do status */
+body.rv .icone-stat-roxo .stat-icone { background: #7c3aed; box-shadow: 0 0 0 7px #efe9fe; }
+body.rv .stat-vermelho { --stat-cor: #ef4444; --stat-fundo: #fde6e6; --stat-texto-cor: #dc2626; }
+
+/* ========== CAIXAS ========== */
+body.rv .caixa {
+  border: 1px solid var(--rv-borda);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(15, 25, 35, 0.04);
+}
+
+body.rv .cabeca-lista {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 22px 6px;
+}
+
+body.rv .cabeca-lista > svg {
+  color: var(--rv-azul);
+  flex-shrink: 0;
+}
+
+body.rv .cabeca-lista h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+body.rv .cabeca-lista p {
+  font-size: 15px;
+  color: var(--rv-texto-suave);
+  margin-top: 2px;
+}
+
+body.rv .chip-registros {
+  margin-left: auto;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--rv-azul-claro);
+  color: var(--rv-azul-forte);
+  font-size: 14.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ========== BUSCA E FILTROS ========== */
+body.rv .barra-ferramentas {
+  gap: 12px;
+  padding: 16px 22px;
+}
+
+body.rv .barra-ferramentas.sem-linha {
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+
+body.rv .campo-busca {
+  flex: 1 1 280px;
+  width: auto;
+  height: 48px;
+  gap: 10px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: #f5f8fc;
+}
+
+body.rv .campo-busca svg {
+  width: 19px;
+  height: 19px;
+  stroke: #55606f;
+  flex-shrink: 0;
+}
+
+body.rv .campo-busca input {
+  font-size: 16px;
+}
+
+body.rv .select-filtro,
+body.rv .ordenar select,
+body.rv .periodo input {
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--rv-borda);
+  border-radius: 11px;
+  background-color: #fff;
+  font-size: 15.5px;
+  color: var(--rv-texto);
+  cursor: pointer;
+}
+
+body.rv .select-filtro {
+  min-width: 0;
+}
+
+body.rv .periodo {
+  font-size: 15.5px;
+  gap: 10px;
+}
+
+body.rv .periodo label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+body.rv .periodo > svg,
+body.rv .icone-filtro {
+  width: 20px;
+  height: 20px;
+}
+
+body.rv .btn-limpar {
+  font-size: 15px;
+}
+
+body.rv .filtros {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+body.rv .filtro {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 15.5px;
+  gap: 8px;
+}
+
+body.rv .filtro span {
+  font-size: 13.5px;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+body.rv .filtro.ativo {
+  background: var(--rv-azul);
+  border-color: var(--rv-azul);
+  color: #fff;
+  font-weight: 600;
+}
+
+body.rv .filtro.ativo span {
+  background: #fff;
+  color: var(--rv-azul-forte);
+}
+
+body.rv .filtro .ponto {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--ponto-cor);
+}
+
+body.rv .contagem {
+  font-size: 15px;
+  color: var(--rv-texto-suave);
+}
+
+/* ========== TABELAS ========== */
+body.rv .tabela th {
+  padding: 15px 20px;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #475569;
+  background: #f7f9fc;
+  white-space: nowrap;
+}
+
+body.rv .tabela td {
+  padding: 14px 20px;
+  font-size: 16px;
+}
+
+body.rv .tabela .celula-pessoa {
+  gap: 14px;
+}
+
+body.rv .tabela .avatar-pessoa {
+  width: 44px;
+  height: 44px;
+  font-size: 15px;
+}
+
+body.rv .tabela .pessoa-nome {
+  font-size: 16.5px;
+  font-weight: 600;
+}
+
+body.rv .tabela .pessoa-sub,
+body.rv .tabela .texto-suave {
+  font-size: 14.5px;
+  margin-top: 3px;
+}
+
+body.rv .tabela .texto-forte {
+  font-size: 16.5px;
+}
+
+body.rv .tabela .linha-icone {
+  font-size: 16px;
+  gap: 9px;
+}
+
+body.rv .tabela .linha-icone.suave {
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+body.rv .tabela .linha-icone svg,
+body.rv .tabela .com-icone svg {
+  width: 16px;
+  height: 16px;
+}
+
+body.rv .tabela .falta-dado,
+body.rv .tabela .sem-consulta,
+body.rv .tabela .motivo {
+  font-size: 14.5px;
+}
+
+body.rv .cpf-mascarado {
+  font-size: 15.5px;
+  color: #475569;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+body.rv .tabela .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+body.rv .tabela .badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+body.rv .tabela .btn-mais {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
+body.rv .tabela th.col-acoes,
+body.rv .tabela td.col-acoes {
+  text-align: center;
+  width: 96px;
+}
+
+body.rv .tabela-vazia {
+  font-size: 16px;
+  padding: 36px 20px;
+}
+
+/* botoes de acao dos laudos */
+body.rv .tabela-laudos .btn-pequeno,
+body.rv .tabela-laudos .btn-visualizar {
+  height: 42px;
+  min-width: 172px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  gap: 8px;
+}
+
+body.rv .tabela-laudos .btn-pequeno svg,
+body.rv .tabela-laudos .btn-visualizar svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ========== RODAPE DA TABELA E PAGINACAO ========== */
+body.rv .rodape-tabela {
+  padding: 14px 22px;
+  font-size: 15px;
+  color: var(--rv-texto-suave);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+body.rv .paginacao {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.rv .pag {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--rv-texto);
+  cursor: pointer;
+}
+
+body.rv .pag.seta {
+  border-color: var(--rv-borda);
+  background: #fff;
+  font-size: 20px;
+  line-height: 1;
+}
+
+body.rv .pag:hover:not(:disabled):not(.ativa) {
+  background: var(--rv-azul-claro);
+}
+
+body.rv .pag.ativa {
+  background: var(--rv-azul);
+  border-color: var(--rv-azul);
+  color: #fff;
+  font-weight: 700;
+}
+
+body.rv .pag:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ========== PACIENTES: LISTA + PAINEL DE PENDENCIAS ========== */
+body.rv .grade-pacientes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 20px;
+  align-items: start;
+}
+
+body.rv .coluna-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+body.rv .pend-cabeca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 20px 0;
+}
+
+body.rv .pend-cabeca svg {
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+body.rv .pend-cabeca h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+body.rv .pend-total {
+  margin-left: auto;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: #f59e0b;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.rv .pend-descricao {
+  padding: 10px 20px 16px;
+  font-size: 15.5px;
+  line-height: 1.4;
+  color: var(--rv-texto-suave);
+  border-bottom: 1px solid var(--rv-borda);
+}
+
+body.rv .pend-lista {
+  list-style: none;
+}
+
+body.rv .pend-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border: none;
+  border-bottom: 1px solid var(--rv-borda);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+body.rv .pend-item:hover {
+  background: #fffaf0;
+}
+
+body.rv .pend-item > svg:first-child {
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+body.rv .pend-item > svg:last-child {
+  margin-left: auto;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+body.rv .pend-nome {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rv-texto);
+}
+
+body.rv .pend-motivo {
+  display: block;
+  font-size: 14.5px;
+  color: var(--rv-texto-suave);
+  margin-top: 2px;
+}
+
+body.rv .pend-vazio {
+  padding: 22px 20px;
+  font-size: 15.5px;
+  color: var(--rv-texto-suave);
+}
+
+body.rv .pend-rodape {
+  padding: 16px 20px 20px;
+}
+
+body.rv .pend-rodape .btn-secundario {
+  width: 100%;
+  background: #f1f6fd;
+  border-color: #d5e3f7;
+  color: var(--rv-azul-forte);
+}
+
+body.rv .card-protecao {
+  display: flex;
+  gap: 14px;
+  padding: 18px 20px;
+  background: #f1f6fd;
+  border: 1px solid #d5e3f7;
+  border-radius: 16px;
+}
+
+body.rv .card-protecao svg {
+  color: var(--rv-azul);
+  flex-shrink: 0;
+}
+
+body.rv .card-protecao h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+body.rv .card-protecao p {
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: var(--rv-texto-suave);
+  margin-top: 4px;
+}
+
+/* menu de acoes (tres pontinhos) */
+body.rv .menu-acoes button {
+  font-size: 15.5px;
+  padding: 12px 14px;
+}
+
+/* ========== TELAS MENORES ========== */
+@media (max-width: 1250px) {
+  body.rv .grade-pacientes {
+    grid-template-columns: 1fr;
+  }
+
+  body.rv .coluna-lateral {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  body.rv .coluna-lateral > * {
+    flex: 1 1 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  body.rv .topo-pagina {
+    padding: 18px 16px 8px;
+  }
+
+  body.rv .area-pagina {
+    padding: 12px 16px 24px;
+  }
+
+  body.rv .titulo-pagina {
+    font-size: 26px;
+  }
+
+  body.rv .topo-direita {
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  body.rv .conteudo-principal::before {
+    display: none;
+  }
+}
+
+/* bolinha colorida dentro dos filtros (Completos / Pendentes) */
+body.rv .filtro .ponto {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+body.rv .filtro.ativo .ponto {
+  background: #fff;
+}
+
+/* ========== AJUSTES FINOS ========== */
+/* grafico dos cards fica no canto de baixo, atras do texto: assim o texto usa a largura toda */
+body.rv .card-stat {
+  position: relative;
+}
+
+body.rv .stat-texto {
+  position: relative;
+  z-index: 1;
+}
+
+body.rv .stat-grafico {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  max-width: 190px;
+  height: 62px;
+  margin: 0;
+  flex: none;
+}
+
+/* tabelas: um pouco menos de espaco lateral para caber tudo sem rolagem */
+body.rv .tabela th,
+body.rv .tabela td {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+body.rv .tabela th:first-child,
+body.rv .tabela td:first-child {
+  padding-left: 22px;
+}
+
+body.rv .tabela-pacientes .pessoa-nome,
+body.rv .tabela-consultas .pessoa-nome,
+body.rv .tabela-consultas .celula-profissional {
+  white-space: nowrap;
+}
+
+/* laudos: o botao pode quebrar em duas linhas ("Visualizar / Substituir") */
+body.rv .tabela-laudos .btn-pequeno,
+body.rv .tabela-laudos .btn-visualizar {
+  min-width: 150px;
+  height: 46px;
+  white-space: normal;
+  line-height: 1.15;
+  text-align: center;
+}
+
+body.rv .tabela-laudos td:last-child,
+body.rv .tabela-laudos th:last-child {
+  text-align: center;
+  padding-right: 22px;
+}
+
+body.rv .ordenar {
+  margin-left: auto;
+}
+
+/* Pacientes: o painel de pendencias so fica ao lado em telas bem largas;
+   nas outras ele desce para baixo da tabela, que precisa da largura toda. */
+@media (max-width: 1700px) {
+  body.rv .grade-pacientes {
+    grid-template-columns: 1fr;
+  }
+
+  body.rv .coluna-lateral {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  body.rv .coluna-lateral > .caixa {
+    flex: 2 1 420px;
+  }
+
+  body.rv .coluna-lateral > .card-protecao {
+    flex: 1 1 260px;
+  }
+
+  body.rv .pend-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* grafico nao pode passar por cima do texto do card */
+body.rv .stat-grafico {
+  width: 38%;
+  height: 54px;
+}
+
+body.rv .cards-quatro .stat-grafico {
+  width: 30%;
+  height: 46px;
+}
+
+/* se a tela for estreita demais para a tabela, ela rola de lado em vez de cortar */
+body.rv .tabela-rolagem {
+  overflow-x: auto;
+}
+
+/* laudos: titulos compridos das colunas podem quebrar em duas linhas */
+body.rv .tabela-laudos th {
+  white-space: normal;
+  line-height: 1.25;
+}
+
+body.rv .tabela-laudos .btn-pequeno,
+body.rv .tabela-laudos .btn-visualizar {
+  min-width: 140px;
+}
+
+/* Consultas tem quatro cards: cabem na mesma linha tambem em tela de notebook */
+body.rv .cards-quatro {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* "Fazer Upload" numa linha so; so o "Visualizar / Substituir" quebra em duas */
+body.rv .tabela-laudos .btn-pequeno {
+  white-space: nowrap;
+}
+
+/* tela de notebook (1366px): colunas mais juntas para a tabela caber inteira */
+@media (max-width: 1420px) {
+  body.rv .topo-pagina {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  body.rv .area-pagina {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  body.rv .tabela th,
+  body.rv .tabela td {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  body.rv .tabela th:first-child,
+  body.rv .tabela td:first-child {
+    padding-left: 18px;
+  }
+
+  body.rv .tabela .celula-pessoa {
+    gap: 11px;
+  }
+
+  body.rv .tabela .avatar-pessoa {
+    width: 40px;
+    height: 40px;
+  }
+
+  body.rv .tabela th.col-acoes,
+  body.rv .tabela td.col-acoes {
+    width: 76px;
+  }
+
+  body.rv .tabela-laudos td:last-child,
+  body.rv .tabela-laudos th:last-child {
+    padding-right: 18px;
+  }
+}
+
+/* =====================================================================
+   PAINEL, AGENDA, RELATORIOS E NOVO AGENDAMENTO
+   ===================================================================== */
+body.rv .stat-roxo { --stat-cor: #7c3aed; --stat-fundo: #efe9fe; --stat-texto-cor: #6d28d9; }
+
+/* ---------- Painel ---------- */
+body.rv .atalhos {
+  gap: 18px;
+}
+
+body.rv .atalho {
+  min-height: 108px;
+  border: 1px solid var(--rv-borda);
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(15, 25, 35, 0.04);
+}
+
+body.rv .atalho-icone {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}
+
+body.rv .atalho-icone svg {
+  width: 24px;
+  height: 24px;
+}
+
+body.rv .caixa-cabeca {
+  padding: 18px 22px;
+}
+
+body.rv .caixa-titulo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+body.rv .link-ver {
+  font-size: 15.5px;
+  font-weight: 600;
+}
+
+body.rv .tabela-agenda .hora-celula {
+  font-size: 18px;
+}
+
+body.rv .tabela-agenda .tabela .badge {
+  font-size: 14.5px;
+}
+
+body.rv .link-livre {
+  font-size: 15.5px;
+}
+
+body.rv .linha-intervalo td {
+  font-size: 14.5px;
+}
+
+body.rv .lista-proximos li {
+  padding: 14px 22px;
+  gap: 16px;
+}
+
+body.rv .prox-hora {
+  font-size: 17px;
+}
+
+body.rv .prox-dia {
+  font-size: 13.5px;
+}
+
+body.rv .prox-nome {
+  font-size: 16.5px;
+}
+
+body.rv .prox-medico {
+  font-size: 14.5px;
+}
+
+body.rv .lista-proximos .badge {
+  font-size: 14.5px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ---------- Agenda, Relatorios e Novo Agendamento ----------
+   Essas telas tem dezenas de tamanhos de letra proprios (grade de horarios, graficos,
+   calendario do agendamento). Em vez de mexer em cada um, o conteudo inteiro e ampliado
+   por igual: tudo fica maior e nada sai de proporcao. */
+body.rv .area-wizard {
+  zoom: 1.14;
+}
+
+body.rv .barra-periodo,
+body.rv .barra-periodo + .area-pagina {
+  zoom: 1.1;
+}
+
+body.rv .barra-grade,
+body.rv .legenda-grade,
+body.rv .barra-periodo {
+  background: transparent;
+}
+
+body.rv .barra-periodo {
+  padding-left: 29px;
+  padding-right: 29px;
+  border-bottom: none;
+}
+
+body.rv .area-wizard {
+  position: relative;
+}
+
+body.rv .card-wizard,
+body.rv .kpi {
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(15, 25, 35, 0.04);
+}
+
+body.rv .chips-especialidade .ativo,
+body.rv .aba-periodo.ativo {
+  font-weight: 600;
+}
+
+/* botao desabilitado continua com cara de desabilitado */
+body.rv .btn-primario:disabled {
+  background: #a9c4e6;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Painel: nas linhas do mesmo horario a primeira celula e o paciente (o horario ocupa
+   a coluna com rowspan), entao ela usa o mesmo recuo das outras celulas */
+body.rv .tabela-agenda td:first-child {
+  padding-left: 16px;
+}
+
+@media (max-width: 1420px) {
+  body.rv .tabela-agenda td:first-child {
+    padding-left: 10px;
+  }
+}
+
+/* quatro cards em tela de notebook: grafico menor e mais claro para nao brigar com o texto */
+@media (max-width: 1420px) {
+  body.rv .cards-quatro .stat-grafico {
+    width: 24%;
+    height: 40px;
+    opacity: 0.55;
+  }
+}
+
+/* ========== ROLAGEM DA PAGINA INTEIRA ==========
+   Antes so a parte de baixo rolava e o conteudo era cortado ao passar por baixo do
+   cabecalho. Agora o cabecalho rola junto com o resto da pagina. */
+body.rv .conteudo-principal {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+body.rv .topo-pagina,
+body.rv .barra-periodo,
+body.rv .area-pagina,
+body.rv .area-wizard {
+  flex: none;
+}
+
+body.rv .area-pagina,
+body.rv .area-wizard {
+  overflow: visible;
+  min-height: auto;
+}
+
+/* Agenda: a grade continua rolando por dentro (os nomes dos medicos ficam fixos no topo),
+   mas nunca fica menor que isto; em tela baixa a pagina inteira rola. */
+body.rv .area-grade {
+  min-height: 480px;
+  flex-shrink: 0;
+}
+
+/* o texto do card nao bloqueia o mouse: assim o grafico responde mesmo onde o texto encosta nele */
+body.rv .stat-texto {
+  pointer-events: none;
+}
+
+@media (max-width: 1420px) {
+  body.rv .cards-quatro .stat-grafico {
+    width: 32%;
+  }
+}
+
+/* ========== BOTAO DE TEMA (lua = ir para o escuro, sol = voltar ao claro) ========== */
+body.rv .btn-tema .icone-sol {
+  display: none;
+}
+
+html[data-tema="escuro"] body.rv .btn-tema .icone-sol {
+  display: block;
+}
+
+html[data-tema="escuro"] body.rv .btn-tema .icone-lua {
+  display: none;
+}
+
+/* ========== MENU LATERAL RECOLHIVEL ========== */
+body.rv .sidebar {
+  position: relative;
+  z-index: 20;
+}
+
+/* botao redondo na borda do menu */
+body.rv .btn-recolher {
+  position: absolute;
+  top: 34px;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--rv-borda);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--rv-azul-forte);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 25, 35, 0.12);
+  transition: transform 0.2s ease;
+}
+
+body.rv .btn-recolher:hover {
+  background: var(--rv-azul-claro);
+}
+
+html[data-menu="recolhido"] body.rv .btn-recolher {
+  transform: rotate(180deg);
+}
+
+html[data-menu="recolhido"] body.rv .sidebar {
+  width: 84px;
+  flex: 0 0 84px;
+}
+
+html[data-menu="recolhido"] body.rv .logo-container {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* recolhido: ficam so a logo e os icones */
+html[data-menu="recolhido"] body.rv .logo-container > div,
+html[data-menu="recolhido"] body.rv .nav-links a span,
+html[data-menu="recolhido"] body.rv .info-user {
+  display: none;
+}
+
+html[data-menu="recolhido"] body.rv .nav-links a {
+  justify-content: center;
+  padding: 0;
+}
+
+html[data-menu="recolhido"] body.rv .nav-links a svg {
+  width: 24px;
+  height: 24px;
+}
+
+html[data-menu="recolhido"] body.rv .container-user {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 900px) {
+  body.rv .btn-recolher {
+    display: none;
+  }
+}
+
+/* marca d'agua: a logo transparente ocupa a caixa inteira, entao a caixa fica menor */
+body.rv .conteudo-principal::before {
+  top: -6px;
+  right: 270px;
+  width: 190px;
+  height: 170px;
+}
+
+/* menu recolhido: a logo vai um pouco para a esquerda para nao ficar sob o botao */
+html[data-menu="recolhido"] body.rv .logo-container {
+  padding-right: 12px;
+}
+
+html[data-menu="recolhido"] body.rv .logo-fluxconnect {
+  width: 48px;
+  height: 43px;
+}
