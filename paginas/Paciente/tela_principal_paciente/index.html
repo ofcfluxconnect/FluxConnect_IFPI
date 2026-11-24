@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tela Principal Paciente</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Ícones dos modais -->
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+    
+    <!-- JavaScript da tela principal -->
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo-container">
+        <img
+          src="../../../midias/logo/fluxConnect_2.svg"
+          alt="Logo FluxConnect"
+          class="logo-fluxconnect"
+        />
+        <div class="logo-text">
+          <p class="logo-container-p1">FluxConnect</p>
+          <p class="logo-container-p2">Portal do Paciente</p>
+        </div>
+      </div>
+      <nav class="links">
+        <a href="#" class="link-ativo"
+          ><img src="../../../midias/icones/home.svg" alt="incone-home" /><span
+            >Início</span
+          ></a
+        >
+        <a href="../Consultas/index.html"
+          ><img src="../../../midias/icones/calendar.svg" alt="icone-calendar" /><span
+            >Consultas</span
+          >
+        </a>
+        <a href="tela_meus_exames/index.html"
+          ><img src="../../../midias/icones/exeme.svg" alt="icone-exame" /><span
+            >Exames</span
+          ></a
+        >
+        <a href="../historico_medico/index.html"
+          ><img src="../../../midias/icones/historico.svg" alt="icones-histrico" />
+         <span>Histórico</span> </a
+        >
+        <a href="../tela_conta_paciente/index.html"
+          ><img src="../../../midias/icones/perfil.svg" alt="icone-perfil" /><span>Minha Conta</span></a
+        >
+      </nav>
+
+      <div class="container-user">
+        <!-- Circulo com as iniciais -->
+        <div class="avatar-user">NJ</div>
+
+        <div class="info-user">
+          <p class="nome-user">Neymar JR</p>
+          <p class="paciente">Paciente</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="container-main">
+      <div class="container-comprimentos">
+        <div class="config-texts">
+          <p class="bom-dia">Bom dia,</p>
+          <h1 class="nome-paciente">Neymar Jr</h1>
+          <p class="text-acompanhe">
+            Acompanhe suas consultas e exames em um só lugar.
+          </p>
+        </div>
+        <!-- <div class="icone-notification">
+          <img src="../../../midias/icones/notification.svg" alt="icone-notificação" />
+          <p class="text-inc"></p>
+        </div> -->
+      </div>
+      <!-- Primeiros Cards com  as informações -->
+      <div class="container-info-numeros">
+        <div class="consultas-full">
+          <h2>Consultas este ano</h2>
+          <p class="p1">7</p>
+          <p class="p2">+2 vs ano anterior</p>
+        </div>
+        <div class="consultas-full">
+          <h2>Exames realizados</h2>
+          <p class="p1">12</p>
+          <p class="p2">3 aguadando resultado</p>
+        </div>
+        <div class="consultas-full">
+          <h2>Próximo evento</h2>
+          <p class="p1">2 dias</p>
+          <p class="p2">Hemogtafia - 12 Jun</p>
+        </div>
+        <div class="consultas-full">
+          <h2>Ultimo acesso</h2>
+          <p class="p1">Hoje</p>
+          <p class="p2">08:14 . Web</p>
+        </div>
+      </div>
+
+      <!-- Cards: Proximas Consultas/Exames -->
+      <div class="div-main-proximo-consultasExames">
+        <!-- Card 1: Proxima Consulta -->
+        <div class="card-proxima-consulta">
+          <div class="div-proxima-consulta">
+            <div class="text-config">
+              <p class="text-inicio-card">Próxima consulta</p>
+
+              <div class="config-status" id="containerStatusProximaConsulta">
+                <div class="status-point" id="pointStatusProximaConsulta"></div>
+                <p class="status" id="statusProximaConsulta">Confirmada</p>
+              </div>
+            </div>
+            <div class="icone-estetoscopio-topo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a6fc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.8 2.5A.3.3 0 0 1 5 2.8v4.7a4.5 4.5 0 0 0 9 0V2.8a.3.3 0 0 1 .2-.3.3.3 0 0 1 .3.3v4.7a5.5 5.5 0 0 1-11 0V2.8a.3.3 0 0 1 .3-.3Z"/>
+                <path d="M9.5 12.5v3a4 4 0 0 0 4 4h1a4 4 0 0 0 4-4v-1.5"/>
+                <circle cx="18.5" cy="12.5" r="1.5"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="div-config-text">
+            <h1 id="proximaConsultaMedico">Dr. Carlos Lima</h1>
+            <p id="proximaConsultaEspec">Clínico Geral</p>
+          </div>
+
+          <div class="icone-text">
+            <p id="proximaConsultaData">
+              <img
+                src="../../../midias/icones/calendar-card.svg"
+                alt="icone-calendar"
+                class="incone-calendar-card"
+              />
+              Sábado, 14 de Junho de 2026
+            </p>
+
+            <p id="proximaConsultaHora">
+              <img src="../../../midias/icones/time.svg" alt="" /> 10:30 · Duração estimada 30
+              min
+            </p>
+
+            <p id="proximaConsultaLocal">
+              <img src="../../../midias/icones/localition.svg" alt="" /> Clínica FluxMed — Rua
+              Defala Attem, 1200
+            </p>
+          </div>
+          <!-- Butoes no fim do card -->
+          <div class="buttons-card">
+            <div class="a-reagendar-consulta">
+              <a href="reagendar_consulta/index.html"
+                >Reagendar <img src="../../../midias/icones/refresh.svg" alt="icone-refresh"
+              /></a>
+            </div>
+            <div class="a-cancelar-consulta" id="btnCancelarProximaConsulta">
+              <a href="#">Cancelar Consulta</a>
+              <img src="../../../midias/icones/close_small.svg" alt="icone-close" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Proximo Exame -->
+        <div class="card-proxima-consulta">
+          <div class="div-proxima-consulta-exame">
+            <div class="text-config">
+              <p class="text-inicio-card">Próxima exame</p>
+
+              <div class="config-status-exame">
+                <div class="status-point-exame"></div>
+                <p class="status-exame">Agendado</p>
+              </div>
+            </div>
+            <div class="div-icone">
+              <img src="../../../midias/icones/exame-gren.svg" alt="icone-exame" />
+            </div>
+          </div>
+
+          <div class="div-config-text">
+            <h1>Hemograma Completo</h1>
+            <p>Análise clínica de sangue</p>
+          </div>
+
+          <div class="icone-text">
+            <p>
+              <img
+                src="../../../midias/icones/calendar-card.svg"
+                alt="icone-calendar"
+                class="incone-calendar-card"
+              />
+              Quinta-feira, 12 de Junho de 2026
+            </p>
+
+            <p>
+              <img src="../../../midias/icones/time.svg" alt="" /> 08:00 · Em jejum de 8 horas
+            </p>
+
+            <p>
+              <img src="../../../midias/icones/localition.svg" alt="" /> Lab FluxLab - Rua
+              Defala Attem, 822
+            </p>
+          </div>
+
+          <!-- Butoes no fim do card -->
+          <div class="div-ver-preparo">
+            <a href="#" id="btnVerPreparo"
+              >Ver preparo
+              <img src="../../../midias/icones/ceta-green.svg" alt="icone-refresh"
+            /></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cads Atalho Rapidos -->
+      <div class="containers-atalho-rapido">
+        <p class="p-principal">Atalhos Rapidos</p>
+        <div class="div-engloba-cards-athalho">
+          <div class="container-menor-atalho">
+            <a href="../agendar_consulta/index.html?novo=1">
+              <div class="test-background" style="background: #a9c7f04f">
+                <img src="../../../midias/icones/doctor.svg" alt="" />
+              </div>
+
+              <p>Agendar Consultas</p>
+            </a>
+          </div>
+          <div class="container-menor-atalho">
+            <a href="#">
+              <div class="test-background" style="background: #e1f5ee">
+                <img src="../../../midias/icones/exame-gren.svg" alt="" />
+              </div>
+
+              <p>Agendar Exame</p>
+            </a>
+          </div>
+          <div class="container-menor-atalho">
+            <a href="../Consultas/index.html">
+              <div class="test-background" style="background: #fef3e2">
+                <img src="../../../midias/icones/calendar-color.svg" alt="" />
+              </div>
+
+              <p>Minhas Consultas</p>
+            </a>
+          </div>
+          <div class="container-menor-atalho">
+            <a href="tela_meus_exames/index.html">
+              <div class="test-background">
+                <img src="../../../midias/icones/nota-color.svg" alt="" />
+              </div>
+
+              <p>Meus Exames</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ultimos Containers GRAÇASS A DEUSS! -->
+      <!-- <div class="container-main-notifacoes-recentes">
+        <div class="main-p-text">
+          <p>Notificações recentes</p>
+        </div>
+
+        <div>
+          <img src="../../../midias/icones/pulser-gree.svg" alt="" />
+          <p>Resultado do exame de Gicose disponível</p>
+        </div>
+
+        <div>
+          <img src="../../../midias/icones/varifiction.svg" alt="" />
+          <p>Resultado do exame de Gicose disponível</p>
+        </div>
+
+        <div>
+          <img src="../../../midias/icones/atenction.svg" alt="" />
+          <p>Resultado do exame de Gicose disponível</p>
+        </div>
+      </div> -->
+    </main>
+
+    <!-- MODAL DE CANCELAMENTO -->
+    <div class="modal-overlay" id="modalCancelamento">
+      <div class="modal-caixa modal-cancelamento">
+        <!-- Ícone -->
+        <div class="modal-icone-topo">
+          <i data-lucide="calendar-x"></i>
+        </div>
+
+        <!-- Título -->
+        <h2 class="modal-titulo">
+          Deseja realmente cancelar este agendamento?
+        </h2>
+
+        <p class="modal-subtitulo">
+          Esta ação não poderá ser desfeita posteriormente.
+        </p>
+
+        <!-- Informações da consulta -->
+        <div class="modal-resumo-consulta">
+          <div class="resumo-linha">
+            <span class="resumo-icone-box">
+              <i data-lucide="user-round"></i>
+            </span>
+            <div>
+              <p class="resumo-nome" id="resumoMedicoCancelamento">
+                Consulta com Dr. Carlos Lima
+              </p>
+              <p class="resumo-detalhe" id="resumoEspecCancelamento">Clínico Geral</p>
+            </div>
+          </div>
+
+          <div class="resumo-linha">
+            <span class="resumo-icone-box">
+              <i data-lucide="calendar-days"></i>
+            </span>
+            <p id="resumoDataCancelamento">
+              14/06/2026 às 10:30
+            </p>
+          </div>
+
+          <div class="resumo-linha">
+            <span class="resumo-icone-box">
+              <i data-lucide="map-pin"></i>
+            </span>
+            <p id="resumoLocalCancelamento">
+              Clínica FluxMed — Rua Defala Attem, 1200
+            </p>
+          </div>
+        </div>
+
+        <!-- Aviso -->
+        <div class="modal-aviso">
+          <i data-lucide="info"></i>
+          <p>
+            Ao cancelar, você libera este horário para outro
+            paciente. Pedimos que cancelamentos sejam realizados
+            com pelo menos
+            <strong>24 horas de antecedência</strong>
+            sempre que possível.
+          </p>
+        </div>
+
+        <!-- Formulário -->
+        <div class="modal-formulario">
+          <label class="modal-label" for="selectMotivo">
+            Por que você está cancelando?
+            <span class="obrigatorio">*</span>
+          </label>
+
+          <div class="modal-select-wrapper">
+            <select id="selectMotivo" required>
+              <option value="">Selecione um motivo</option>
+              <option value="Imprevisto pessoal">Imprevisto pessoal</option>
+              <option value="Problema de transporte">Problema de transporte</option>
+              <option value="Conflito de horário">Conflito de horário</option>
+              <option value="Emergência familiar">Emergência familiar</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <label class="modal-label" for="textareaJustificativa">
+            Justificativa
+          </label>
+
+          <div class="modal-textarea-wrapper">
+            <textarea
+              id="textareaJustificativa"
+              maxlength="300"
+              placeholder="Descreva brevemente o motivo do cancelamento..."
+            ></textarea>
+
+            <span class="contador-caracteres">
+              <span id="contadorAtual">0</span>/300 caracteres
+            </span>
+          </div>
+        </div>
+
+        <!-- Botões -->
+        <div class="modal-botoes">
+          <button
+            type="button"
+            class="btn-confirmar-cancelamento"
+            id="btnSimCancelar"
+            disabled
+          >
+            Sim, cancelar consulta
+          </button>
+
+          <button
+            type="button"
+            class="btn-manter-consulta"
+            id="btnNaoManter"
+          >
+            <i data-lucide="calendar-check"></i>
+            Não, manter consulta
+          </button>
+        </div>
+
+        <p class="modal-rodape">
+          O motivo informado será registrado junto com a solicitação de cancelamento.
+        </p>
+      </div>
+    </div>
+
+    <!-- MODAL DE SUCESSO -->
+    <div class="modal-overlay" id="modalSucesso">
+      <div class="modal-caixa modal-sucesso">
+        <!-- Ícone de sucesso -->
+        <div class="modal-check-sucesso">
+          <i data-lucide="circle-check"></i>
+        </div>
+
+        <h2 class="modal-titulo">
+          Consulta cancelada com sucesso
+        </h2>
+
+        <p class="modal-subtitulo">
+          Seu cancelamento foi registrado nesta demonstração.
+          Você pode reagendar quando precisar.
+        </p>
+
+        <button
+          type="button"
+          class="btn-fechar-sucesso"
+          id="btnFecharSucesso"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal: Preparo para o proximo exame -->
+    <div class="modal-overlay" id="modalPreparo">
+      <div class="modal-caixa modal-preparo">
+        <div class="preparo-topo">
+          <div class="preparo-icone">
+            <svg width="26" height="26" viewBox="0 0 18 18" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.4932 1.49902V5.9961C10.493 6.24755 10.5562 6.49498 10.6768 6.71563L14.8066 14.2707C14.9315 14.499 14.9948 14.7559 14.9904 15.0161C14.9859 15.2763 14.9137 15.5309 14.781 15.7548C14.6482 15.9786 14.4595 16.1641 14.2334 16.2928C14.0072 16.4216 13.7515 16.4893 13.4912 16.4893H4.49705C4.2368 16.4893 3.98102 16.4216 3.75488 16.2928C3.52873 16.1641 3.34001 15.9786 3.20728 15.7548C3.07456 15.5309 3.0024 15.2763 2.9979 15.0161C2.99341 14.7559 3.05674 14.499 3.18166 14.2707L7.31147 6.71563C7.43206 6.49498 7.49521 6.24755 7.4951 5.9961V1.49902"/>
+              <path d="M4.83655 11.2427H13.1516"/>
+              <path d="M6.37085 1.49902H11.6174"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="preparo-titulo">Preparo para Exame</h2>
+            <p class="preparo-exame">Hemograma Completo</p>
+          </div>
+          <button class="preparo-fechar" id="btnFecharPreparo" title="Fechar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="preparo-corpo">
+          <div class="preparo-requisito">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <div>
+              <p class="requisito-titulo">Requisito Principal</p>
+              <p class="requisito-texto">Jejum obrigatório de 8 horas antes da realização do exame.</p>
+            </div>
+          </div>
+
+          <h3 class="preparo-subtitulo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12.5 11 15.5 16.5 9.5"/></svg>
+            Instruções Importantes
+          </h3>
+
+          <ul class="preparo-lista">
+            <li>Permitido ingerir água moderadamente durante o período de jejum.</li>
+            <li>Evitar bebidas alcoólicas nas 24 horas anteriores ao exame.</li>
+            <li>Evitar exercícios físicos intensos no dia anterior.</li>
+            <li>Caso utilize medicamentos de uso contínuo, mantê-los normalmente, salvo orientação médica em contrário.</li>
+            <li>Comparecer ao laboratório com documento oficial com foto.</li>
+            <li>Chegar com pelo menos 15 minutos de antecedência.</li>
+            <li>Levar o pedido médico e a carteirinha do convênio, se houver.</li>
+          </ul>
+        </div>
+
+        <div class="preparo-rodape">
+          <button class="btn-entendi" id="btnEntendiPreparo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12.5 11 15.5 16.5 9.5"/></svg>
+            Entendi
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
