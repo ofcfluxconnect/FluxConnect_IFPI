@@ -1131,3 +1131,55 @@ html[data-tema="escuro"] body.rv .stat-amarelo {
 html[data-tema="escuro"] body.rv .icone-stat-roxo .stat-icone {
   box-shadow: 0 0 0 7px #2a2148;
 }
+
+/* minha conta (minha_conta_recepcionista) */
+html[data-tema="escuro"] body.rv .conta-perfil,
+html[data-tema="escuro"] body.rv .conta-secao,
+html[data-tema="escuro"] body.rv .conta-sair {
+  background: #172334;
+}
+
+html[data-tema="escuro"] body.rv .conta-avatar,
+html[data-tema="escuro"] body.rv .container-user .avatar-user {
+  background: #2563eb;
+  color: #fff;
+}
+
+html[data-tema="escuro"] body.rv .conta-secao-icone,
+html[data-tema="escuro"] body.rv .btn-mostrar {
+  color: #8fbaff;
+}
+
+html[data-tema="escuro"] body.rv .conta-chip {
+  background: #1d2a3c;
+  color: #c3cedb;
+}
+
+html[data-tema="escuro"] body.rv .conta-chip-cargo {
+  background: #1c3354;
+  color: #8fbaff;
+}
+
+html[data-tema="escuro"] body.rv .conta-sair {
+  border-color: #5a2a2e;
+}
+
+html[data-tema="escuro"] body.rv .btn-sair-conta {
+  background: transparent;
+  border-color: #7a3238;
+  color: #ff8a8a;
+}
+
+html[data-tema="escuro"] body.rv .btn-sair-conta:hover {
+  background: #2a1a20;
+  border-color: #ff8a8a;
+}
+
+html[data-tema="escuro"] body.rv .modal-sair-icone {
+  background: #3a1d22;
+  color: #ff8a8a;
+}
+
+html[data-tema="escuro"] body.rv .btn-secundario {
+  background: #172334;
+}

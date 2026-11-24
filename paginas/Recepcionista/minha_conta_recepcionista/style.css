@@ -1,0 +1,788 @@
+/* Minha Conta da recepcao. Base igual as outras telas da recepcao + estilos proprios no fim. */
+/* reset basico */
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cor-principal: #0f1923;
+  --cor-secundaria: #6b7585;
+  --azul-primario: #1d64f2;
+  --azul-marinho: #0b3b6f;
+  --azul-escuro: #1a5fa8;
+  --azul-claro: #eaf2fe;
+  --borda: #e3e8ef;
+  --borda-suave: rgba(15, 25, 35, 0.07);
+  --cinza-bg: #f3f5f8;
+  --cinza-texto: #4b5563;
+  --fundo: #f4f7fb;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--fundo);
+  color: var(--cor-principal);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ========== BARRA LATERAL DA RECEPCAO ========== */
+.sidebar {
+  width: 220px;
+  flex: 0 0 220px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #ffffff 0%, #eef4fd 100%);
+  border-right: 1px solid var(--borda-suave);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 18px 16px;
+  border-bottom: 1px solid var(--borda-suave);
+}
+
+.logo-fluxconnect {
+  width: 40px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.logo-nome {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.logo-subtitulo {
+  font-size: 11px;
+  color: var(--cor-secundaria);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 10px;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-size: 13.5px;
+  color: var(--cinza-texto);
+  transition: background 0.15s ease;
+}
+
+.nav-links a svg {
+  color: var(--cor-secundaria);
+  flex-shrink: 0;
+}
+
+.nav-links a:hover {
+  background: rgba(29, 100, 242, 0.07);
+}
+
+.nav-links .link-ativo,
+.nav-links .link-ativo:hover {
+  background: var(--azul-marinho);
+  color: #fff;
+  font-weight: 500;
+}
+
+.nav-links .link-ativo svg {
+  color: #fff;
+}
+
+.container-user {
+  margin-top: auto;
+  border: none;
+  border-top: 1px solid var(--borda-suave);
+  background: transparent;
+  padding: 14px 16px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.container-user:hover {
+  background: rgba(29, 100, 242, 0.05);
+}
+
+.avatar-user {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #dbe7fb;
+  color: var(--azul-marinho);
+  font-size: 11.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-user {
+  display: flex;
+  flex-direction: column;
+}
+
+.nome-user {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--cor-principal);
+}
+
+.tipo-user {
+  font-size: 11px;
+  color: var(--cor-secundaria);
+}
+
+/* ========== AREA PRINCIPAL ========== */
+.conteudo-principal {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.topo-pagina {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  background: #fff;
+  border-bottom: 1px solid var(--borda-suave);
+  flex-shrink: 0;
+}
+
+.titulo-pagina {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.subtitulo-pagina {
+  font-size: 12px;
+  color: var(--cor-secundaria);
+  margin-top: 3px;
+}
+
+.icones-topo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-topo {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--azul-marinho);
+  cursor: pointer;
+}
+
+.btn-topo:hover {
+  background: var(--cinza-bg);
+}
+
+.ponto-notificacao {
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--azul-primario);
+  border: 1.5px solid #fff;
+}
+
+.area-pagina {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 18px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* os blocos mantem a altura do conteudo; quem rola e a area da pagina.
+   Sem isso, caixas com overflow hidden (tabelas) encolhem e cortam linhas. */
+.area-pagina > * {
+  flex-shrink: 0;
+}
+
+
+/* ========== BOTOES ========== */
+.btn-primario,
+.btn-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn-primario {
+  border: none;
+  background: var(--azul-escuro);
+  color: #fff;
+}
+
+.btn-primario:hover:not(:disabled) {
+  background: #154c87;
+}
+
+.btn-primario:disabled {
+  background: #a9c4e6;
+  cursor: not-allowed;
+}
+
+.btn-secundario {
+  border: 1px solid var(--borda);
+  background: #fff;
+  color: var(--cor-principal);
+}
+
+.btn-secundario:hover:not(:disabled) {
+  background: var(--cinza-bg);
+}
+
+.btn-secundario:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ========== MODAL GENERICO ========== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(15, 25, 35, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.modal-overlay.visivel {
+  display: flex;
+}
+
+.modal-caixa {
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+.modal-topo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 22px 14px;
+  border-bottom: 1px solid var(--borda-suave);
+}
+
+.modal-titulo {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.modal-sub {
+  font-size: 12.5px;
+  color: var(--cor-secundaria);
+  margin-top: 4px;
+}
+
+.modal-x {
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+  background: var(--cinza-bg);
+  color: var(--cinza-texto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.modal-corpo {
+  padding: 16px 22px;
+}
+
+.modal-rodape {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 22px 18px;
+  border-top: 1px solid var(--borda-suave);
+}
+
+/* ========== LEITURA MAIS FACIL (fontes maiores em toda a recepcao) ========== */
+.nav-links a { font-size: 15px; height: 44px; }
+.logo-nome { font-size: 16px; }
+.logo-subtitulo, .tipo-user { font-size: 12.5px; }
+.nome-user { font-size: 14px; }
+.titulo-pagina { font-size: 20px; }
+.subtitulo-pagina { font-size: 14px; margin-top: 4px; }
+.btn-primario, .btn-secundario { height: 40px; font-size: 14px; }
+
+/* responsivo comum */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topo-pagina {
+    flex-wrap: wrap;
+  }
+}
+
+/* =====================================================================
+   MINHA CONTA
+   ===================================================================== */
+
+/* logo transparente no canto do cabecalho */
+body.rv.area-conta .conteudo-principal::before {
+  background-image: url("../../../midias/logo/fluxConnect_2_transparente.svg");
+}
+
+/* na tela da conta, o botao do usuario na barra lateral fica marcado */
+body.rv .container-user.ativo {
+  background: var(--rv-azul-claro);
+  box-shadow: inset 3px 0 0 var(--rv-azul);
+}
+
+body.rv .container-user.ativo .nome-user {
+  color: var(--rv-azul-forte);
+}
+
+body.rv .container-user .avatar-user {
+  background: var(--rv-azul);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.conta-conteudo {
+  width: 100%;
+  max-width: 1180px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ---------- cabecalho do perfil ---------- */
+.conta-perfil {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 24px 26px;
+  background: #fff;
+  border: 1px solid var(--rv-borda);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(15, 25, 35, 0.04);
+}
+
+.conta-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
+  background: var(--rv-azul);
+  color: #fff;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 0 8px var(--rv-azul-claro);
+}
+
+.conta-identidade {
+  min-width: 0;
+}
+
+.conta-nome {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--rv-texto);
+}
+
+.conta-email {
+  font-size: 16px;
+  color: var(--rv-texto-suave);
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.conta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.conta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.conta-chip-cargo {
+  background: var(--rv-azul-claro);
+  color: var(--rv-azul-forte);
+}
+
+.conta-desde {
+  margin-left: auto;
+  align-self: flex-start;
+  text-align: right;
+  font-size: 14px;
+  color: var(--rv-texto-suave);
+  white-space: nowrap;
+}
+
+.conta-desde strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 16px;
+  color: var(--rv-texto);
+}
+
+/* ---------- secoes de dados ---------- */
+.conta-grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.conta-coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.conta-secao {
+  background: #fff;
+  border: 1px solid var(--rv-borda);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(15, 25, 35, 0.04);
+  padding: 20px 24px 24px;
+}
+
+.conta-secao-largo {
+  grid-column: 1 / -1;
+}
+
+.conta-secao-titulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 0 18px 0;
+  border-bottom: 1px solid var(--rv-borda);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--rv-texto);
+}
+
+.conta-secao-icone {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rv-azul-claro);
+  color: var(--rv-azul);
+}
+
+.conta-dados > div {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rv-borda);
+}
+
+.conta-dados > div:last-child {
+  border-bottom: none;
+}
+
+.conta-dados dt {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--rv-texto-suave);
+}
+
+.conta-dados dd {
+  margin-top: 4px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--rv-texto);
+  overflow-wrap: anywhere;
+}
+
+.dado-com-acao {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dado-mascara {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.btn-mostrar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  padding: 4px 6px;
+  margin: -4px 0;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rv-azul);
+  cursor: pointer;
+}
+
+.btn-mostrar:hover {
+  background: var(--rv-azul-claro);
+}
+
+.btn-mostrar:focus-visible,
+.btn-sair-conta:focus-visible {
+  outline: 2px solid var(--rv-azul);
+  outline-offset: 2px;
+}
+
+/* endereco em 3 colunas, como na conta do paciente */
+.conta-dados-endereco {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.2fr;
+  column-gap: 28px;
+}
+
+.conta-dados-endereco > div:nth-last-child(-n + 3) {
+  border-bottom: none;
+}
+
+/* ---------- sair da conta ---------- */
+.conta-sair {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 26px;
+  background: #fff;
+  border: 1px solid #f5c2c2;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(15, 25, 35, 0.04);
+}
+
+.conta-sair-titulo {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--rv-texto);
+}
+
+.conta-sair-texto {
+  margin-top: 4px;
+  font-size: 15.5px;
+  color: var(--rv-texto-suave);
+}
+
+.btn-sair-conta {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 46px;
+  padding: 0 20px;
+  border: 1px solid #f5a3a3;
+  border-radius: 11px;
+  background: #fff;
+  color: #dc2626;
+  font-size: 15.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-sair-conta:hover {
+  background: #fdf2f2;
+  border-color: #dc2626;
+}
+
+/* ---------- confirmacao de saida ---------- */
+.modal-sair {
+  max-width: 420px;
+  text-align: center;
+  padding: 28px 26px 22px;
+}
+
+.modal-sair-icone {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fde6e6;
+  color: #dc2626;
+}
+
+.modal-sair .modal-titulo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.modal-sair .modal-sub {
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.modal-sair-botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.modal-sair-botoes > button {
+  flex: 1;
+  height: 46px;
+  font-size: 15.5px;
+}
+
+.btn-confirmar-sair {
+  border: none;
+  border-radius: 11px;
+  background: #dc2626;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-confirmar-sair:hover {
+  background: #b91c1c;
+}
+
+/* ---------- telas menores ---------- */
+@media (max-width: 1100px) {
+  .conta-grade {
+    grid-template-columns: 1fr;
+  }
+
+  .conta-secao-largo {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .conta-perfil {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .conta-avatar {
+    width: 62px;
+    height: 62px;
+    font-size: 22px;
+  }
+
+  .conta-nome {
+    font-size: 21px;
+  }
+
+  .conta-desde {
+    margin-left: 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .conta-secao {
+    padding: 4px 18px 8px;
+  }
+
+  .conta-dados-endereco {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .conta-dados-endereco > div:nth-last-child(-n + 3) {
+    border-bottom: 1px solid var(--rv-borda);
+  }
+
+  .conta-dados-endereco > div:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .conta-sair {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+
+  .btn-sair-conta {
+    margin-left: 0;
+    justify-content: center;
+  }
+}
