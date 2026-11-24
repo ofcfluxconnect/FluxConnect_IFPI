@@ -1,9 +1,25 @@
 /**
  * FluxConnect - Portal do Paciente: Tela Principal
  * Modais: Preparo de Exame e Cancelamento de Consulta
+ * Também aplica a nova data quando a consulta é reagendada.
  */
 
+// Dados da próxima consulta (padrão). Se ela for reagendada,
+// carregarConsultaReagendada() substitui dia, data e hora.
+const proximaConsulta = {
+  id: "prox-1",
+  medico: "Dr. Carlos Lima",
+  especialidade: "Clínico Geral",
+  local: "Clínica FluxMed — Rua Defala Attem, 1200",
+  dataCompleta: "Sábado, 14 de Junho de 2026",
+  horaCompleta: "10:30 · Duração estimada 30 min",
+  dia: "14",
+  hora: "10:30"
+};
+
 document.addEventListener("DOMContentLoaded", function () {
+  carregarConsultaReagendada();
+
   // Inicializa ícones do Lucide se disponíveis
   if (window.lucide) {
     window.lucide.createIcons();
@@ -12,6 +28,44 @@ document.addEventListener("DOMContentLoaded", function () {
   configurarPreparo();
   configurarCancelamento();
 });
+
+// --------------------------------------------------------------------------
+// REAGENDAMENTO: lê a nova data salva pela tela reagendar_consulta
+// --------------------------------------------------------------------------
+function carregarConsultaReagendada() {
+  let salva = null;
+  try {
+    salva = JSON.parse(localStorage.getItem("fluxconnect_proxima_consulta") || "null");
+  } catch (e) {}
+
+  if (!salva || !salva.dataCompleta || !salva.horaCompleta) return;
+
+  const dia = salva.dia || (salva.dataCompleta.match(/(\d+) de/) || [])[1];
+  const hora = salva.hora || (salva.horaCompleta.match(/^(\d{1,2}:\d{2})/) || [])[1];
+
+  proximaConsulta.dataCompleta = salva.dataCompleta;
+  proximaConsulta.horaCompleta = salva.horaCompleta;
+  if (dia) proximaConsulta.dia = String(dia);
+  if (hora) proximaConsulta.hora = hora;
+
+  // Card da próxima consulta (mantém o ícone e troca só o texto)
+  trocarTextoMantendoIcone(document.getElementById("proximaConsultaData"), proximaConsulta.dataCompleta);
+  trocarTextoMantendoIcone(document.getElementById("proximaConsultaHora"), proximaConsulta.horaCompleta);
+
+  // Resumo dentro do modal de cancelamento
+  const resumoData = document.getElementById("resumoDataCancelamento");
+  if (resumoData) {
+    resumoData.textContent = proximaConsulta.dia.padStart(2, "0") + "/06/2026 às " + proximaConsulta.hora;
+  }
+}
+
+function trocarTextoMantendoIcone(elemento, texto) {
+  if (!elemento) return;
+  const icone = elemento.querySelector("img");
+  elemento.textContent = "";
+  if (icone) elemento.appendChild(icone);
+  elemento.appendChild(document.createTextNode(" " + texto));
+}
 
 // --------------------------------------------------------------------------
 // MODAL: PREPARO PARA O PRÓXIMO EXAME
@@ -62,7 +116,6 @@ function configurarCancelamento() {
   // Elementos de status na tela principal
   const statusEl = document.getElementById("statusProximaConsulta");
   const statusPonto = document.getElementById("pointStatusProximaConsulta") || document.querySelector(".config-status .status-point");
-  const botoesCard = document.querySelector(".card-proxima-consulta .buttons-card");
 
   // Função para aplicar visual de cancelamento no card
   function aplicarVisualCancelado() {
@@ -73,16 +126,16 @@ function configurarCancelamento() {
     if (statusPonto) {
       statusPonto.classList.add("cancelada");
     }
-    if (botoesCard) {
-      botoesCard.style.display = "none";
-    }
+    // Consulta cancelada: some só o botão Cancelar.
+    // O Reagendar continua, para o paciente poder marcar uma nova data.
+    btnAbrir.style.display = "none";
   }
 
   // Verifica no localStorage se a consulta já foi cancelada anteriormente
   try {
     const canceladas = JSON.parse(localStorage.getItem("fluxconnect_consultas_canceladas") || "[]");
     const estaCancelada = canceladas.some(function (c) {
-      return c.id === "prox-1" || c.status === "cancelada";
+      return c.id === proximaConsulta.id;
     });
     if (estaCancelada) {
       aplicarVisualCancelado();
@@ -142,18 +195,18 @@ function configurarCancelamento() {
       try {
         const canceladas = JSON.parse(localStorage.getItem("fluxconnect_consultas_canceladas") || "[]");
         const jaExiste = canceladas.some(function (c) {
-          return c.id === "prox-1";
+          return c.id === proximaConsulta.id;
         });
         if (!jaExiste) {
           canceladas.unshift({
-            id: "prox-1",
-            dia: "14",
+            id: proximaConsulta.id,
+            dia: proximaConsulta.dia,
             mes: "JUN",
             ano: "2026",
-            hora: "10:30",
-            nome: "Dr. Carlos Lima",
-            especialidade: "Clínico Geral",
-            local: "Clínica FluxMed — Rua Defala Attem, 1200",
+            hora: proximaConsulta.hora,
+            nome: proximaConsulta.medico,
+            especialidade: proximaConsulta.especialidade,
+            local: proximaConsulta.local,
             status: "cancelada",
             motivo: motivoCompleto
           });
